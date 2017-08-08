@@ -1,0 +1,79 @@
+{
+    "name": "cortex/pages",
+    "type": "cortex-module",
+    "description": "Cortex Pages is a frontend layer for an integral part of your Laravel content management system (CMS), it affords an easy, yet powerful way to create and manage pages with full control over their URLs, active status, titles, content, and other attributes.",
+    "keywords": [
+        "ajax",
+        "async",
+        "rinvex",
+        "pages",
+        "cache",
+        "page",
+        "cms"
+    ],
+    "license": "MIT",
+    "homepage": "https://rinvex.com",
+    "support": {
+        "email": "help@rinvex.com",
+        "issues": "https://github.com/rinvex/cortex-pages/issues",
+        "source": "https://github.com/rinvex/cortex-pages",
+        "docs": "https://github.com/rinvex/cortex-pages/README.md"
+    },
+    "authors": [
+        {
+            "name": "Rinvex LLC",
+            "homepage": "https://rinvex.com",
+            "email": "help@rinvex.com"
+        },
+        {
+            "name": "Abdelrahman Omran",
+            "homepage": "https://omranic.com",
+            "email": "me@omranic.com",
+            "role": "Project Lead"
+        },
+        {
+            "name": "The Generous Laravel Community",
+            "homepage": "https://github.com/rinvex/cortex-pages/contributors"
+        }
+    ],
+    "require": {
+        "php": "^7.0.0",
+        "laravel/framework": "~5.5.0",
+        "cortex/foundation": "dev-develop",
+        "rinvex/composable": "dev-develop",
+        "rinvex/pages": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+            "Cortex\\Pages\\": "src/"
+        }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Cortex\\Pages\\Providers\\PagesServiceProvider"
+            ]
+        },
+        "cortex-module": {
+            "autoinstall": false,
+            "icon": {
+                "color": "#2196f3",
+                "name": "heartbeat",
+                "background-size": "cover",
+                "background-color": "#e3f2fd",
+                "background-position": "center",
+                "background-repeat": "no-repeat"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
