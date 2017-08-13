@@ -41,8 +41,8 @@ class PagePolicy
     /**
      * Determine whether the user can update the page.
      *
-     * @param string                                $ability
-     * @param \Cortex\Fort\Models\User              $user
+     * @param string                    $ability
+     * @param \Cortex\Fort\Models\User  $user
      * @param \Cortex\Pages\Models\Page $resource
      *
      * @return bool
@@ -55,8 +55,8 @@ class PagePolicy
     /**
      * Determine whether the user can delete the page.
      *
-     * @param string                                $ability
-     * @param \Cortex\Fort\Models\User              $user
+     * @param string                    $ability
+     * @param \Cortex\Fort\Models\User  $user
      * @param \Cortex\Pages\Models\Page $resource
      *
      * @return bool

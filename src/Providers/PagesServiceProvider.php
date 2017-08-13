@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
-use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\Compilers\BladeCompiler;
 
 class PagesServiceProvider extends ServiceProvider
 {
