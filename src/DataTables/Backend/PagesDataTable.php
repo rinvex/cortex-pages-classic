@@ -27,7 +27,7 @@ class PagesDataTable extends AbstractDataTable
      */
     public function query()
     {
-        $query = ($this->model)::query()->orderBy('sort_order', 'ASC')->orderBy("title->\${app()->getLocale()}", 'ASC');
+        $query = ($this->model)::query()->orderBy('sort_order', 'ASC')->orderBy('title->${app()->getLocale()}', 'ASC');
 
         return $this->applyScopes($query);
     }
