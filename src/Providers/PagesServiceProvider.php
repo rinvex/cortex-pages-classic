@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\View\Compilers\BladeCompiler;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -22,18 +24,6 @@ class PagesServiceProvider extends ServiceProvider
 
         // Publish Resources
         ! $this->app->runningInConsole() || $this->publishResources();
-
-        // Register sidebar menus
-        $this->app->singleton('menus.sidebar.management', function ($app) {
-            return collect();
-        });
-
-        // Register menu items
-        $this->app['view']->composer('cortex/foundation::backend.partials.sidebar', function ($view) {
-            app('menus.sidebar')->put('management', app('menus.sidebar.management'));
-            app('menus.sidebar.management')->put('header', '<li class="header">'.trans('cortex/pages::navigation.headers.management').'</li>');
-            app('menus.sidebar.management')->put('pages', '<li '.(mb_strpos(request()->route()->getName(), 'backend.pages.') === 0 ? 'class="active"' : '').'><a href="'.route('backend.pages.index').'"><i class="fa fa-files-o"></i> <span>'.trans('cortex/pages::navigation.menus.pages').'</span></a></li>');
-        });
     }
 
     /**
