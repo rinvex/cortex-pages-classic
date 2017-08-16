@@ -37,6 +37,9 @@ class PagesServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
         $this->commands([SeedCommand::class, MigrateCommand::class]);
+        $this->app->afterResolving('blade.compiler', function () {
+            require __DIR__.'/../../routes/menus.php';
+        });
 
         // Publish Resources
         ! $this->app->runningInConsole() || $this->publishResources();
