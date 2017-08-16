@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Cortex\Pages\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Cortex\Pages\Console\Commands\SeedCommand;
+use Cortex\Pages\Console\Commands\MigrateCommand;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,7 @@ class PagesServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
+        $this->commands([SeedCommand::class, MigrateCommand::class]);
 
         // Publish Resources
         ! $this->app->runningInConsole() || $this->publishResources();
