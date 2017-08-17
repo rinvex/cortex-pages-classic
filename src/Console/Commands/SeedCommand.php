@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Console\Commands;
 
+use Exception;
+use Cortex\Pages\Models\Page;
 use Illuminate\Console\Command;
 use Cortex\Fort\Traits\AbilitySeeder;
 use Cortex\Fort\Traits\BaseFortSeeder;
@@ -31,12 +33,25 @@ class SeedCommand extends Command
     /**
      * Execute the console command.
      *
+     * @throws \Exception
+     *
      * @return void
      */
     public function handle()
     {
         if ($this->ensureExistingPagesTables()) {
-            // No seed data at the moment!
+            $seeder = realpath(__DIR__.'/../../../resources/data/pages.json');
+
+            if (! file_exists($seeder)) {
+                throw new Exception("Pages seeder file '{$seeder}' does NOT exist!");
+            }
+
+            // Create new pages
+            foreach (json_decode(file_get_contents($seeder), true) as $ability) {
+                Page::firstOrCreate(array_except($ability, ['title']), array_only($ability, ['title']));
+            }
+
+            $this->info("Pages seeder file '{$seeder}' seeded successfully!");
         }
 
         if ($this->ensureExistingFortTables()) {
