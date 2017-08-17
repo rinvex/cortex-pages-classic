@@ -7,14 +7,14 @@ namespace Cortex\Pages\Console\Commands;
 use Exception;
 use Cortex\Pages\Models\Page;
 use Illuminate\Console\Command;
-use Cortex\Fort\Traits\AbilitySeeder;
-use Cortex\Fort\Traits\BaseFortSeeder;
+use Rinvex\Fort\Traits\AbilitySeeder;
+use Rinvex\Fort\Traits\ArtisanHelper;
 use Illuminate\Support\Facades\Schema;
 
 class SeedCommand extends Command
 {
     use AbilitySeeder;
-    use BaseFortSeeder;
+    use ArtisanHelper;
 
     /**
      * The name and signature of the console command.

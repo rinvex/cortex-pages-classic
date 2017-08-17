@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Policies;
 
-use Cortex\Fort\Models\User;
+use Rinvex\Fort\Models\User;
 use Cortex\Pages\Models\Page;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -16,7 +16,7 @@ class PagePolicy
      * Determine whether the user can list pages.
      *
      * @param string                   $ability
-     * @param \Cortex\Fort\Models\User $user
+     * @param \Rinvex\Fort\Models\User $user
      *
      * @return bool
      */
@@ -29,7 +29,7 @@ class PagePolicy
      * Determine whether the user can create pages.
      *
      * @param string                   $ability
-     * @param \Cortex\Fort\Models\User $user
+     * @param \Rinvex\Fort\Models\User $user
      *
      * @return bool
      */
@@ -42,7 +42,7 @@ class PagePolicy
      * Determine whether the user can update the page.
      *
      * @param string                    $ability
-     * @param \Cortex\Fort\Models\User  $user
+     * @param \Rinvex\Fort\Models\User  $user
      * @param \Cortex\Pages\Models\Page $resource
      *
      * @return bool
@@ -56,7 +56,7 @@ class PagePolicy
      * Determine whether the user can delete the page.
      *
      * @param string                    $ability
-     * @param \Cortex\Fort\Models\User  $user
+     * @param \Rinvex\Fort\Models\User  $user
      * @param \Cortex\Pages\Models\Page $resource
      *
      * @return bool
