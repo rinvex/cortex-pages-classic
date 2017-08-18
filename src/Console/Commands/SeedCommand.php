@@ -39,6 +39,8 @@ class SeedCommand extends Command
      */
     public function handle()
     {
+        $this->warn('Seed cortex/pages:');
+
         if ($this->ensureExistingPagesTables()) {
             $seeder = realpath(__DIR__.'/../../../resources/data/pages.json');
 
@@ -46,12 +48,14 @@ class SeedCommand extends Command
                 throw new Exception("Pages seeder file '{$seeder}' does NOT exist!");
             }
 
+            $this->warn('Seeding: '.str_after($seeder, $this->laravel->basePath().'/'));
+
             // Create new pages
             foreach (json_decode(file_get_contents($seeder), true) as $ability) {
                 Page::firstOrCreate(array_except($ability, ['title']), array_only($ability, ['title']));
             }
 
-            $this->info("Pages seeder file '{$seeder}' seeded successfully!");
+            $this->info('Seeded: '.str_after($seeder, $this->laravel->basePath().'/'));
         }
 
         if ($this->ensureExistingFortTables()) {
