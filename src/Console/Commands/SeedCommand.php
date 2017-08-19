@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Cortex\Pages\Console\Commands;
 
 use Exception;
-use Cortex\Pages\Models\Page;
 use Illuminate\Console\Command;
 use Rinvex\Fort\Traits\AbilitySeeder;
 use Rinvex\Fort\Traits\ArtisanHelper;
@@ -52,7 +51,7 @@ class SeedCommand extends Command
 
             // Create new pages
             foreach (json_decode(file_get_contents($seeder), true) as $ability) {
-                Page::firstOrCreate(array_except($ability, ['title']), array_only($ability, ['title']));
+                app('rinvex.pages.page')->firstOrCreate(array_except($ability, ['title']), array_only($ability, ['title']));
             }
 
             $this->info('Seeded: '.str_after($seeder, $this->laravel->basePath().'/'));

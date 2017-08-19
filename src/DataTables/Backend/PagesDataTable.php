@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\DataTables\Backend;
 
-use Cortex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\AbstractDataTable;
 use Cortex\Pages\Transformers\Backend\PageTransformer;
 
@@ -13,7 +12,7 @@ class PagesDataTable extends AbstractDataTable
     /**
      * {@inheritdoc}
      */
-    protected $model = Page::class;
+    protected $model = 'rinvex.pages.page';
 
     /**
      * {@inheritdoc}
@@ -28,7 +27,7 @@ class PagesDataTable extends AbstractDataTable
     public function query()
     {
         $locale = app()->getLocale();
-        $query = ($this->model)::query()->orderBy('sort_order', 'ASC')->orderBy("title->\${$locale}", 'ASC');
+        $query = app($this->model)->query()->orderBy('sort_order', 'ASC')->orderBy("title->\${$locale}", 'ASC');
 
         return $this->applyScopes($query);
     }
