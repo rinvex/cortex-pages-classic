@@ -3,7 +3,7 @@
 
 {{-- Page Title --}}
 @section('title')
-    {{ config('app.name') }} » {{ trans('cortex/foundation::common.backend') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->slug : trans('cortex/pages::common.create_page') }}
+    {{ config('app.name') }} » {{ trans('cortex/foundation::common.backend') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
 @stop
 
 @push('scripts')
@@ -19,7 +19,7 @@
 
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>{{ $page->exists ? $page->slug : trans('cortex/pages::common.create_page') }}</h1>
+            <h1>{{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}</h1>
             <!-- Breadcrumbs -->
             {{ Breadcrumbs::render() }}
         </section>
