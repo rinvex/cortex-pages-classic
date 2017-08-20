@@ -55,7 +55,7 @@ class PagesController extends AuthorizedController
      */
     public function store(PageFormRequest $request)
     {
-        return $this->process($request, new Page());
+        return $this->process($request, app('rinvex.pages.page'));
     }
 
     /**
