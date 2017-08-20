@@ -113,6 +113,15 @@ class PagesController extends AuthorizedController
         // Prepare required input fields
         $data = $request->all();
 
+        // Verify existing view
+        if (! view()->exists($data['view'])) {
+            return intend([
+                'back' => true,
+                'withInput' => $request->all(),
+                'withErrors' => ['view' => trans('cortex/pages::messages.page.invalid_view')],
+            ]);
+        }
+
         // Save page
         $page->fill($data)->save();
 

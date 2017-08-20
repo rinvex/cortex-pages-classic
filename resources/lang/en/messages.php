@@ -7,6 +7,7 @@ return [
     'page' => [
         'saved' => 'Congrats! Page [:pageId] saved successfully.',
         'deleted' => 'Done! Page [:pageId] deleted successfully.',
+        'invalid_view' => 'View does NOT exist!',
     ],
 
 ];
