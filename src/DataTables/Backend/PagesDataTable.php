@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\DataTables\Backend;
 
+use Cortex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\AbstractDataTable;
 use Cortex\Pages\Transformers\Backend\PageTransformer;
 
@@ -12,7 +13,7 @@ class PagesDataTable extends AbstractDataTable
     /**
      * {@inheritdoc}
      */
-    protected $model = 'rinvex.pages.page';
+    protected $model = Page::class;
 
     /**
      * {@inheritdoc}
@@ -57,9 +58,11 @@ class PagesDataTable extends AbstractDataTable
      */
     public function ajax()
     {
+        $transformer = app($this->transformer);
+
         return $this->datatables
             ->eloquent($this->query())
-            ->setTransformer(new $this->transformer())
+            ->setTransformer($transformer)
             ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
             ->make(true);
     }

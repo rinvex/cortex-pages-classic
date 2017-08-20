@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
@@ -31,6 +32,9 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        // Bind eloquent models to IoC container
+        $this->app->alias('rinvex.pages.page', Page::class);
+
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
             $this->app->singleton($value, function ($app) use ($key) {
