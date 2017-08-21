@@ -28,7 +28,7 @@ class PagesController extends AuthorizedController
         return app(PagesDataTable::class)->with([
             'id' => 'cortex-pages',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::backend.partials.datatable');
+        ])->render('cortex/foundation::backend.pages.datatable');
     }
 
     /**
@@ -43,7 +43,7 @@ class PagesController extends AuthorizedController
             'resource' => $page,
             'id' => 'cortex-pages-logs',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::backend.partials.datatable-logs');
+        ])->render('cortex/foundation::backend.pages.datatable-logs');
     }
 
     /**
