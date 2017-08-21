@@ -7,6 +7,8 @@ namespace Cortex\Pages\Providers;
 use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
 use Cortex\Pages\Console\Commands\SeedCommand;
+use Cortex\Pages\Console\Commands\InstallCommand;
+use Cortex\Pages\Console\Commands\PublishCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
 
 class PagesServiceProvider extends ServiceProvider
@@ -18,6 +20,8 @@ class PagesServiceProvider extends ServiceProvider
      */
     protected $commands = [
         MigrateCommand::class => 'command.cortex.pages.migrate',
+        PublishCommand::class => 'command.cortex.pages.publish',
+        InstallCommand::class => 'command.cortex.pages.install',
         SeedCommand::class => 'command.cortex.pages.seed',
     ];
 
