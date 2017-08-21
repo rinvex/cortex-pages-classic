@@ -8,8 +8,8 @@ use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
-use Cortex\Pages\Console\Commands\PublishCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
+use Cortex\Pages\Console\Commands\PublishCommand;
 
 class PagesServiceProvider extends ServiceProvider
 {
