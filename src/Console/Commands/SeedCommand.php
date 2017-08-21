@@ -23,7 +23,7 @@ class SeedCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Seed Default Cortex Pages data.';
+    protected $description = 'Seed Cortex Pages Data.';
 
     /**
      * Execute the console command.
