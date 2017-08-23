@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Cortex\Pages\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
-use Cortex\Pages\Models\Page;
+use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Pages\DataTables\Backend\PagesDataTable;
 use Cortex\Pages\Http\Requests\Backend\PageFormRequest;
@@ -36,7 +36,7 @@ class PagesController extends AuthorizedController
      *
      * @return \Illuminate\Http\Response
      */
-    public function logs(Page $page)
+    public function logs(PageContract $page)
     {
         return app(LogsDataTable::class)->with([
             'type' => 'pages',
@@ -62,11 +62,11 @@ class PagesController extends AuthorizedController
      * Update the given resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Backend\PageFormRequest $request
-     * @param \Cortex\Pages\Models\Page                           $page
+     * @param \Rinvex\Pages\Contracts\PageContract                           $page
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(PageFormRequest $request, Page $page)
+    public function update(PageFormRequest $request, PageContract $page)
     {
         return $this->process($request, $page);
     }
@@ -74,11 +74,11 @@ class PagesController extends AuthorizedController
     /**
      * Delete the given resource from storage.
      *
-     * @param \Cortex\Pages\Models\Page $page
+     * @param \Rinvex\Pages\Contracts\PageContractContract $page
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete(Page $page)
+    public function delete(PageContract $page)
     {
         $page->delete();
 
@@ -91,11 +91,11 @@ class PagesController extends AuthorizedController
     /**
      * Show the form for create/update of the given resource.
      *
-     * @param \Cortex\Pages\Models\Page $page
+     * @param \Rinvex\Pages\Contracts\PageContractContract $page
      *
      * @return \Illuminate\Http\Response
      */
-    public function form(Page $page)
+    public function form(PageContract $page)
     {
         return view('cortex/pages::backend.forms.page', compact('page'));
     }
@@ -104,11 +104,11 @@ class PagesController extends AuthorizedController
      * Process the form for store/update of the given resource.
      *
      * @param \Illuminate\Http\Request  $request
-     * @param \Cortex\Pages\Models\Page $page
+     * @param \Rinvex\Pages\Contracts\PageContractContract $page
      *
      * @return \Illuminate\Http\Response
      */
-    protected function process(Request $request, Page $page)
+    protected function process(Request $request, PageContract $page)
     {
         // Prepare required input fields
         $data = $request->all();

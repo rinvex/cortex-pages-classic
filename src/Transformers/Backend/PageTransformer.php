@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Transformers\Backend;
 
-use Cortex\Pages\Models\Page;
+use Rinvex\Pages\Contracts\PageContract;
 use League\Fractal\TransformerAbstract;
 
 class PageTransformer extends TransformerAbstract
@@ -12,7 +12,7 @@ class PageTransformer extends TransformerAbstract
     /**
      * @return array
      */
-    public function transform(Page $page)
+    public function transform(PageContract $page)
     {
         return [
             'id' => (int) $page->id,

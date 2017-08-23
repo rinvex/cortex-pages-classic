@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
-use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
@@ -36,9 +35,6 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Bind eloquent models to IoC container
-        $this->app->alias('rinvex.pages.page', Page::class);
-
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
     }
