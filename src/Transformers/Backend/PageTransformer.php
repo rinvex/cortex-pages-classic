@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Transformers\Backend;
 
-use Rinvex\Pages\Contracts\PageContract;
 use League\Fractal\TransformerAbstract;
+use Rinvex\Pages\Contracts\PageContract;
 
 class PageTransformer extends TransformerAbstract
 {
