@@ -74,7 +74,7 @@ class PagesController extends AuthorizedController
     /**
      * Delete the given resource from storage.
      *
-     * @param \Rinvex\Pages\Contracts\PageContractContract $page
+     * @param \Rinvex\Pages\Contracts\PageContract $page
      *
      * @return \Illuminate\Http\Response
      */
@@ -91,7 +91,7 @@ class PagesController extends AuthorizedController
     /**
      * Show the form for create/update of the given resource.
      *
-     * @param \Rinvex\Pages\Contracts\PageContractContract $page
+     * @param \Rinvex\Pages\Contracts\PageContract $page
      *
      * @return \Illuminate\Http\Response
      */
@@ -103,8 +103,8 @@ class PagesController extends AuthorizedController
     /**
      * Process the form for store/update of the given resource.
      *
-     * @param \Illuminate\Http\Request                     $request
-     * @param \Rinvex\Pages\Contracts\PageContractContract $page
+     * @param \Illuminate\Http\Request             $request
+     * @param \Rinvex\Pages\Contracts\PageContract $page
      *
      * @return \Illuminate\Http\Response
      */
