@@ -62,7 +62,7 @@ class PagesController extends AuthorizedController
      * Update the given resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Backend\PageFormRequest $request
-     * @param \Rinvex\Pages\Contracts\PageContract                           $page
+     * @param \Rinvex\Pages\Contracts\PageContract                $page
      *
      * @return \Illuminate\Http\Response
      */
@@ -103,7 +103,7 @@ class PagesController extends AuthorizedController
     /**
      * Process the form for store/update of the given resource.
      *
-     * @param \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request                     $request
      * @param \Rinvex\Pages\Contracts\PageContractContract $page
      *
      * @return \Illuminate\Http\Response
