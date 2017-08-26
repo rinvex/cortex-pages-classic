@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Models;
 
-use Illuminate\Support\Facades\Artisan;
 use Rinvex\Pages\Models\Page as BasePage;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -82,18 +81,4 @@ class Page extends BasePage
         'updated_at',
         'deleted_at',
     ];
-
-    /**
-     * {@inheritdoc}
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        // Update routes
-        static::saved(function () {
-            Artisan::call('route:cache');
-            Artisan::call('laroute:generate');
-        });
-    }
 }
