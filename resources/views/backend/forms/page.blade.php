@@ -258,7 +258,6 @@
                                 <div class="col-md-12">
 
                                     <div class="pull-right">
-                                        {{ Form::button(trans('cortex/pages::common.reset'), ['class' => 'btn btn-default btn-flat', 'type' => 'reset']) }}
                                         {{ Form::button(trans('cortex/pages::common.submit'), ['class' => 'btn btn-primary btn-flat', 'type' => 'submit']) }}
                                     </div>
 

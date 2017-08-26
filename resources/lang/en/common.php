@@ -21,7 +21,6 @@ return [
     'created_at' => 'Created At',
     'updated_at' => 'Updated At',
     'submit' => 'Submit',
-    'reset' => 'Reset',
     'details' => 'Details',
     'welcome' => 'Welcome',
     'welcome_body' => 'Welcome to your new project based on <strong>Rinvex Cortex</strong>. Enjoy building something awesome! 🎉',
