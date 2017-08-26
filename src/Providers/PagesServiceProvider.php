@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
@@ -44,8 +46,11 @@ class PagesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $router)
     {
+        // Bind models explicitly
+        $router->model('page', PageContract::class);
+
         // Load resources
         require __DIR__.'/../../routes/breadcrumbs.php';
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');

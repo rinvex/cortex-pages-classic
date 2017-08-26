@@ -2,10 +2,6 @@
 
 declare(strict_types=1);
 
-use Rinvex\Pages\Contracts\PageContract;
-
-Route::model('page', PageContract::class);
-
 Route::group(['domain' => domain()], function () {
 
     Route::name('backend.')
