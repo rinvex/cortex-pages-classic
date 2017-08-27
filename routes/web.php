@@ -14,10 +14,10 @@ Route::group(['domain' => domain()], function () {
             Route::get('/')->name('index')->uses('PagesController@index');
             Route::get('create')->name('create')->uses('PagesController@form');
             Route::post('create')->name('store')->uses('PagesController@store');
-            Route::get('{page}')->name('edit')->uses('PagesController@form')->where('page', '[0-9]+');
-            Route::put('{page}')->name('update')->uses('PagesController@update')->where('page', '[0-9]+');
-            Route::get('{page}/logs')->name('logs')->uses('PagesController@logs')->where('page', '[0-9]+');
-            Route::delete('{page}')->name('delete')->uses('PagesController@delete')->where('page', '[0-9]+');
+            Route::get('{page}')->name('edit')->uses('PagesController@form')->where('page', '[0-9a-z\._-]+');
+            Route::put('{page}')->name('update')->uses('PagesController@update')->where('page', '[0-9a-z\._-]+');
+            Route::get('{page}/logs')->name('logs')->uses('PagesController@logs')->where('page', '[0-9a-z\._-]+');
+            Route::delete('{page}')->name('delete')->uses('PagesController@delete')->where('page', '[0-9a-z\._-]+');
         });
 
     });

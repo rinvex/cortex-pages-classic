@@ -75,7 +75,7 @@ class PagesDataTable extends AbstractDataTable
     protected function getColumns()
     {
         return [
-            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'backend.pages.edit\', {page: full.id})+"\">"+data+"</a>"', 'responsivePriority' => 0],
+            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'backend.pages.edit\', {page: full.slug})+"\">"+data+"</a>"', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'view' => ['title' => trans('cortex/pages::common.view')],
             'middleware' => ['title' => trans('cortex/pages::common.middleware')],

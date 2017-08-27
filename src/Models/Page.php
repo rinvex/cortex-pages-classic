@@ -81,4 +81,14 @@ class Page extends BasePage
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
