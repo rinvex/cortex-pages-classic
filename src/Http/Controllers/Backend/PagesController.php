@@ -84,7 +84,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('backend.pages.index'),
-            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['pageId' => $page->id])],
+            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
         ]);
     }
 
@@ -127,7 +127,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('backend.pages.index'),
-            'with' => ['success' => trans('cortex/pages::messages.page.saved', ['pageId' => $page->id])],
+            'with' => ['success' => trans('cortex/pages::messages.page.saved', ['slug' => $page->slug])],
         ]);
     }
 }
