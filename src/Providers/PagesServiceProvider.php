@@ -48,7 +48,8 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function boot(Router $router)
     {
-        // Bind models explicitly
+        // Bind route models and constrains
+        $router->pattern('page', '[0-9a-z\._-]+');
         $router->model('page', PageContract::class);
 
         // Load resources
