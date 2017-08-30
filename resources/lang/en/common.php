@@ -13,6 +13,7 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'slug' => 'Slug',
+    'route' => 'Route',
     'uri' => 'URI',
     'domain' => 'Domain',
     'middleware' => 'Middleware',

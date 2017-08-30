@@ -164,6 +164,24 @@
 
                                         <div class="col-md-12">
 
+                                            {{-- Route --}}
+                                            <div class="form-group{{ $errors->has('route') ? ' has-error' : '' }}">
+                                                {{ Form::label('route', trans('cortex/pages::common.route'), ['class' => 'control-label']) }}
+                                                {{ Form::text('route', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.route'), 'required' => 'required']) }}
+
+                                                @if ($errors->has('route'))
+                                                    <span class="help-block">{{ $errors->first('route') }}</span>
+                                                @endif
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
                                             {{-- Domain --}}
                                             <div class="form-group{{ $errors->has('domain') ? ' has-error' : '' }}">
                                                 {{ Form::label('domain', trans('cortex/pages::common.domain'), ['class' => 'control-label']) }}

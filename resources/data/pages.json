@@ -1,8 +1,9 @@
 [
     {
         "uri": "/",
-        "slug": "frontend.home",
+        "slug": "homepage",
         "title": "Homepage",
+        "route": "frontend.home",
         "view": "cortex/pages::frontend.home"
     }
 ]

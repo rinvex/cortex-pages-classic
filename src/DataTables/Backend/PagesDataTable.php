@@ -77,6 +77,7 @@ class PagesDataTable extends AbstractDataTable
         return [
             'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'backend.pages.edit\', {page: full.slug})+"\">"+data+"</a>"', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
+            'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view')],
             'middleware' => ['title' => trans('cortex/pages::common.middleware')],
             'created_at' => ['title' => trans('cortex/pages::common.created_at'), 'render' => "moment(data).format('MMM Do, YYYY')"],
