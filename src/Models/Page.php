@@ -64,11 +64,18 @@ class Page extends BasePage
      * @var array
      */
     protected static $logAttributes = [
+        'uri',
         'slug',
-        'name',
-        'description',
+        'title',
+        'route',
+        'subtitle',
+        'domain',
+        'middleware',
+        'excerpt',
+        'content',
+        'view',
+        'is_active',
         'sort_order',
-        'group',
     ];
 
     /**
