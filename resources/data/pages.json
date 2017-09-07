@@ -3,7 +3,7 @@
         "uri": "/",
         "slug": "homepage",
         "title": "Homepage",
-        "route": "frontend.home",
-        "view": "cortex/pages::frontend.home"
+        "route": "guestarea.home",
+        "view": "cortex/pages::guestarea.home"
     }
 ]

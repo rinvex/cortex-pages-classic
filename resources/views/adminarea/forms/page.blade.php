@@ -1,13 +1,13 @@
 {{-- Master Layout --}}
-@extends('cortex/foundation::backend.layouts.default')
+@extends('cortex/foundation::adminarea.layouts.default')
 
 {{-- Page Title --}}
 @section('title')
-    {{ config('app.name') }} » {{ trans('cortex/foundation::common.backend') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
+    {{ config('app.name') }} » {{ trans('cortex/foundation::common.adminarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
 @stop
 
 @push('scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Backend\PageFormRequest::class)->selector('#backend-pages-save') !!}
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Adminarea\PageFormRequest::class)->selector('#adminarea-pages-save') !!}
 @endpush
 
 {{-- Main Content --}}
@@ -30,8 +30,8 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#details-tab" data-toggle="tab">{{ trans('cortex/pages::common.details') }}</a></li>
-                    @if($page->exists) <li><a href="{{ route('backend.pages.logs', ['page' => $page]) }}">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
-                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('backend.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
+                    @if($page->exists) <li><a href="{{ route('adminarea.pages.logs', ['page' => $page]) }}">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
+                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('adminarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
                 </ul>
 
                 <div class="tab-content">
@@ -39,9 +39,9 @@
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('backend.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'backend-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('adminarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'adminarea-pages-save']) }}
                         @else
-                            {{ Form::model($page, ['url' => route('backend.pages.store'), 'id' => 'backend-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('adminarea.pages.store'), 'id' => 'adminarea-pages-save']) }}
                         @endif
 
                             <div class="row">
@@ -279,7 +279,7 @@
                                         {{ Form::button(trans('cortex/pages::common.submit'), ['class' => 'btn btn-primary btn-flat', 'type' => 'submit']) }}
                                     </div>
 
-                                    @include('cortex/foundation::backend.partials.timestamps', ['model' => $page])
+                                    @include('cortex/foundation::adminarea.partials.timestamps', ['model' => $page])
 
                                 </div>
 

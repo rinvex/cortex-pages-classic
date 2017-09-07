@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Controllers\Backend;
+namespace Cortex\Pages\Http\Controllers\Adminarea;
 
 use Illuminate\Http\Request;
 use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Foundation\DataTables\LogsDataTable;
-use Cortex\Pages\DataTables\Backend\PagesDataTable;
-use Cortex\Pages\Http\Requests\Backend\PageFormRequest;
+use Cortex\Pages\DataTables\Adminarea\PagesDataTable;
+use Cortex\Pages\Http\Requests\Adminarea\PageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
 
 class PagesController extends AuthorizedController
@@ -28,7 +28,7 @@ class PagesController extends AuthorizedController
         return app(PagesDataTable::class)->with([
             'id' => 'cortex-pages',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::backend.pages.datatable');
+        ])->render('cortex/foundation::adminarea.pages.datatable');
     }
 
     /**
@@ -43,13 +43,13 @@ class PagesController extends AuthorizedController
             'resource' => $page,
             'id' => 'cortex-pages-logs',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::backend.pages.datatable-logs');
+        ])->render('cortex/foundation::adminarea.pages.datatable-logs');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Cortex\Pages\Http\Requests\Backend\PageFormRequest $request
+     * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -61,7 +61,7 @@ class PagesController extends AuthorizedController
     /**
      * Update the given resource in storage.
      *
-     * @param \Cortex\Pages\Http\Requests\Backend\PageFormRequest $request
+     * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
      * @param \Rinvex\Pages\Contracts\PageContract                $page
      *
      * @return \Illuminate\Http\Response
@@ -83,7 +83,7 @@ class PagesController extends AuthorizedController
         $page->delete();
 
         return intend([
-            'url' => route('backend.pages.index'),
+            'url' => route('adminarea.pages.index'),
             'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
         ]);
     }
@@ -97,7 +97,7 @@ class PagesController extends AuthorizedController
      */
     public function form(PageContract $page)
     {
-        return view('cortex/pages::backend.forms.page', compact('page'));
+        return view('cortex/pages::adminarea.forms.page', compact('page'));
     }
 
     /**
@@ -126,7 +126,7 @@ class PagesController extends AuthorizedController
         $page->fill($data)->save();
 
         return intend([
-            'url' => route('backend.pages.index'),
+            'url' => route('adminarea.pages.index'),
             'with' => ['success' => trans('cortex/pages::messages.page.saved', ['slug' => $page->slug])],
         ]);
     }

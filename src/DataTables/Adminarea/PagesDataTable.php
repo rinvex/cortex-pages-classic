@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\DataTables\Backend;
+namespace Cortex\Pages\DataTables\Adminarea;
 
 use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Foundation\DataTables\AbstractDataTable;
-use Cortex\Pages\Transformers\Backend\PageTransformer;
+use Cortex\Pages\Transformers\Adminarea\PageTransformer;
 
 class PagesDataTable extends AbstractDataTable
 {
@@ -74,7 +74,7 @@ class PagesDataTable extends AbstractDataTable
     protected function getColumns()
     {
         return [
-            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'backend.pages.edit\', {page: full.slug})+"\">"+data+"</a>"', 'responsivePriority' => 0],
+            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug})+"\">"+data+"</a>"', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view')],
