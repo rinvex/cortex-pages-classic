@@ -4,10 +4,49 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Models;
 
-use Illuminate\Support\Facades\Artisan;
 use Rinvex\Pages\Models\Page as BasePage;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * Cortex\Pages\Models\Page.
+ *
+ * @property int                                                                           $id
+ * @property string                                                                        $uri
+ * @property string                                                                        $slug
+ * @property string                                                                        $domain
+ * @property string                                                                        $middleware
+ * @property array                                                                         $title
+ * @property array                                                                         $subtitle
+ * @property array                                                                         $excerpt
+ * @property array                                                                         $content
+ * @property string                                                                        $view
+ * @property bool                                                                          $is_active
+ * @property int                                                                           $sort_order
+ * @property \Carbon\Carbon                                                                $created_at
+ * @property \Carbon\Carbon                                                                $updated_at
+ * @property \Carbon\Carbon                                                                $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Cortex\Foundation\Models\Log[] $activity
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Pages\Models\Page active()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Pages\Models\Page inactive()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Pages\Models\Page ordered($direction = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereContent($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereDomain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereExcerpt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereMiddleware($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSortOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSubtitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereUri($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereView($value)
+ * @mixin \Eloquent
+ */
 class Page extends BasePage
 {
     use LogsActivity;
@@ -25,11 +64,18 @@ class Page extends BasePage
      * @var array
      */
     protected static $logAttributes = [
+        'uri',
         'slug',
-        'name',
-        'description',
+        'title',
+        'route',
+        'subtitle',
+        'domain',
+        'middleware',
+        'excerpt',
+        'content',
+        'view',
+        'is_active',
         'sort_order',
-        'group',
     ];
 
     /**
@@ -44,16 +90,12 @@ class Page extends BasePage
     ];
 
     /**
-     * {@inheritdoc}
+     * Get the route key for the model.
+     *
+     * @return string
      */
-    protected static function boot()
+    public function getRouteKeyName()
     {
-        parent::boot();
-
-        // Update routes
-        static::saved(function () {
-            Artisan::call('route:cache');
-            Artisan::call('laroute:generate');
-        });
+        return 'slug';
     }
 }

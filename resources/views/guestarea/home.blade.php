@@ -1,5 +1,5 @@
 {{-- Master Layout --}}
-@extends('cortex/foundation::frontend.layouts.default')
+@extends('cortex/foundation::guestarea.layouts.default')
 
 {{-- Page Title --}}
 @section('title')

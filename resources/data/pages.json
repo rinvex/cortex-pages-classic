@@ -1,0 +1,9 @@
+[
+    {
+        "uri": "/",
+        "slug": "homepage",
+        "title": "Homepage",
+        "route": "guestarea.home",
+        "view": "cortex/pages::guestarea.home"
+    }
+]

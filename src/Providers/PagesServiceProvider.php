@@ -4,37 +4,27 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Rinvex\Pages\Contracts\PageContract;
+use Cortex\Pages\Console\Commands\SeedCommand;
+use Cortex\Pages\Console\Commands\InstallCommand;
+use Cortex\Pages\Console\Commands\MigrateCommand;
+use Cortex\Pages\Console\Commands\PublishCommand;
 
 class PagesServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * The commands to be registered.
      *
-     * @return void
+     * @var array
      */
-    public function boot()
-    {
-        // Load resources
-        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
-
-        // Publish Resources
-        ! $this->app->runningInConsole() || $this->publishResources();
-
-        // Register sidebar menus
-        $this->app->singleton('menus.sidebar.management', function ($app) {
-            return collect();
-        });
-
-        // Register menu items
-        $this->app['view']->composer('cortex/foundation::backend.partials.sidebar', function ($view) {
-            app('menus.sidebar')->put('management', app('menus.sidebar.management'));
-            app('menus.sidebar.management')->put('header', '<li class="header">'.trans('cortex/pages::navigation.headers.management').'</li>');
-            app('menus.sidebar.management')->put('pages', '<li '.(mb_strpos(request()->route()->getName(), 'backend.pages.') === 0 ? 'class="active"' : '').'><a href="'.route('backend.pages.index').'"><i class="fa fa-files-o"></i> <span>'.trans('cortex/pages::navigation.menus.pages').'</span></a></li>');
-        });
-    }
+    protected $commands = [
+        MigrateCommand::class => 'command.cortex.pages.migrate',
+        PublishCommand::class => 'command.cortex.pages.publish',
+        InstallCommand::class => 'command.cortex.pages.install',
+        SeedCommand::class => 'command.cortex.pages.seed',
+    ];
 
     /**
      * Register any application services.
@@ -47,7 +37,32 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Register console commands
+        ! $this->app->runningInConsole() || $this->registerCommands();
+    }
+
+    /**
+     * Bootstrap any application services.
+     *
+     * @return void
+     */
+    public function boot(Router $router)
+    {
+        // Bind route models and constrains
+        $router->pattern('page', '[0-9a-z\._-]+');
+        $router->model('page', PageContract::class);
+
+        // Load resources
+        require __DIR__.'/../../routes/breadcrumbs.php';
+        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
+        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
+        $this->app->afterResolving('blade.compiler', function () {
+            require __DIR__.'/../../routes/menus.php';
+        });
+
+        // Publish Resources
+        ! $this->app->runningInConsole() || $this->publishResources();
     }
 
     /**
@@ -57,7 +72,24 @@ class PagesServiceProvider extends ServiceProvider
      */
     protected function publishResources()
     {
-        $this->publishes([realpath(__DIR__.'/../../resources/lang') => resource_path('lang/vendor/cortex/pages')], 'lang');
-        $this->publishes([realpath(__DIR__.'/../../resources/views') => resource_path('views/vendor/cortex/pages')], 'views');
+        $this->publishes([realpath(__DIR__.'/../../resources/lang') => resource_path('lang/vendor/cortex/pages')], 'cortex-pages-lang');
+        $this->publishes([realpath(__DIR__.'/../../resources/views') => resource_path('views/vendor/cortex/pages')], 'cortex-pages-views');
+    }
+
+    /**
+     * Register console commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        // Register artisan commands
+        foreach ($this->commands as $key => $value) {
+            $this->app->singleton($value, function ($app) use ($key) {
+                return new $key();
+            });
+        }
+
+        $this->commands(array_values($this->commands));
     }
 }

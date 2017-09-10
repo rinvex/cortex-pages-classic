@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\DataTables\Backend;
+namespace Cortex\Pages\DataTables\Adminarea;
 
-use Cortex\Pages\Models\Page;
+use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Foundation\DataTables\AbstractDataTable;
-use Cortex\Pages\Transformers\Backend\PageTransformer;
+use Cortex\Pages\Transformers\Adminarea\PageTransformer;
 
 class PagesDataTable extends AbstractDataTable
 {
     /**
      * {@inheritdoc}
      */
-    protected $model = Page::class;
+    protected $model = PageContract::class;
 
     /**
      * {@inheritdoc}
@@ -27,7 +27,8 @@ class PagesDataTable extends AbstractDataTable
      */
     public function query()
     {
-        $query = ($this->model)::query()->orderBy('sort_order', 'ASC')->orderBy("title->\${app()->getLocale()}", 'ASC');
+        $locale = app()->getLocale();
+        $query = app($this->model)->query()->orderBy('sort_order', 'ASC')->orderBy("title->\${$locale}", 'ASC');
 
         return $this->applyScopes($query);
     }
@@ -57,11 +58,12 @@ class PagesDataTable extends AbstractDataTable
      */
     public function ajax()
     {
-        return $this->datatables
-            ->eloquent($this->query())
-            ->setTransformer(new $this->transformer())
-            ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
-            ->make(true);
+        $transformer = app($this->transformer);
+
+        return datatables()->eloquent($this->query())
+                           ->setTransformer($transformer)
+                           ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
+                           ->make(true);
     }
 
     /**
@@ -72,8 +74,9 @@ class PagesDataTable extends AbstractDataTable
     protected function getColumns()
     {
         return [
-            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'backend.pages.edit\', {page: full.id})+"\">"+data+"</a>"', 'responsivePriority' => 0],
+            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug})+"\">"+data+"</a>"', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
+            'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view')],
             'middleware' => ['title' => trans('cortex/pages::common.middleware')],
             'created_at' => ['title' => trans('cortex/pages::common.created_at'), 'render' => "moment(data).format('MMM Do, YYYY')"],

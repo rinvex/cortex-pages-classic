@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Requests\Backend;
+namespace Cortex\Pages\Http\Requests\Adminarea;
 
-use Cortex\Pages\Models\Page;
 use Rinvex\Support\Http\Requests\FormRequest;
 
 class PageFormRequest extends FormRequest
@@ -26,7 +25,7 @@ class PageFormRequest extends FormRequest
      */
     public function rules()
     {
-        $page = $this->route('page') ?? new Page();
+        $page = $this->route('page') ?? app('rinvex.pages.page');
         $page->updateRulesUniques();
 
         return $page->getRules();
