@@ -11,7 +11,7 @@ class PagesController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $route = $request->route()->uri() === '{locale}' ? '/' : $request->route()->uri();
+        $route = $request->route()->uri() === '{locale}' ? '/' : $request->route()->uri().'/';
 
         $page = app('rinvex.pages.page')->where('uri', $route)->where('domain', $request->route()->domain())->first();
 
