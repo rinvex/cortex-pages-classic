@@ -20,7 +20,7 @@ Route::group(['domain' => domain()], function () {
     Route::name('adminarea.')
          ->namespace('Cortex\Pages\Http\Controllers\Adminarea')
          ->middleware(['web', 'nohttpcache', 'can:access-dashboard'])
-         ->prefix(config('cortex.foundation.route.locale_prefix') ? '{locale}/adminarea' : 'adminarea')->group(function () {
+         ->prefix(config('cortex.foundation.route.locale_prefix') ? '{locale}/'.config('cortex.foundation.route.prefix.adminarea') : config('cortex.foundation.route.prefix.adminarea'))->group(function () {
 
         // Pages Routes
         Route::name('pages.')->prefix('pages')->group(function () {
