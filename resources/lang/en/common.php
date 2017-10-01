@@ -23,8 +23,6 @@ return [
     'updated_at' => 'Updated At',
     'submit' => 'Submit',
     'details' => 'Details',
-    'welcome' => 'Welcome',
-    'welcome_body' => 'Welcome to your new project based on <strong>Rinvex Cortex</strong>. Enjoy building something awesome! 🎉',
 
     'pages' => 'Pages',
     'create_page' => 'Create New Page',
