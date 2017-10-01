@@ -5,14 +5,21 @@ declare(strict_types=1);
 
 use Cortex\Pages\Http\Controllers\Guestarea\PagesController;
 
-app('rinvex.pages.page')->active()->each(function ($page) {
-    Route::get($page->uri)
-         ->prefix(config('cortex.foundation.route.locale_prefix') ? '{locale}' : '')
-         ->name($page->route)
-         ->uses(PagesController::class)
-         ->middleware($page->middleware ?? ['web'])
-         ->domain($page->domain ?? domain())
-         ->where('locale', '[a-z]{2}');
+app('rinvex.pages.page')->active()->get()->groupBy('domain')->each(function ($pages, $domain) {
+
+    Route::domain($domain ?? domain())->group(function () use ($pages) {
+
+        $pages->each(function ($page) {
+            Route::get($page->uri)
+                 ->prefix(config('cortex.foundation.route.locale_prefix') ? '{locale}' : '')
+                 ->name($page->route)
+                 ->uses(PagesController::class)
+                 ->middleware($page->middleware ?? ['web'])
+                 ->where('locale', '[a-z]{2}');
+        });
+
+    });
+
 });
 
 Route::domain(domain())->group(function () {
