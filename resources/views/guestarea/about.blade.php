@@ -13,10 +13,10 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <section class="panel panel-default">
-                    <header class="panel-heading">{{ trans('cortex/foundation::common.guestarea_welcome') }}</header>
+                    <header class="panel-heading">{{ trans('cortex/foundation::common.guestarea_about') }}</header>
 
                     <div class="panel-body">
-                        {!! trans('cortex/foundation::common.guestarea_welcome_body') !!}
+                        {!! trans('cortex/foundation::common.guestarea_about_body') !!}
                     </div>
                 </section>
             </div>
