@@ -15,7 +15,7 @@ app('rinvex.pages.page')->active()->each(function ($page) {
          ->where('locale', '[a-z]{2}');
 });
 
-Route::group(['domain' => domain()], function () {
+Route::domain(domain())->group(function () {
 
     Route::name('adminarea.')
          ->namespace('Cortex\Pages\Http\Controllers\Adminarea')
