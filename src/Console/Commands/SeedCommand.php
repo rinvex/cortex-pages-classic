@@ -37,9 +37,9 @@ class SeedCommand extends Command
         $this->warn('Seed cortex/pages:');
 
         if ($this->ensureExistingDatabaseTables('rinvex/pages')) {
-            $this->seedResources(app('rinvex.pages.page'), realpath(__DIR__.'/../../../resources/data/pages.json'), ['title', 'view'], function () {
+            $this->seedResources(app('rinvex.pages.page'), realpath(__DIR__.'/../../../resources/data/pages.json'), ['title', 'view'], function ($ids) {
                 // Update page route domain
-                app('rinvex.pages.page')->query()->update(['domain' => domain()]);
+                app('rinvex.pages.page')->whereIn('id', $ids)->update(['domain' => domain()]);
             });
         }
 
