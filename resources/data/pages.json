@@ -5,5 +5,12 @@
         "title": "Homepage",
         "route": "guestarea.home",
         "view": "cortex/pages::guestarea.home"
+    },
+    {
+        "uri": "about",
+        "slug": "about",
+        "title": "About",
+        "route": "guestarea.about",
+        "view": "cortex/pages::guestarea.about"
     }
 ]
