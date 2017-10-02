@@ -73,8 +73,12 @@ class PagesDataTable extends AbstractDataTable
      */
     protected function getColumns()
     {
+        $link = config('cortex.foundation.route.locale_prefix')
+            ? '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug, locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'
+            : '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug})+"\">"+data+"</a>"';
+
         return [
-            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug})+"\">"+data+"</a>"', 'responsivePriority' => 0],
+            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link, 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view')],
