@@ -13,7 +13,7 @@ class PagesController extends Controller
     {
         $uri = trim(str_replace('{locale}', '', $request->route()->uri()), " \t\n\r\0\x0B/") ?: '/';
 
-        $page = app('rinvex.pages.page')->where('uri', $uri)->where('domain', $request->route()->domain())->first();
+        $page = app('rinvex.pages.page')->where('uri', $uri)->where('domain', $request->route()->domain() ?: null)->first();
 
         return view($page->view, compact('page'));
     }
