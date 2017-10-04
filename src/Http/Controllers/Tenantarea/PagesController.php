@@ -62,7 +62,7 @@ class PagesController extends AuthorizedController
      * Update the given resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Tenantarea\PageFormRequest $request
-     * @param \Rinvex\Pages\Contracts\PageContract                  $page
+     * @param \Rinvex\Pages\Contracts\PageContract                   $page
      *
      * @return \Illuminate\Http\Response
      */
