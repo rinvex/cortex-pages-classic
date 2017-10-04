@@ -11,6 +11,7 @@ use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
 use Cortex\Pages\Console\Commands\PublishCommand;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -51,6 +52,11 @@ class PagesServiceProvider extends ServiceProvider
         // Bind route models and constrains
         $router->pattern('page', '[0-9a-z\._-]+');
         $router->model('page', PageContract::class);
+
+        // Map relations
+        Relation::morphMap([
+            'page' => config('rinvex.pages.models.page'),
+        ]);
 
         // Load resources
         require __DIR__.'/../../routes/breadcrumbs.php';
