@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Models;
 
+use Rinvex\Tenants\Traits\Tenantable;
 use Rinvex\Pages\Models\Page as BasePage;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -49,6 +50,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Page extends BasePage
 {
+    use Tenantable;
     use LogsActivity;
 
     /**
