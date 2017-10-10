@@ -44,7 +44,7 @@ class PagesController extends AuthorizedController
             'resource' => $page,
             'id' => 'cortex-pages-logs',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::adminarea.pages.datatable-logs');
+        ])->render('cortex/foundation::adminarea.pages.datatable-tab');
     }
 
     /**
