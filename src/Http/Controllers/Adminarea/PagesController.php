@@ -39,6 +39,7 @@ class PagesController extends AuthorizedController
     public function logs(PageContract $page)
     {
         return app(LogsDataTable::class)->with([
+            'tab' => 'logs',
             'type' => 'pages',
             'resource' => $page,
             'id' => 'cortex-pages-logs',
