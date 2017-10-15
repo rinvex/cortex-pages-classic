@@ -221,7 +221,7 @@
                                             {{-- Sort Order --}}
                                             <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
                                                 {{ Form::label('sort_order', trans('cortex/pages::common.sort_order'), ['class' => 'control-label']) }}
-                                                {{ Form::number('sort_order', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.sort_order'), 'required' => 'required']) }}
+                                                {{ Form::number('sort_order', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.sort_order')]) }}
 
                                                 @if ($errors->has('sort_order'))
                                                     <span class="help-block">{{ $errors->first('sort_order') }}</span>
