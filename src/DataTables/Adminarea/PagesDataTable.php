@@ -78,7 +78,7 @@ class PagesDataTable extends AbstractDataTable
             : '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug})+"\">"+data+"</a>"';
 
         return [
-            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link, 'responsivePriority' => 0],
+            'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link.'+(full.is_active ? " <i class=\"text-success fa fa-check\"></i>" : " <i class=\"text-danger fa fa-close\"></i>")', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view')],

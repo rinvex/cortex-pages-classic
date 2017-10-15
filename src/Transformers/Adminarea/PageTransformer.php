@@ -21,6 +21,7 @@ class PageTransformer extends TransformerAbstract
             'slug' => (string) $page->slug,
             'route' => (string) $page->route,
             'title' => (string) $page->title,
+            'is_active' => (bool) $page->is_active,
             'middleware' => (string) $page->middleware,
             'created_at' => (string) $page->created_at,
             'updated_at' => (string) $page->updated_at,
