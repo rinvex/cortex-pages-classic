@@ -14,6 +14,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int                                                                           $id
  * @property string                                                                        $uri
  * @property string                                                                        $slug
+ * @property string                                                                        $route
  * @property string                                                                        $domain
  * @property string                                                                        $middleware
  * @property array                                                                         $title
@@ -23,10 +24,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string                                                                        $view
  * @property bool                                                                          $is_active
  * @property int                                                                           $sort_order
- * @property \Carbon\Carbon                                                                $created_at
- * @property \Carbon\Carbon                                                                $updated_at
+ * @property \Carbon\Carbon|null                                                           $created_at
+ * @property \Carbon\Carbon|null                                                           $updated_at
  * @property \Carbon\Carbon                                                                $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cortex\Foundation\Models\Log[] $activity
+ * @property \Illuminate\Database\Eloquent\Collection|\Cortex\Tenants\Models\Tenant[]      $tenants
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Pages\Models\Page active()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Pages\Models\Page inactive()
@@ -39,6 +41,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereMiddleware($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereRoute($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSubtitle($value)
@@ -46,6 +49,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereUri($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereView($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withAllTenants($tenants, $group = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withAnyTenants($tenants, $group = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withTenants($tenants, $group = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withoutAnyTenants()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withoutTenants($tenants, $group = null)
  * @mixin \Eloquent
  */
 class Page extends BasePage
