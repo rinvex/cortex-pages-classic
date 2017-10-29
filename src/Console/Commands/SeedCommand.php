@@ -34,7 +34,7 @@ class SeedCommand extends Command
      */
     public function handle()
     {
-        $this->warn('Seed cortex/pages:');
+        $this->warn($this->description);
 
         if ($this->ensureExistingDatabaseTables('rinvex/pages')) {
             $this->seedResources(app('rinvex.pages.page'), realpath(__DIR__.'/../../../resources/data/pages.json'), ['title', 'view'], function ($ids) {
