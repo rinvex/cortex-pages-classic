@@ -3,7 +3,6 @@
 **Cortex Pages** is a frontend layer for an integral part of your Laravel content management system (CMS), it affords an easy, yet powerful way to create and manage pages with full control over their URLs, active status, titles, content, and other attributes.
 
 [![Packagist](https://img.shields.io/packagist/v/cortex/pages.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/cortex/pages)
-[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/cortex:pages.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/cortex:pages/)
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/cortex/pages.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/cortex/pages/)
 [![Code Climate](https://img.shields.io/codeclimate/github/cortex/pages.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/cortex/pages)
 [![Travis](https://img.shields.io/travis/cortex/pages.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/cortex/pages)
