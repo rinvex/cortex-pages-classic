@@ -125,7 +125,6 @@ class PagesController extends AuthorizedController
 
         // Save page
         $page->fill($data)->save();
-        $page->attachTenants(config('rinvex.tenants.tenant.active'));
 
         return intend([
             'url' => route('tenantarea.pages.index'),
