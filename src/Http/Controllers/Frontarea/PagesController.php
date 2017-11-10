@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Controllers\Guestarea;
+namespace Cortex\Pages\Http\Controllers\Frontarea;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;

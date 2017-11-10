@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-use Cortex\Pages\Http\Controllers\Guestarea\PagesController;
+use Cortex\Pages\Http\Controllers\Frontarea\PagesController;
 
 if (Schema::hasTable(config('rinvex.pages.tables.pages'))) {
     app('rinvex.pages.page')->active()->get()->groupBy('domain')->each(function ($pages, $domain) {
