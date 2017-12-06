@@ -21,11 +21,13 @@ class PagesController extends AuthorizedController
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param \Cortex\Pages\DataTables\Tenantarea\PagesDataTable $pagesDataTable
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function index()
+    public function index(PagesDataTable $pagesDataTable)
     {
-        return app(PagesDataTable::class)->with([
+        return $pagesDataTable->with([
             'id' => 'cortex-pages',
             'phrase' => trans('cortex/pages::common.pages'),
         ])->render('cortex/foundation::tenantarea.pages.datatable');
@@ -34,11 +36,14 @@ class PagesController extends AuthorizedController
     /**
      * Display a listing of the resource logs.
      *
-     * @return \Illuminate\Http\Response
+     * @param \Rinvex\Pages\Contracts\PageContract        $page
+     * @param \Cortex\Foundation\DataTables\LogsDataTable $logsDataTable
+     *
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
-    public function logs(PageContract $page)
+    public function logs(PageContract $page, LogsDataTable $logsDataTable)
     {
-        return app(LogsDataTable::class)->with([
+        return $logsDataTable->with([
             'tab' => 'logs',
             'type' => 'pages',
             'resource' => $page,
