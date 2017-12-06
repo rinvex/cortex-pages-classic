@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Requests\Tenantarea;
 
-use Rinvex\Support\Http\Requests\FormRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
 class PageFormRequest extends FormRequest
 {
@@ -19,17 +19,17 @@ class PageFormRequest extends FormRequest
     }
 
     /**
-     * Process given request data before validation.
+     * Prepare the data for validation.
      *
-     * @param array $data
-     *
-     * @return array
+     * @return void
      */
-    public function process($data)
+    protected function prepareForValidation()
     {
+        $data = $this->all();
+
         $data['domain'] = $this->getHost();
 
-        return $data;
+        $this->replace($data);
     }
 
     /**
