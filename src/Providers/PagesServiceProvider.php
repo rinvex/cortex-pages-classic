@@ -11,6 +11,7 @@ use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
 use Cortex\Pages\Console\Commands\PublishCommand;
+use Cortex\Pages\Console\Commands\RollbackCommand;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
@@ -21,10 +22,11 @@ class PagesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
+        SeedCommand::class => 'command.cortex.pages.seed',
+        InstallCommand::class => 'command.cortex.pages.install',
         MigrateCommand::class => 'command.cortex.pages.migrate',
         PublishCommand::class => 'command.cortex.pages.publish',
-        InstallCommand::class => 'command.cortex.pages.install',
-        SeedCommand::class => 'command.cortex.pages.seed',
+        RollbackCommand::class => 'command.cortex.pages.rollback',
     ];
 
     /**
