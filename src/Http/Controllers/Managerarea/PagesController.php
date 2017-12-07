@@ -103,7 +103,7 @@ class PagesController extends AuthorizedController
      */
     public function form(PageContract $page)
     {
-        return view('cortex/pages::managerarea.forms.page', compact('page'));
+        return view('cortex/pages::managerarea.pages.page', compact('page'));
     }
 
     /**
