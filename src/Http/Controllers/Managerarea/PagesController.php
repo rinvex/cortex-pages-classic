@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Controllers\Tenantarea;
+namespace Cortex\Pages\Http\Controllers\Managerarea;
 
 use Illuminate\Http\Request;
 use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Foundation\DataTables\LogsDataTable;
-use Cortex\Pages\DataTables\Tenantarea\PagesDataTable;
-use Cortex\Pages\Http\Requests\Tenantarea\PageFormRequest;
+use Cortex\Pages\DataTables\Managerarea\PagesDataTable;
+use Cortex\Pages\Http\Requests\Managerarea\PageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
 
 class PagesController extends AuthorizedController
@@ -21,7 +21,7 @@ class PagesController extends AuthorizedController
     /**
      * Display a listing of the resource.
      *
-     * @param \Cortex\Pages\DataTables\Tenantarea\PagesDataTable $pagesDataTable
+     * @param \Cortex\Pages\DataTables\Managerarea\PagesDataTable $pagesDataTable
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
@@ -30,7 +30,7 @@ class PagesController extends AuthorizedController
         return $pagesDataTable->with([
             'id' => 'cortex-pages',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::tenantarea.pages.datatable');
+        ])->render('cortex/tenants::managerarea.pages.datatable');
     }
 
     /**
@@ -49,13 +49,13 @@ class PagesController extends AuthorizedController
             'resource' => $page,
             'id' => 'cortex-pages-logs',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::tenantarea.pages.datatable-tab');
+        ])->render('cortex/tenants::managerarea.pages.datatable-tab');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param \Cortex\Pages\Http\Requests\Tenantarea\PageFormRequest $request
+     * @param \Cortex\Pages\Http\Requests\Managerarea\PageFormRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -67,7 +67,7 @@ class PagesController extends AuthorizedController
     /**
      * Update the given resource in storage.
      *
-     * @param \Cortex\Pages\Http\Requests\Tenantarea\PageFormRequest $request
+     * @param \Cortex\Pages\Http\Requests\Managerarea\PageFormRequest $request
      * @param \Rinvex\Pages\Contracts\PageContract                   $page
      *
      * @return \Illuminate\Http\Response
@@ -89,7 +89,7 @@ class PagesController extends AuthorizedController
         $page->delete();
 
         return intend([
-            'url' => route('tenantarea.pages.index'),
+            'url' => route('managerarea.pages.index'),
             'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
         ]);
     }
@@ -103,7 +103,7 @@ class PagesController extends AuthorizedController
      */
     public function form(PageContract $page)
     {
-        return view('cortex/pages::tenantarea.forms.page', compact('page'));
+        return view('cortex/pages::managerarea.forms.page', compact('page'));
     }
 
     /**
@@ -132,7 +132,7 @@ class PagesController extends AuthorizedController
         $page->fill($data)->save();
 
         return intend([
-            'url' => route('tenantarea.pages.index'),
+            'url' => route('managerarea.pages.index'),
             'with' => ['success' => trans('cortex/pages::messages.page.saved', ['slug' => $page->slug])],
         ]);
     }

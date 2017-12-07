@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Requests\Tenantarea;
+namespace Cortex\Pages\Http\Requests\Managerarea;
 
 use Illuminate\Foundation\Http\FormRequest;
 

@@ -1,13 +1,13 @@
 {{-- Master Layout --}}
-@extends('cortex/foundation::tenantarea.layouts.default')
+@extends('cortex/tenants::managerarea.layouts.default')
 
 {{-- Page Title --}}
 @section('title')
-    {{ config('app.name') }} » {{ trans('cortex/foundation::common.tenantarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
+    {{ config('app.name') }} » {{ trans('cortex/tenants::common.managerarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
 @stop
 
 @push('scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Tenantarea\PageFormRequest::class)->selector('#tenantarea-pages-save') !!}
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector('#managerarea-pages-save') !!}
 @endpush
 
 {{-- Main Content --}}
@@ -30,8 +30,8 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#details-tab" data-toggle="tab">{{ trans('cortex/pages::common.details') }}</a></li>
-                    @if($page->exists) <li><a href="{{ route('tenantarea.pages.logs', ['page' => $page]) }}">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
-                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('tenantarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
+                    @if($page->exists) <li><a href="{{ route('managerarea.pages.logs', ['page' => $page]) }}">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
+                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('managerarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
                 </ul>
 
                 <div class="tab-content">
@@ -39,9 +39,9 @@
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('tenantarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'tenantarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'managerarea-pages-save']) }}
                         @else
-                            {{ Form::model($page, ['url' => route('tenantarea.pages.store'), 'id' => 'tenantarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.store'), 'id' => 'managerarea-pages-save']) }}
                         @endif
 
                             <div class="row">
@@ -261,7 +261,7 @@
                                         {{ Form::button(trans('cortex/pages::common.submit'), ['class' => 'btn btn-primary btn-flat', 'type' => 'submit']) }}
                                     </div>
 
-                                    @include('cortex/foundation::tenantarea.partials.timestamps', ['model' => $page])
+                                    @include('cortex/tenants::managerarea.partials.timestamps', ['model' => $page])
 
                                 </div>
 

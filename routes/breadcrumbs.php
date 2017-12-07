@@ -27,24 +27,24 @@ Breadcrumbs::register('adminarea.pages.logs', function (BreadcrumbsGenerator $br
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('adminarea.pages.logs', ['page' => $page]));
 });
 
-// Tenantarea breadcrumbs
-Breadcrumbs::register('tenantarea.pages.index', function (BreadcrumbsGenerator $breadcrumbs) {
-    $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.trans('cortex/foundation::common.tenantarea'), route('tenantarea.home'));
-    $breadcrumbs->push(trans('cortex/pages::common.pages'), route('tenantarea.pages.index'));
+// Managerarea breadcrumbs
+Breadcrumbs::register('managerarea.pages.index', function (BreadcrumbsGenerator $breadcrumbs) {
+    $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.trans('cortex/tenants::common.managerarea'), route('managerarea.home'));
+    $breadcrumbs->push(trans('cortex/pages::common.pages'), route('managerarea.pages.index'));
 });
 
-Breadcrumbs::register('tenantarea.pages.create', function (BreadcrumbsGenerator $breadcrumbs) {
-    $breadcrumbs->parent('tenantarea.pages.index');
-    $breadcrumbs->push(trans('cortex/pages::common.create_page'), route('tenantarea.pages.create'));
+Breadcrumbs::register('managerarea.pages.create', function (BreadcrumbsGenerator $breadcrumbs) {
+    $breadcrumbs->parent('managerarea.pages.index');
+    $breadcrumbs->push(trans('cortex/pages::common.create_page'), route('managerarea.pages.create'));
 });
 
-Breadcrumbs::register('tenantarea.pages.edit', function (BreadcrumbsGenerator $breadcrumbs, PageContract $page) {
-    $breadcrumbs->parent('tenantarea.pages.index');
-    $breadcrumbs->push($page->title, route('tenantarea.pages.edit', ['page' => $page]));
+Breadcrumbs::register('managerarea.pages.edit', function (BreadcrumbsGenerator $breadcrumbs, PageContract $page) {
+    $breadcrumbs->parent('managerarea.pages.index');
+    $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
 });
 
-Breadcrumbs::register('tenantarea.pages.logs', function (BreadcrumbsGenerator $breadcrumbs, PageContract $page) {
-    $breadcrumbs->parent('tenantarea.pages.index');
-    $breadcrumbs->push($page->title, route('tenantarea.pages.edit', ['page' => $page]));
-    $breadcrumbs->push(trans('cortex/pages::common.logs'), route('tenantarea.pages.logs', ['page' => $page]));
+Breadcrumbs::register('managerarea.pages.logs', function (BreadcrumbsGenerator $breadcrumbs, PageContract $page) {
+    $breadcrumbs->parent('managerarea.pages.index');
+    $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
+    $breadcrumbs->push(trans('cortex/pages::common.logs'), route('managerarea.pages.logs', ['page' => $page]));
 });
