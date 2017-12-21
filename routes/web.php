@@ -6,7 +6,7 @@ declare(strict_types=1);
 use Cortex\Pages\Http\Controllers\Frontarea\PagesController;
 
 if (Schema::hasTable(config('rinvex.pages.tables.pages'))) {
-    app('rinvex.pages.page')->active()->get()->groupBy('domain')->each(function ($pages, $domain) {
+    app('rinvex.pages.page')->where('is_active', true)->get()->groupBy('domain')->each(function ($pages, $domain) {
 
         Route::domain($domain ?? domain())->group(function () use ($pages) {
 
