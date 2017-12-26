@@ -34,23 +34,17 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Display a listing of the resource logs.
+     * Get a listing of the resource logs.
      *
-     * @param \Rinvex\Pages\Contracts\PageContract        $page
-     * @param \Cortex\Foundation\DataTables\LogsDataTable $logsDataTable
+     * @param \Rinvex\Pages\Contracts\PageContract $page
      *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
      */
-    public function logs(PageContract $page, LogsDataTable $logsDataTable)
+    public function logs(PageContract $page)
     {
-        return $logsDataTable->with([
-            'tab' => 'logs',
-            'type' => 'pages',
-            'resource' => $page,
-            'title' => $page->title,
-            'id' => 'cortex-pages-logs',
-            'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::adminarea.pages.datatable-tab');
+        return request()->ajax() && request()->wantsJson()
+            ? app(LogsDataTable::class)->with(['resource' => $page])->ajax()
+            : intend(['url' => route('adminarea.pages.edit', ['page' => $page]).'#logs-tab']);
     }
 
     /**
@@ -104,7 +98,9 @@ class PagesController extends AuthorizedController
      */
     public function form(PageContract $page)
     {
-        return view('cortex/pages::adminarea.pages.page', compact('page'));
+        $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
+
+        return view('cortex/pages::adminarea.pages.page', compact('page', 'logs'));
     }
 
     /**

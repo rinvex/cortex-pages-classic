@@ -30,7 +30,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#details-tab" data-toggle="tab">{{ trans('cortex/pages::common.details') }}</a></li>
-                    @if($page->exists) <li><a href="{{ route('adminarea.pages.logs', ['page' => $page]) }}">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
+                    @if($page->exists) <li><a href="#logs-tab" data-toggle="tab">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
                     @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('adminarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
                 </ul>
 
@@ -289,6 +289,14 @@
 
                     </div>
 
+                    @if($page->exists)
+
+                        <div class="tab-pane" id="logs-tab">
+                            {!! $logs->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'logs-table']) !!}
+                        </div>
+
+                    @endif
+
                 </div>
 
             </div>
@@ -298,3 +306,19 @@
     </div>
 
 @endsection
+
+@if($page->exists)
+
+    @push('styles')
+        <link href="{{ mix('css/datatables.css', 'assets') }}" rel="stylesheet">
+    @endpush
+
+    @push('scripts-vendor')
+        <script src="{{ mix('js/datatables.js', 'assets') }}" type="text/javascript"></script>
+    @endpush
+
+    @push('scripts')
+        {!! $logs->scripts() !!}
+    @endpush
+
+@endif
