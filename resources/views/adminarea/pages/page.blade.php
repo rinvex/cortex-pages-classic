@@ -19,9 +19,7 @@
 
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>{{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}</h1>
-            <!-- Breadcrumbs -->
-            {{ Breadcrumbs::render() }}
+            <h1>{{ Breadcrumbs::render() }}</h1>
         </section>
 
         <!-- Main content -->
