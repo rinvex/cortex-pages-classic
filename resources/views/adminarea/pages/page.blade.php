@@ -30,6 +30,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#details-tab" data-toggle="tab">{{ trans('cortex/pages::common.details') }}</a></li>
+                    @if($page->exists) <li><a href="#media-tab" data-toggle="tab">{{ trans('cortex/pages::common.media') }}</a></li> @endif
                     @if($page->exists) <li><a href="#logs-tab" data-toggle="tab">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
                     @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('adminarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
                 </ul>
@@ -291,6 +292,11 @@
 
                     @if($page->exists)
 
+                        <div class="tab-pane" id="media-tab">
+                            {{ Form::open(['url' => route('adminarea.pages.media.store', ['page' => $page]), 'class' => 'dropzone', 'id' => 'media-dropzone']) }} {{ Form::close() }}
+                            {!! $media->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'media-table']) !!}
+                        </div>
+
                         <div class="tab-pane" id="logs-tab">
                             {!! $logs->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'logs-table']) !!}
                         </div>
@@ -318,6 +324,7 @@
     @endpush
 
     @push('scripts')
+        {!! $media->scripts() !!}
         {!! $logs->scripts() !!}
     @endpush
 

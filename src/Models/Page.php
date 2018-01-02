@@ -6,7 +6,9 @@ namespace Cortex\Pages\Models;
 
 use Rinvex\Tenants\Traits\Tenantable;
 use Rinvex\Pages\Models\Page as BasePage;
+use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 
 /**
  * Cortex\Pages\Models\Page.
@@ -54,10 +56,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withoutTenants($tenants, $group = null)
  * @mixin \Eloquent
  */
-class Page extends BasePage
+class Page extends BasePage implements HasMedia
 {
     use Tenantable;
     use LogsActivity;
+    use HasMediaTrait;
 
     /**
      * Indicates whether to log only dirty attributes or all.

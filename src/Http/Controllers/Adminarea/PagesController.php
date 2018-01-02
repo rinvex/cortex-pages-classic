@@ -7,6 +7,7 @@ namespace Cortex\Pages\Http\Controllers\Adminarea;
 use Illuminate\Http\Request;
 use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Foundation\DataTables\LogsDataTable;
+use Cortex\Foundation\DataTables\MediaDataTable;
 use Cortex\Pages\DataTables\Adminarea\PagesDataTable;
 use Cortex\Pages\Http\Requests\Adminarea\PageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
@@ -99,8 +100,9 @@ class PagesController extends AuthorizedController
     public function form(PageContract $page)
     {
         $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
+        $media = app(MediaDataTable::class)->with(['id' => 'media-table'])->html()->minifiedAjax(route('adminarea.pages.media.index', ['page' => $page]));
 
-        return view('cortex/pages::adminarea.pages.page', compact('page', 'logs'));
+        return view('cortex/pages::adminarea.pages.page', compact('page', 'logs', 'media'));
     }
 
     /**

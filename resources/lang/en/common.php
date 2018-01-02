@@ -23,6 +23,7 @@ return [
     'updated_at' => 'Updated At',
     'submit' => 'Submit',
     'details' => 'Details',
+    'media' => 'Media',
 
     'pages' => 'Pages',
     'create_page' => 'Create New Page',

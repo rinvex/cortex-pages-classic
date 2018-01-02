@@ -40,6 +40,12 @@ Route::domain(domain())->group(function () {
             Route::put('{page}')->name('update')->uses('PagesController@update');
             Route::get('{page}/logs')->name('logs')->uses('PagesController@logs');
             Route::delete('{page}')->name('delete')->uses('PagesController@delete');
+
+            Route::name('media.')->prefix('{page}/media')->group(function () {
+                Route::get('/')->name('index')->uses('PagesMediaController@index');
+                Route::post('/')->name('store')->uses('PagesMediaController@store');
+                Route::delete('{media}')->name('delete')->uses('PagesMediaController@delete');
+            });
         });
 
     });
@@ -63,6 +69,12 @@ Route::domain('{subdomain}.'.domain())->group(function () {
                 Route::put('{page}')->name('update')->uses('PagesController@update');
                 Route::get('{page}/logs')->name('logs')->uses('PagesController@logs');
                 Route::delete('{page}')->name('delete')->uses('PagesController@delete');
+
+                Route::name('media.')->prefix('{page}/media')->group(function () {
+                    Route::get('/')->name('index')->uses('PagesMediaController@index');
+                    Route::post('/')->name('store')->uses('PagesMediaController@store');
+                    Route::delete('{media}')->name('delete')->uses('PagesMediaController@delete');
+                });
             });
         });
 });
