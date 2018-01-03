@@ -30,6 +30,7 @@ class InstallCommand extends Command
     public function handle()
     {
         $this->warn($this->description);
+
         $this->call('cortex:migrate:pages');
         $this->call('cortex:seed:pages');
         $this->call('cortex:publish:pages');
