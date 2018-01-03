@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
-use Illuminate\Http\Request;
 use Rinvex\Pages\Contracts\PageContract;
+use Illuminate\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Pages\DataTables\Managerarea\PagesDataTable;
 use Cortex\Pages\Http\Requests\Managerarea\PageFormRequest;
@@ -89,12 +89,12 @@ class PagesController extends AuthorizedController
     /**
      * Process the form for store/update of the given resource.
      *
-     * @param \Illuminate\Http\Request             $request
-     * @param \Rinvex\Pages\Contracts\PageContract $page
+     * @param \Illuminate\Foundation\Http\FormRequest $request
+     * @param \Rinvex\Pages\Contracts\PageContract    $page
      *
      * @return \Illuminate\Http\Response
      */
-    protected function process(Request $request, PageContract $page)
+    protected function process(FormRequest $request, PageContract $page)
     {
         // Prepare required input fields
         $data = $request->validated();
