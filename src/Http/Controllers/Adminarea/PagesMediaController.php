@@ -51,7 +51,9 @@ class PagesMediaController extends AuthorizedController
     public function store(ImageFormRequest $request, PageContract $page)
     {
         $page->addMediaFromRequest('file')
-             ->sanitizingFileName(function($fileName) { return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION); })
+             ->sanitizingFileName(function ($fileName) {
+                 return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION);
+             })
              ->toMediaCollection('default', config('cortex.pages.media.disk'));
     }
 
@@ -65,7 +67,7 @@ class PagesMediaController extends AuthorizedController
      */
     public function delete(PageContract $page, Media $media)
     {
-        $page->media()->where('id' , $media->id)->first()->delete();
+        $page->media()->where('id', $media->id)->first()->delete();
 
         return intend([
             'url' => route('adminarea.pages.media.index', ['page' => $page]),
