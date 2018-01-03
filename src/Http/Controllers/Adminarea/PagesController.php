@@ -99,7 +99,7 @@ class PagesController extends AuthorizedController
     protected function process(Request $request, PageContract $page)
     {
         // Prepare required input fields
-        $data = $request->all();
+        $data = $request->validated();
 
         // Verify existing view
         if (! view()->exists($data['view'])) {
