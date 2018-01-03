@@ -51,6 +51,7 @@ class PagesMediaController extends AuthorizedController
     public function store(ImageFormRequest $request, PageContract $page)
     {
         $page->addMediaFromRequest('file')
+             ->sanitizingFileName(function($fileName) { return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION); })
              ->toMediaCollection('default', config('cortex.pages.media.disk'));
     }
 
