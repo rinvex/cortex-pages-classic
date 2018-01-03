@@ -40,6 +40,8 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'cortex.pages');
+
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
     }
@@ -80,6 +82,7 @@ class PagesServiceProvider extends ServiceProvider
      */
     protected function publishResources()
     {
+        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('cortex.pages.php')], 'cortex-pages-config');
         $this->publishes([realpath(__DIR__.'/../../resources/lang') => resource_path('lang/vendor/cortex/pages')], 'cortex-pages-lang');
         $this->publishes([realpath(__DIR__.'/../../resources/views') => resource_path('views/vendor/cortex/pages')], 'cortex-pages-views');
     }
