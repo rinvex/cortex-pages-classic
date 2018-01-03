@@ -48,6 +48,20 @@ class PagesController extends AuthorizedController
     }
 
     /**
+     * Show the form for create/update of the given resource.
+     *
+     * @param \Rinvex\Pages\Contracts\PageContract $page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function form(PageContract $page)
+    {
+        $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('managerarea.pages.logs', ['page' => $page]));
+
+        return view('cortex/pages::managerarea.pages.page', compact('page', 'logs'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Managerarea\PageFormRequest $request
@@ -70,37 +84,6 @@ class PagesController extends AuthorizedController
     public function update(PageFormRequest $request, PageContract $page)
     {
         return $this->process($request, $page);
-    }
-
-    /**
-     * Delete the given resource from storage.
-     *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function delete(PageContract $page)
-    {
-        $page->delete();
-
-        return intend([
-            'url' => route('managerarea.pages.index'),
-            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
-        ]);
-    }
-
-    /**
-     * Show the form for create/update of the given resource.
-     *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function form(PageContract $page)
-    {
-        $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('managerarea.pages.logs', ['page' => $page]));
-
-        return view('cortex/pages::managerarea.pages.page', compact('page', 'logs'));
     }
 
     /**
@@ -131,6 +114,23 @@ class PagesController extends AuthorizedController
         return intend([
             'url' => route('managerarea.pages.index'),
             'with' => ['success' => trans('cortex/pages::messages.page.saved', ['slug' => $page->slug])],
+        ]);
+    }
+
+    /**
+     * Delete the given resource from storage.
+     *
+     * @param \Rinvex\Pages\Contracts\PageContract $page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(PageContract $page)
+    {
+        $page->delete();
+
+        return intend([
+            'url' => route('managerarea.pages.index'),
+            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
         ]);
     }
 }

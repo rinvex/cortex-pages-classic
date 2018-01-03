@@ -49,6 +49,21 @@ class PagesController extends AuthorizedController
     }
 
     /**
+     * Show the form for create/update of the given resource.
+     *
+     * @param \Rinvex\Pages\Contracts\PageContract $page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function form(PageContract $page)
+    {
+        $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
+        $media = app(MediaDataTable::class)->with(['id' => 'media-table'])->html()->minifiedAjax(route('adminarea.pages.media.index', ['page' => $page]));
+
+        return view('cortex/pages::adminarea.pages.page', compact('page', 'logs', 'media'));
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
@@ -71,38 +86,6 @@ class PagesController extends AuthorizedController
     public function update(PageFormRequest $request, PageContract $page)
     {
         return $this->process($request, $page);
-    }
-
-    /**
-     * Delete the given resource from storage.
-     *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function delete(PageContract $page)
-    {
-        $page->delete();
-
-        return intend([
-            'url' => route('adminarea.pages.index'),
-            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
-        ]);
-    }
-
-    /**
-     * Show the form for create/update of the given resource.
-     *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function form(PageContract $page)
-    {
-        $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
-        $media = app(MediaDataTable::class)->with(['id' => 'media-table'])->html()->minifiedAjax(route('adminarea.pages.media.index', ['page' => $page]));
-
-        return view('cortex/pages::adminarea.pages.page', compact('page', 'logs', 'media'));
     }
 
     /**
@@ -133,6 +116,23 @@ class PagesController extends AuthorizedController
         return intend([
             'url' => route('adminarea.pages.index'),
             'with' => ['success' => trans('cortex/pages::messages.page.saved', ['slug' => $page->slug])],
+        ]);
+    }
+
+    /**
+     * Delete the given resource from storage.
+     *
+     * @param \Rinvex\Pages\Contracts\PageContract $page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(PageContract $page)
+    {
+        $page->delete();
+
+        return intend([
+            'url' => route('adminarea.pages.index'),
+            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
         ]);
     }
 }
