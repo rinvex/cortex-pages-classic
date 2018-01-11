@@ -15,7 +15,7 @@ class PageTransformer extends TransformerAbstract
     public function transform(PageContract $page)
     {
         return [
-            'id' => (int) $page->id,
+            'id' => (int) $page->getKey(),
             'uri' => (string) $page->uri === '/' ? '/' : '/'.$page->uri,
             'view' => (string) $page->view,
             'slug' => (string) $page->slug,
