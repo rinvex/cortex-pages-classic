@@ -67,7 +67,7 @@ class PagesMediaController extends AuthorizedController
      */
     public function delete(PageContract $page, Media $media)
     {
-        $page->media()->where('id', $media->id)->first()->delete();
+        $page->media()->where($media->getKeyName(), $media->getKey())->first()->delete();
 
         return intend([
             'url' => route('managerarea.pages.media.index', ['page' => $page]),
