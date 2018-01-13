@@ -7,7 +7,7 @@
 @stop
 
 @push('scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Adminarea\PageFormRequest::class)->selector('#adminarea-pages-save') !!}
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Adminarea\PageFormRequest::class)->selector("#adminarea-pages-create-form, #adminarea-pages-{$page->getKey()}-update-form") !!}
 @endpush
 
 {{-- Main Content --}}
@@ -38,9 +38,9 @@
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('adminarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'adminarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('adminarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "adminarea-pages-{$page->getKey()}-update-form"]) }}
                         @else
-                            {{ Form::model($page, ['url' => route('adminarea.pages.store'), 'id' => 'adminarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('adminarea.pages.store'), 'id' => 'adminarea-pages-create-form']) }}
                         @endif
 
                             <div class="row">
@@ -292,11 +292,11 @@
 
                         <div class="tab-pane" id="media-tab">
                             {{ Form::open(['url' => route('adminarea.pages.media.store', ['page' => $page]), 'class' => 'dropzone', 'id' => 'media-dropzone']) }} {{ Form::close() }}
-                            {!! $media->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'media-table']) !!}
+                            {!! $media->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => "adminarea-pages-{$page->getKey()}-media-table"]) !!}
                         </div>
 
                         <div class="tab-pane" id="logs-tab">
-                            {!! $logs->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'logs-table']) !!}
+                            {!! $logs->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => "adminarea-pages-{$page->getKey()}-logs-table"]) !!}
                         </div>
 
                     @endif

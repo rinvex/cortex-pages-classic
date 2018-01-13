@@ -7,7 +7,7 @@
 @stop
 
 @push('scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector('#managerarea-pages-save') !!}
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-pages-create-form, #managerarea-pages-{$page->getKey()}-update-form") !!}
 @endpush
 
 {{-- Main Content --}}
@@ -38,9 +38,9 @@
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'managerarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "managerarea-pages-{$page->getKey()}-update-form"]) }}
                         @else
-                            {{ Form::model($page, ['url' => route('managerarea.pages.store'), 'id' => 'managerarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.store'), 'id' => 'managerarea-pages-create-form']) }}
                         @endif
 
                             <div class="row">
@@ -274,11 +274,11 @@
 
                         <div class="tab-pane" id="media-tab">
                             {{ Form::open(['url' => route('adminarea.pages.media.store', ['page' => $page]), 'class' => 'dropzone', 'id' => 'media-dropzone']) }} {{ Form::close() }}
-                            {!! $media->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'media-table']) !!}
+                            {!! $media->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => "managerarea-pages-{$page->getKey()}-media-table"]) !!}
                         </div>
 
                         <div class="tab-pane" id="logs-tab">
-                            {!! $logs->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => 'logs-table']) !!}
+                            {!! $logs->table(['class' => 'table table-striped table-hover responsive dataTableBuilder', 'id' => "managerarea-pages-{$page->getKey()}-logs-table"]) !!}
                         </div>
 
                     @endif

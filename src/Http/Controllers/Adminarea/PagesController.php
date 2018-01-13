@@ -29,7 +29,7 @@ class PagesController extends AuthorizedController
     public function index(PagesDataTable $pagesDataTable)
     {
         return $pagesDataTable->with([
-            'id' => 'cortex-pages',
+            'id' => 'adminarea-pages-index-table',
             'phrase' => trans('cortex/pages::common.pages'),
         ])->render('cortex/foundation::adminarea.pages.datatable');
     }
@@ -57,8 +57,8 @@ class PagesController extends AuthorizedController
      */
     public function form(PageContract $page)
     {
-        $logs = app(LogsDataTable::class)->with(['id' => 'logs-table'])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
-        $media = app(MediaDataTable::class)->with(['id' => 'media-table'])->html()->minifiedAjax(route('adminarea.pages.media.index', ['page' => $page]));
+        $logs = app(LogsDataTable::class)->with(['id' => "adminarea-pages-{$page->getKey()}-logs-table"])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
+        $media = app(MediaDataTable::class)->with(['id' => "adminarea-pages-{$page->getKey()}-media-table"])->html()->minifiedAjax(route('adminarea.pages.media.index', ['page' => $page]));
 
         return view('cortex/pages::adminarea.pages.page', compact('page', 'logs', 'media'));
     }
