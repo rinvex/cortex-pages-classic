@@ -14,7 +14,7 @@
 @section('content')
 
     @if($page->exists)
-        @include('cortex/foundation::common.partials.confirm-deletion', ['type' => 'page'])
+        @include('cortex/foundation::common.partials.confirm-deletion')
     @endif
 
     <div class="content-wrapper">
@@ -30,7 +30,7 @@
                     <li class="active"><a href="#details-tab" data-toggle="tab">{{ trans('cortex/pages::common.details') }}</a></li>
                     @if($page->exists) <li><a href="#media-tab" data-toggle="tab">{{ trans('cortex/pages::common.media') }}</a></li> @endif
                     @if($page->exists) <li><a href="#logs-tab" data-toggle="tab">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
-                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('managerarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
+                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('managerarea.pages.delete', ['page' => $page]) }}" data-modal-title="{!! trans('cortex/foundation::messages.delete_confirmation_title') !!}" data-modal-body="{!! trans('cortex/foundation::messages.delete_confirmation_body', ['type' => 'page', 'name' => $page->slug]) !!}" title="{{ trans('cortex/foundation::common.delete') }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
                 </ul>
 
                 <div class="tab-content">
