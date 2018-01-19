@@ -4,7 +4,7 @@
 {{-- Page Title --}}
 @section('title')
     {{ config('app.name') }} » {{ trans('cortex/tenants::common.managerarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
-@stop
+@endsection
 
 @push('inline-scripts')
     {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-pages-create-form, #managerarea-pages-{$page->getKey()}-update-form") !!}
