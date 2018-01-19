@@ -48,7 +48,7 @@ class PagesMediaController extends AuthorizedController
      *
      * @return void
      */
-    public function store(ImageFormRequest $request, PageContract $page)
+    public function store(ImageFormRequest $request, PageContract $page): void
     {
         $page->addMediaFromRequest('file')
              ->sanitizingFileName(function ($fileName) {
