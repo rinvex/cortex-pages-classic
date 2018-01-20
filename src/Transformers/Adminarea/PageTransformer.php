@@ -12,7 +12,7 @@ class PageTransformer extends TransformerAbstract
     /**
      * @return array
      */
-    public function transform(PageContract $page)
+    public function transform(PageContract $page): array
     {
         return [
             'id' => (int) $page->getKey(),

@@ -53,7 +53,7 @@ class PagesDataTable extends AbstractDataTable
      *
      * @return array
      */
-    protected function getColumns()
+    protected function getColumns(): array
     {
         $link = config('cortex.foundation.route.locale_prefix')
             ? '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug, locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'

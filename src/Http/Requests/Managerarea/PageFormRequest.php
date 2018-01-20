@@ -13,7 +13,7 @@ class PageFormRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -37,7 +37,7 @@ class PageFormRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         $page = $this->route('page') ?? app('rinvex.pages.page');
         $page->updateRulesUniques();
