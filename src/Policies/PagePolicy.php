@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Policies;
 
-use Rinvex\Fort\Contracts\UserContract;
-use Rinvex\Pages\Contracts\PageContract;
+use Rinvex\Fort\Models\User;
+use Rinvex\Pages\Models\Page;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class PagePolicy
@@ -16,11 +16,11 @@ class PagePolicy
      * Determine whether the user can list pages.
      *
      * @param string                              $ability
-     * @param \Rinvex\Fort\Contracts\UserContract $user
+     * @param \Rinvex\Fort\Models\User $user
      *
      * @return bool
      */
-    public function list($ability, UserContract $user): bool
+    public function list($ability, User $user): bool
     {
         return $user->allAbilities->pluck('slug')->contains($ability);
     }
@@ -29,11 +29,11 @@ class PagePolicy
      * Determine whether the user can create pages.
      *
      * @param string                              $ability
-     * @param \Rinvex\Fort\Contracts\UserContract $user
+     * @param \Rinvex\Fort\Models\User $user
      *
      * @return bool
      */
-    public function create($ability, UserContract $user): bool
+    public function create($ability, User $user): bool
     {
         return $user->allAbilities->pluck('slug')->contains($ability);
     }
@@ -42,12 +42,12 @@ class PagePolicy
      * Determine whether the user can update the page.
      *
      * @param string                               $ability
-     * @param \Rinvex\Fort\Contracts\UserContract  $user
-     * @param \Rinvex\Pages\Contracts\PageContract $resource
+     * @param \Rinvex\Fort\Models\User  $user
+     * @param \Rinvex\Pages\Models\Page $resource
      *
      * @return bool
      */
-    public function update($ability, UserContract $user, PageContract $resource): bool
+    public function update($ability, User $user, Page $resource): bool
     {
         return $user->allAbilities->pluck('slug')->contains($ability);   // User can update pages
     }
@@ -56,12 +56,12 @@ class PagePolicy
      * Determine whether the user can delete the page.
      *
      * @param string                               $ability
-     * @param \Rinvex\Fort\Contracts\UserContract  $user
-     * @param \Rinvex\Pages\Contracts\PageContract $resource
+     * @param \Rinvex\Fort\Models\User  $user
+     * @param \Rinvex\Pages\Models\Page $resource
      *
      * @return bool
      */
-    public function delete($ability, UserContract $user, PageContract $resource): bool
+    public function delete($ability, User $user, Page $resource): bool
     {
         return $user->allAbilities->pluck('slug')->contains($ability);   // User can delete pages
     }

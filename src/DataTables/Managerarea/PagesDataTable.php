@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\DataTables\Managerarea;
 
-use Rinvex\Pages\Contracts\PageContract;
+use Rinvex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\AbstractDataTable;
 use Cortex\Pages\Transformers\Managerarea\PageTransformer;
 
@@ -13,7 +13,7 @@ class PagesDataTable extends AbstractDataTable
     /**
      * {@inheritdoc}
      */
-    protected $model = PageContract::class;
+    protected $model = Page::class;
 
     /**
      * {@inheritdoc}

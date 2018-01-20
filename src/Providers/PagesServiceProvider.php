@@ -6,7 +6,7 @@ namespace Cortex\Pages\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Pages\Contracts\PageContract;
+use Rinvex\Pages\Models\Page;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
@@ -55,7 +55,7 @@ class PagesServiceProvider extends ServiceProvider
     {
         // Bind route models and constrains
         $router->pattern('page', '[0-9a-z\._-]+');
-        $router->model('page', PageContract::class);
+        $router->model('page', Page::class);
 
         // Map relations
         Relation::morphMap([

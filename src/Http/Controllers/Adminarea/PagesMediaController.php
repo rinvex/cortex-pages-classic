@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Cortex\Pages\Http\Controllers\Adminarea;
 
 use Spatie\MediaLibrary\Models\Media;
-use Rinvex\Pages\Contracts\PageContract;
+use Rinvex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\MediaDataTable;
 use Cortex\Foundation\Http\Requests\ImageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
@@ -29,11 +29,11 @@ class PagesMediaController extends AuthorizedController
     /**
      * Get a listing of the resource media.
      *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
+     * @param \Rinvex\Pages\Models\Page $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function index(PageContract $page)
+    public function index(Page $page)
     {
         return request()->ajax() && request()->wantsJson()
             ? app(MediaDataTable::class)->with(['resource' => $page])->ajax()
@@ -44,11 +44,11 @@ class PagesMediaController extends AuthorizedController
      * Store a newly created resource in storage.
      *
      * @param \Cortex\Foundation\Http\Requests\ImageFormRequest $request
-     * @param \Rinvex\Pages\Contracts\PageContract              $page
+     * @param \Rinvex\Pages\Models\Page              $page
      *
      * @return void
      */
-    public function store(ImageFormRequest $request, PageContract $page): void
+    public function store(ImageFormRequest $request, Page $page): void
     {
         $page->addMediaFromRequest('file')
              ->sanitizingFileName(function ($fileName) {
@@ -60,12 +60,12 @@ class PagesMediaController extends AuthorizedController
     /**
      * Delete the given resource from storage.
      *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
+     * @param \Rinvex\Pages\Models\Page $page
      * @param \Spatie\MediaLibrary\Models\Media    $media
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function delete(PageContract $page, Media $media)
+    public function delete(Page $page, Media $media)
     {
         $page->media()->where($media->getKeyName(), $media->getKey())->first()->delete();
 

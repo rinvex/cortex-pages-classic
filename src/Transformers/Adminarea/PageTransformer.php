@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Cortex\Pages\Transformers\Adminarea;
 
 use League\Fractal\TransformerAbstract;
-use Rinvex\Pages\Contracts\PageContract;
+use Rinvex\Pages\Models\Page;
 
 class PageTransformer extends TransformerAbstract
 {
     /**
      * @return array
      */
-    public function transform(PageContract $page): array
+    public function transform(Page $page): array
     {
         return [
             'id' => (int) $page->getKey(),

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
-use Rinvex\Pages\Contracts\PageContract;
+use Rinvex\Pages\Models\Page;
 use Illuminate\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Pages\DataTables\Managerarea\PagesDataTable;
@@ -36,11 +36,11 @@ class PagesController extends AuthorizedController
     /**
      * Get a listing of the resource logs.
      *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
+     * @param \Rinvex\Pages\Models\Page $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function logs(PageContract $page)
+    public function logs(Page $page)
     {
         return request()->ajax() && request()->wantsJson()
             ? app(LogsDataTable::class)->with(['resource' => $page])->ajax()
@@ -50,11 +50,11 @@ class PagesController extends AuthorizedController
     /**
      * Show the form for create/update of the given resource.
      *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
+     * @param \Rinvex\Pages\Models\Page $page
      *
      * @return \Illuminate\View\View
      */
-    public function form(PageContract $page)
+    public function form(Page $page)
     {
         $logs = app(LogsDataTable::class)->with(['id' => "managerarea-pages-{$page->getKey()}-logs-table"])->html()->minifiedAjax(route('managerarea.pages.logs', ['page' => $page]));
 
@@ -77,11 +77,11 @@ class PagesController extends AuthorizedController
      * Update the given resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Managerarea\PageFormRequest $request
-     * @param \Rinvex\Pages\Contracts\PageContract                    $page
+     * @param \Rinvex\Pages\Models\Page                    $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function update(PageFormRequest $request, PageContract $page)
+    public function update(PageFormRequest $request, Page $page)
     {
         return $this->process($request, $page);
     }
@@ -90,11 +90,11 @@ class PagesController extends AuthorizedController
      * Process the form for store/update of the given resource.
      *
      * @param \Illuminate\Foundation\Http\FormRequest $request
-     * @param \Rinvex\Pages\Contracts\PageContract    $page
+     * @param \Rinvex\Pages\Models\Page    $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    protected function process(FormRequest $request, PageContract $page)
+    protected function process(FormRequest $request, Page $page)
     {
         // Prepare required input fields
         $data = $request->validated();
@@ -120,11 +120,11 @@ class PagesController extends AuthorizedController
     /**
      * Delete the given resource from storage.
      *
-     * @param \Rinvex\Pages\Contracts\PageContract $page
+     * @param \Rinvex\Pages\Models\Page $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function delete(PageContract $page)
+    public function delete(Page $page)
     {
         $page->delete();
 
