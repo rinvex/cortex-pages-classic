@@ -39,7 +39,7 @@ class PagesController extends AuthorizedController
      *
      * @param \Rinvex\Pages\Contracts\PageContract $page
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function logs(PageContract $page)
     {
@@ -53,7 +53,7 @@ class PagesController extends AuthorizedController
      *
      * @param \Rinvex\Pages\Contracts\PageContract $page
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function form(PageContract $page)
     {
@@ -68,7 +68,7 @@ class PagesController extends AuthorizedController
      *
      * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function store(PageFormRequest $request)
     {
@@ -81,7 +81,7 @@ class PagesController extends AuthorizedController
      * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
      * @param \Rinvex\Pages\Contracts\PageContract                  $page
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function update(PageFormRequest $request, PageContract $page)
     {
@@ -94,7 +94,7 @@ class PagesController extends AuthorizedController
      * @param \Illuminate\Foundation\Http\FormRequest $request
      * @param \Rinvex\Pages\Contracts\PageContract    $page
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     protected function process(FormRequest $request, PageContract $page)
     {
@@ -124,7 +124,7 @@ class PagesController extends AuthorizedController
      *
      * @param \Rinvex\Pages\Contracts\PageContract $page
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function delete(PageContract $page)
     {

@@ -31,7 +31,7 @@ class PagesMediaController extends AuthorizedController
      *
      * @param \Rinvex\Pages\Contracts\PageContract $page
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function index(PageContract $page)
     {
@@ -63,7 +63,7 @@ class PagesMediaController extends AuthorizedController
      * @param \Rinvex\Pages\Contracts\PageContract $page
      * @param \Spatie\MediaLibrary\Models\Media    $media
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function delete(PageContract $page, Media $media)
     {
