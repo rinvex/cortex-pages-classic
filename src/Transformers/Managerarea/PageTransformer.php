@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Transformers\Managerarea;
 
-use League\Fractal\TransformerAbstract;
 use Rinvex\Pages\Models\Page;
+use League\Fractal\TransformerAbstract;
 
 class PageTransformer extends TransformerAbstract
 {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
-use Spatie\MediaLibrary\Models\Media;
 use Rinvex\Pages\Models\Page;
+use Spatie\MediaLibrary\Models\Media;
 use Cortex\Foundation\DataTables\MediaDataTable;
 use Cortex\Foundation\Http\Requests\ImageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
@@ -44,7 +44,7 @@ class PagesMediaController extends AuthorizedController
      * Store a newly created resource in storage.
      *
      * @param \Cortex\Foundation\Http\Requests\ImageFormRequest $request
-     * @param \Rinvex\Pages\Models\Page              $page
+     * @param \Rinvex\Pages\Models\Page                         $page
      *
      * @return void
      */
@@ -60,8 +60,8 @@ class PagesMediaController extends AuthorizedController
     /**
      * Delete the given resource from storage.
      *
-     * @param \Rinvex\Pages\Models\Page $page
-     * @param \Spatie\MediaLibrary\Models\Media    $media
+     * @param \Rinvex\Pages\Models\Page         $page
+     * @param \Spatie\MediaLibrary\Models\Media $media
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */

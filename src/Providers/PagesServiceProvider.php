@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Rinvex\Pages\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Pages\Models\Page;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
