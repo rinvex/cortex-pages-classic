@@ -15,7 +15,7 @@ class PagePolicy
     /**
      * Determine whether the user can list pages.
      *
-     * @param string                              $ability
+     * @param string                   $ability
      * @param \Rinvex\Fort\Models\User $user
      *
      * @return bool
@@ -28,7 +28,7 @@ class PagePolicy
     /**
      * Determine whether the user can create pages.
      *
-     * @param string                              $ability
+     * @param string                   $ability
      * @param \Rinvex\Fort\Models\User $user
      *
      * @return bool
@@ -41,7 +41,7 @@ class PagePolicy
     /**
      * Determine whether the user can update the page.
      *
-     * @param string                               $ability
+     * @param string                    $ability
      * @param \Rinvex\Fort\Models\User  $user
      * @param \Rinvex\Pages\Models\Page $resource
      *
@@ -55,7 +55,7 @@ class PagePolicy
     /**
      * Determine whether the user can delete the page.
      *
-     * @param string                               $ability
+     * @param string                    $ability
      * @param \Rinvex\Fort\Models\User  $user
      * @param \Rinvex\Pages\Models\Page $resource
      *

@@ -79,7 +79,7 @@ class PagesController extends AuthorizedController
      * Update the given resource in storage.
      *
      * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
-     * @param \Rinvex\Pages\Models\Page                  $page
+     * @param \Rinvex\Pages\Models\Page                             $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -92,7 +92,7 @@ class PagesController extends AuthorizedController
      * Process the form for store/update of the given resource.
      *
      * @param \Illuminate\Foundation\Http\FormRequest $request
-     * @param \Rinvex\Pages\Models\Page    $page
+     * @param \Rinvex\Pages\Models\Page               $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
