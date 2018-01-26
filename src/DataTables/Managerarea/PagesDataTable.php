@@ -42,10 +42,10 @@ class PagesDataTable extends AbstractDataTable
     {
         $transformer = app($this->transformer);
 
-        return datatables()->eloquent($this->query())
-                           ->setTransformer($transformer)
-                           ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
-                           ->make(true);
+        return datatables($this->query())
+            ->setTransformer($transformer)
+            ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
+            ->make(true);
     }
 
     /**
