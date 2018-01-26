@@ -6,7 +6,6 @@ namespace Cortex\Pages\DataTables\Adminarea;
 
 use Rinvex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\AbstractDataTable;
-use Cortex\Pages\Transformers\Adminarea\PageTransformer;
 
 class PagesDataTable extends AbstractDataTable
 {
@@ -14,11 +13,6 @@ class PagesDataTable extends AbstractDataTable
      * {@inheritdoc}
      */
     protected $model = Page::class;
-
-    /**
-     * {@inheritdoc}
-     */
-    protected $transformer = PageTransformer::class;
 
     /**
      * Get the query object to be processed by dataTables.
@@ -40,10 +34,7 @@ class PagesDataTable extends AbstractDataTable
      */
     public function ajax()
     {
-        $transformer = app($this->transformer);
-
         return datatables($this->query())
-            ->setTransformer($transformer)
             ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
             ->make(true);
     }
