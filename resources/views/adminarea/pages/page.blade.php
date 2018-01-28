@@ -54,7 +54,7 @@
                                             {{-- Title --}}
                                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                                 {{ Form::label('title', trans('cortex/pages::common.title'), ['class' => 'control-label']) }}
-                                                {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.title'), 'data-slugify' => '#slug', 'required' => 'required', 'autofocus' => 'autofocus']) }}
+                                                {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.title'), 'data-slugify' => '[name="slug"]', 'required' => 'required', 'autofocus' => 'autofocus']) }}
 
                                                 @if ($errors->has('title'))
                                                     <span class="help-block">{{ $errors->first('title') }}</span>
