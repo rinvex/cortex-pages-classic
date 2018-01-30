@@ -41,11 +41,14 @@ class PagesController extends AuthorizedController
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function logs(Page $page)
+    public function logs(Page $page, LogsDataTable $logsDataTable)
     {
-        return request()->ajax() && request()->wantsJson()
-            ? app(LogsDataTable::class)->with(['resource' => $page])->ajax()
-            : intend(['url' => route('adminarea.pages.edit', ['page' => $page]).'#logs-tab']);
+        return $logsDataTable->with([
+            'resource' => $page,
+            'tabs' => 'adminarea.pages.tabs',
+            'phrase' => trans('cortex/pages::common.pages'),
+            'id' => "adminarea-pages-{$page->getKey()}-logs-table",
+        ])->render('cortex/foundation::adminarea.pages.datatable-logs');
     }
 
     /**
@@ -57,10 +60,7 @@ class PagesController extends AuthorizedController
      */
     public function form(Page $page)
     {
-        $logs = app(LogsDataTable::class)->with(['id' => "adminarea-pages-{$page->getKey()}-logs-table"])->html()->minifiedAjax(route('adminarea.pages.logs', ['page' => $page]));
-        $media = app(MediaDataTable::class)->with(['id' => "adminarea-pages-{$page->getKey()}-media-table"])->html()->minifiedAjax(route('adminarea.pages.media.index', ['page' => $page]));
-
-        return view('cortex/pages::adminarea.pages.page', compact('page', 'logs', 'media'));
+        return view('cortex/pages::adminarea.pages.page', compact('page'));
     }
 
     /**

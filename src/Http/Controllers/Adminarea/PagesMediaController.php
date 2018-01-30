@@ -33,11 +33,15 @@ class PagesMediaController extends AuthorizedController
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function index(Page $page)
+    public function index(Page $page, MediaDataTable $mediaDataTable)
     {
-        return request()->ajax() && request()->wantsJson()
-            ? app(MediaDataTable::class)->with(['resource' => $page])->ajax()
-            : intend(['url' => route('adminarea.pages.edit', ['page' => $page]).'#media-tab']);
+        return $mediaDataTable->with([
+            'resource' => $page,
+            'tabs' => 'adminarea.pages.tabs',
+            'phrase' => trans('cortex/pages::common.pages'),
+            'id' => "adminarea-pages-{$page->getKey()}-media-table",
+            'url' => route('adminarea.pages.media.store', ['page' => $page]),
+        ])->render('cortex/foundation::adminarea.pages.datatable-media');
     }
 
     /**

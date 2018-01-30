@@ -27,6 +27,12 @@ Breadcrumbs::register('adminarea.pages.logs', function (BreadcrumbsGenerator $br
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('adminarea.pages.logs', ['page' => $page]));
 });
 
+Breadcrumbs::register('adminarea.pages.media.index', function (BreadcrumbsGenerator $breadcrumbs, Page $page) {
+    $breadcrumbs->parent('adminarea.pages.index');
+    $breadcrumbs->push($page->title, route('adminarea.pages.edit', ['page' => $page]));
+    $breadcrumbs->push(trans('cortex/pages::common.media'), route('adminarea.pages.media.index', ['page' => $page]));
+});
+
 // Managerarea breadcrumbs
 Breadcrumbs::register('managerarea.pages.index', function (BreadcrumbsGenerator $breadcrumbs) {
     $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.trans('cortex/tenants::common.managerarea'), route('managerarea.home'));
@@ -47,4 +53,10 @@ Breadcrumbs::register('managerarea.pages.logs', function (BreadcrumbsGenerator $
     $breadcrumbs->parent('managerarea.pages.index');
     $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('managerarea.pages.logs', ['page' => $page]));
+});
+
+Breadcrumbs::register('managerarea.pages.media.index', function (BreadcrumbsGenerator $breadcrumbs, Page $page) {
+    $breadcrumbs->parent('managerarea.pages.index');
+    $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
+    $breadcrumbs->push(trans('cortex/pages::common.media'), route('managerarea.pages.media.index', ['page' => $page]));
 });
