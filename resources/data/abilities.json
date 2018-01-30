@@ -22,5 +22,23 @@
         "resource": "pages",
         "policy": "Cortex\\Pages\\Policies\\PagePolicy@delete",
         "name": "Can Delete Existing Pages"
+    },
+    {
+        "action": "list-media",
+        "resource": "pages",
+        "policy": "Cortex\\Pages\\Policies\\PagePolicy@listMedia",
+        "name": "Can List Media for Existing Pages"
+    },
+    {
+        "action": "create-media",
+        "resource": "pages",
+        "policy": "Cortex\\Pages\\Policies\\PagePolicy@createMedia",
+        "name": "Can Create Media for Existing Pages"
+    },
+    {
+        "action": "delete-media",
+        "resource": "pages",
+        "policy": "Cortex\\Pages\\Policies\\PagePolicy@deleteMedia",
+        "name": "Can Delete Media for Existing Pages"
     }
 ]

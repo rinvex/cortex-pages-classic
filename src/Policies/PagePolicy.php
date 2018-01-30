@@ -65,4 +65,44 @@ class PagePolicy
     {
         return $user->allAbilities->pluck('slug')->contains($ability);   // User can delete pages
     }
+
+    /**
+     * Determine whether the user can list page media.
+     *
+     * @param string                   $ability
+     * @param \Rinvex\Fort\Models\User $user
+     *
+     * @return bool
+     */
+    public function listMedia($ability, User $user): bool
+    {
+        return $user->allAbilities->pluck('slug')->contains($ability);
+    }
+
+    /**
+     * Determine whether the user can create page media.
+     *
+     * @param string                   $ability
+     * @param \Rinvex\Fort\Models\User $user
+     *
+     * @return bool
+     */
+    public function createMedia($ability, User $user): bool
+    {
+        return $user->allAbilities->pluck('slug')->contains($ability);
+    }
+
+    /**
+     * Determine whether the user can delete the page media.
+     *
+     * @param string                        $ability
+     * @param \Rinvex\Fort\Models\User      $user
+     * @param \Rinvex\Pages\Models\Page $resource
+     *
+     * @return bool
+     */
+    public function deleteMedia($ability, User $user, Page $resource): bool
+    {
+        return $user->allAbilities->pluck('slug')->contains($ability);   // User can delete page media
+    }
 }
