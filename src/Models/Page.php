@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cortex\Pages\Models;
 
 use Rinvex\Tenants\Traits\Tenantable;
+use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Pages\Models\Page as BasePage;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -58,6 +59,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  */
 class Page extends BasePage implements HasMedia
 {
+    use Auditable;
     use Tenantable;
     use LogsActivity;
     use HasMediaTrait;

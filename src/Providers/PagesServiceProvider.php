@@ -67,6 +67,7 @@ class PagesServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
+        ! $this->app->runningInConsole() || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         $this->app->afterResolving('blade.compiler', function () {
             require __DIR__.'/../../routes/menus.php';
         });
@@ -83,6 +84,7 @@ class PagesServiceProvider extends ServiceProvider
     protected function publishResources(): void
     {
         $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('cortex.pages.php')], 'cortex-pages-config');
+        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'cortex-pages-migrations');
         $this->publishes([realpath(__DIR__.'/../../resources/lang') => resource_path('lang/vendor/cortex/pages')], 'cortex-pages-lang');
         $this->publishes([realpath(__DIR__.'/../../resources/views') => resource_path('views/vendor/cortex/pages')], 'cortex-pages-views');
     }
