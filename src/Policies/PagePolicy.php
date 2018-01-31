@@ -95,8 +95,8 @@ class PagePolicy
     /**
      * Determine whether the user can delete the page media.
      *
-     * @param string                        $ability
-     * @param \Rinvex\Fort\Models\User      $user
+     * @param string                    $ability
+     * @param \Rinvex\Fort\Models\User  $user
      * @param \Rinvex\Pages\Models\Page $resource
      *
      * @return bool
