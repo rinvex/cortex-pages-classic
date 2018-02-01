@@ -16,7 +16,7 @@ class AlterPagesTableAddAuditableColumns extends Migration
     public function up()
     {
         Schema::table(config('rinvex.pages.tables.pages'), function (Blueprint $table) {
-            $table->auditable();
+            $table->auditable(true);
         });
     }
 
