@@ -125,7 +125,7 @@ class PagesController extends AuthorizedController
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function delete(Page $page)
+    public function destroy(Page $page)
     {
         $page->delete();
 

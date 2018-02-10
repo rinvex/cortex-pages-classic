@@ -81,7 +81,7 @@ class PagesMediaController extends AuthorizedController
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function delete(Page $page, Media $media)
+    public function destroy(Page $page, Media $media)
     {
         $page->media()->where($media->getKeyName(), $media->getKey())->first()->delete();
 
