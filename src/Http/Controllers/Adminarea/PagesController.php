@@ -114,7 +114,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('adminarea.pages.index'),
-            'with' => ['success' => trans('cortex/pages::messages.page.saved', ['slug' => $page->slug])],
+            'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => 'page', 'id' => $page->slug])],
         ]);
     }
 
@@ -131,7 +131,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('adminarea.pages.index'),
-            'with' => ['warning' => trans('cortex/pages::messages.page.deleted', ['slug' => $page->slug])],
+            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => 'page', 'id' => $page->slug])],
         ]);
     }
 }
