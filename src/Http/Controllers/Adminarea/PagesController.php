@@ -19,7 +19,7 @@ class PagesController extends AuthorizedController
     protected $resource = 'page';
 
     /**
-     * Display a listing of the resource.
+     * List all pages.
      *
      * @param \Cortex\Pages\DataTables\Adminarea\PagesDataTable $pagesDataTable
      *
@@ -34,9 +34,10 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Get a listing of the resource logs.
+     * List page logs.
      *
-     * @param \Rinvex\Pages\Models\Page $page
+     * @param \Cortex\Pages\Models\Page                   $page
+     * @param \Cortex\Foundation\DataTables\LogsDataTable $logsDataTable
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -51,9 +52,9 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Show the form for create/update of the given resource.
+     * Create new page.
      *
-     * @param \Rinvex\Pages\Models\Page $page
+     * @param \Cortex\Pages\Models\Page $page
      *
      * @return \Illuminate\View\View
      */
@@ -87,22 +88,23 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new page.
      *
      * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
+     * @param \Cortex\Pages\Models\Page                             $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
-    public function store(PageFormRequest $request)
+    public function store(PageFormRequest $request, Page $page)
     {
-        return $this->process($request, app('rinvex.pages.page'));
+        return $this->process($request, $page);
     }
 
     /**
-     * Update the given resource in storage.
+     * Update given page.
      *
      * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
-     * @param \Rinvex\Pages\Models\Page                             $page
+     * @param \Cortex\Pages\Models\Page                             $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -112,10 +114,10 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Process the form for store/update of the given resource.
+     * Process stored/updated page.
      *
      * @param \Illuminate\Foundation\Http\FormRequest $request
-     * @param \Rinvex\Pages\Models\Page               $page
+     * @param \Cortex\Pages\Models\Page               $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -143,9 +145,9 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Delete the given resource from storage.
+     * Destroy given page.
      *
-     * @param \Rinvex\Pages\Models\Page $page
+     * @param \Cortex\Pages\Models\Page $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */

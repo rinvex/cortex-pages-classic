@@ -39,9 +39,10 @@ class PagesMediaController extends AuthorizedController
     }
 
     /**
-     * Get a listing of the resource media.
+     * List all page media.
      *
-     * @param \Rinvex\Pages\Models\Page $page
+     * @param \Cortex\Foundation\DataTables\MediaDataTable $mediaDataTable
+     * @param \Cortex\Pages\Models\Page                    $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -57,10 +58,10 @@ class PagesMediaController extends AuthorizedController
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store new page media.
      *
      * @param \Cortex\Foundation\Http\Requests\ImageFormRequest $request
-     * @param \Rinvex\Pages\Models\Page                         $page
+     * @param \Cortex\Pages\Models\Page                         $page
      *
      * @return void
      */
@@ -74,9 +75,9 @@ class PagesMediaController extends AuthorizedController
     }
 
     /**
-     * Delete the given resource from storage.
+     * Destroy given page media.
      *
-     * @param \Rinvex\Pages\Models\Page         $page
+     * @param \Cortex\Pages\Models\Page         $page
      * @param \Spatie\MediaLibrary\Models\Media $media
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
