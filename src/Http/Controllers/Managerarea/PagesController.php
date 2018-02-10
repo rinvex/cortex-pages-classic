@@ -16,7 +16,7 @@ class PagesController extends AuthorizedController
     /**
      * {@inheritdoc}
      */
-    protected $resource = 'pages';
+    protected $resource = 'page';
 
     /**
      * Display a listing of the resource.
