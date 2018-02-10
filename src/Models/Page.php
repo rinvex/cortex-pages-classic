@@ -76,20 +76,7 @@ class Page extends BasePage implements HasMedia
      *
      * @var array
      */
-    protected static $logAttributes = [
-        'uri',
-        'slug',
-        'title',
-        'route',
-        'subtitle',
-        'domain',
-        'middleware',
-        'excerpt',
-        'content',
-        'view',
-        'is_active',
-        'sort_order',
-    ];
+    protected static $logFillable = true;
 
     /**
      * The attributes that are ignored on change.
