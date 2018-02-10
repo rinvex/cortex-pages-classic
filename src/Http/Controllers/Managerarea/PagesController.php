@@ -57,7 +57,31 @@ class PagesController extends AuthorizedController
      *
      * @return \Illuminate\View\View
      */
-    public function form(Page $page)
+    public function create(Page $page)
+    {
+        return $this->form($page);
+    }
+
+    /**
+     * Edit given page.
+     *
+     * @param \Cortex\Pages\Models\Page $page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit(Page $page)
+    {
+        return $this->form($page);
+    }
+
+    /**
+     * Show page create/edit form.
+     *
+     * @param \Cortex\Pages\Models\Page $page
+     *
+     * @return \Illuminate\View\View
+     */
+    protected function form(Page $page)
     {
         return view('cortex/pages::managerarea.pages.page', compact('page'));
     }
