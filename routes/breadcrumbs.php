@@ -35,7 +35,7 @@ Breadcrumbs::register('adminarea.pages.media.index', function (BreadcrumbsGenera
 
 // Managerarea breadcrumbs
 Breadcrumbs::register('managerarea.pages.index', function (BreadcrumbsGenerator $breadcrumbs) {
-    $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.trans('cortex/tenants::common.managerarea'), route('managerarea.home'));
+    $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.trans('cortex/foundation::common.managerarea'), route('managerarea.home'));
     $breadcrumbs->push(trans('cortex/pages::common.pages'), route('managerarea.pages.index'));
 });
 

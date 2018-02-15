@@ -3,7 +3,7 @@
 
 {{-- Page Title --}}
 @section('title')
-    {{ config('app.name') }} » {{ trans('cortex/tenants::common.managerarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
+    {{ config('app.name') }} » {{ trans('cortex/foundation::common.managerarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
 @endsection
 
 @push('inline-scripts')
