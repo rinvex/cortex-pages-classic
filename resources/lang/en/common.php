@@ -12,7 +12,7 @@ return [
     'active' => 'Active',
     'yes' => 'Yes',
     'no' => 'No',
-    'slug' => 'Slug',
+    'name' => 'Name',
     'route' => 'Route',
     'uri' => 'URI',
     'domain' => 'Domain',

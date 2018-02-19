@@ -16,7 +16,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *
  * @property int                                                                           $id
  * @property string                                                                        $uri
- * @property string                                                                        $slug
+ * @property string                                                                        $name
  * @property string                                                                        $route
  * @property string                                                                        $domain
  * @property string                                                                        $middleware
@@ -43,7 +43,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereMiddleware($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereRoute($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSubtitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereTitle($value)
@@ -96,6 +96,6 @@ class Page extends BasePage implements HasMedia
      */
     public function getRouteKeyName(): string
     {
-        return 'slug';
+        return 'name';
     }
 }

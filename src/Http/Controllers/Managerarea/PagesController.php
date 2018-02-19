@@ -140,7 +140,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('managerarea.pages.index'),
-            'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => 'page', 'id' => $page->slug])],
+            'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => 'page', 'id' => $page->name])],
         ]);
     }
 
@@ -157,7 +157,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('managerarea.pages.index'),
-            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => 'page', 'id' => $page->slug])],
+            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => 'page', 'id' => $page->name])],
         ]);
     }
 }

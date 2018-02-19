@@ -47,14 +47,14 @@ class PagesDataTable extends AbstractDataTable
     protected function getColumns(): array
     {
         $link = config('cortex.foundation.route.locale_prefix')
-            ? '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug, locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'
-            : '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.slug})+"\">"+data+"</a>"';
+            ? '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.name, locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'
+            : '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.name})+"\">"+data+"</a>"';
 
         return [
             'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link.'+(full.is_active ? " <i class=\"text-success fa fa-check\"></i>" : " <i class=\"text-danger fa fa-close\"></i>")', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'domain' => ['title' => trans('cortex/pages::common.domain'), 'visible' => false],
-            'slug' => ['title' => trans('cortex/pages::common.slug'), 'visible' => false],
+            'name' => ['title' => trans('cortex/pages::common.name'), 'visible' => false],
             'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view'), 'visible' => false],
             'middleware' => ['title' => trans('cortex/pages::common.middleware'), 'visible' => false],
