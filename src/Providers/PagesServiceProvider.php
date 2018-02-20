@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
-use Rinvex\Pages\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Cortex\Pages\Console\Commands\SeedCommand;
@@ -55,7 +54,7 @@ class PagesServiceProvider extends ServiceProvider
     {
         // Bind route models and constrains
         $router->pattern('page', '[0-9a-z\._-]+');
-        $router->model('page', Page::class);
+        $router->model('page', config('rinvex.pages.models.page'));
 
         // Map relations
         Relation::morphMap([
