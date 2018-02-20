@@ -16,7 +16,7 @@ class PagesController extends AuthorizedController
     /**
      * {@inheritdoc}
      */
-    protected $resource = 'page';
+    protected $resource = Page::class;
 
     /**
      * List all pages.

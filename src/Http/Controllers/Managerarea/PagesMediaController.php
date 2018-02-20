@@ -16,7 +16,7 @@ class PagesMediaController extends AuthorizedController
     /**
      * {@inheritdoc}
      */
-    protected $resource = 'page';
+    protected $resource = Page::class;
 
     /**
      * {@inheritdoc}
