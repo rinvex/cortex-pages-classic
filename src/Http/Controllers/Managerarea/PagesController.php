@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
-use Rinvex\Pages\Models\Page;
+use Cortex\Pages\Models\Page;
 use Illuminate\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Pages\DataTables\Managerarea\PagesDataTable;

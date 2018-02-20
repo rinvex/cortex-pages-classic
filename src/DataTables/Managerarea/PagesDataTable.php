@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\DataTables\Managerarea;
 
-use Rinvex\Pages\Models\Page;
+use Cortex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\AbstractDataTable;
 
 class PagesDataTable extends AbstractDataTable
