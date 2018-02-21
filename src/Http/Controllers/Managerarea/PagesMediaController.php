@@ -54,7 +54,7 @@ class PagesMediaController extends AuthorizedController
             'phrase' => trans('cortex/pages::common.pages'),
             'id' => "managerarea-pages-{$page->getKey()}-media-table",
             'url' => route('managerarea.pages.media.store', ['page' => $page]),
-        ])->render('cortex/tenants::managerarea.pages.datatable-media');
+        ])->render('cortex/foundation::managerarea.pages.datatable-media');
     }
 
     /**

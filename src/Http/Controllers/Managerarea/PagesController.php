@@ -30,7 +30,7 @@ class PagesController extends AuthorizedController
         return $pagesDataTable->with([
             'id' => 'managerarea-pages-index-table',
             'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/tenants::managerarea.pages.datatable');
+        ])->render('cortex/foundation::managerarea.pages.datatable');
     }
 
     /**
@@ -48,7 +48,7 @@ class PagesController extends AuthorizedController
             'tabs' => 'managerarea.pages.tabs',
             'phrase' => trans('cortex/pages::common.pages'),
             'id' => "managerarea-pages-{$page->getKey()}-logs-table",
-        ])->render('cortex/tenants::managerarea.pages.datatable-logs');
+        ])->render('cortex/foundation::managerarea.pages.datatable-logs');
     }
 
     /**
