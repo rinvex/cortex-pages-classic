@@ -24,6 +24,8 @@ return [
     'submit' => 'Submit',
     'details' => 'Details',
     'media' => 'Media',
+    'file' => 'File',
+    'import' => 'Import',
 
     'pages' => 'Pages',
     'create_page' => 'Create New Page',

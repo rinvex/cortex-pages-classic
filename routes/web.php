@@ -34,6 +34,9 @@ Route::domain(domain())->group(function () {
         // Pages Routes
         Route::name('pages.')->prefix('pages')->group(function () {
             Route::get('/')->name('index')->uses('PagesController@index');
+            Route::get('import')->name('import')->uses('PagesController@import');
+            Route::post('import')->name('hoard')->uses('PagesController@hoard');
+            Route::get('import/logs')->name('import.logs')->uses('PagesController@importLogs');
             Route::get('create')->name('create')->uses('PagesController@create');
             Route::post('create')->name('store')->uses('PagesController@store');
             Route::get('{page}')->name('edit')->uses('PagesController@edit');
@@ -63,6 +66,9 @@ Route::domain('{subdomain}.'.domain())->group(function () {
             // Pages Routes
             Route::name('pages.')->prefix('pages')->group(function () {
                 Route::get('/')->name('index')->uses('PagesController@index');
+                Route::get('import')->name('import')->uses('PagesController@import');
+                Route::post('import')->name('hoard')->uses('PagesController@hoard');
+                Route::get('import/logs')->name('import.logs')->uses('PagesController@importLogs');
                 Route::get('create')->name('create')->uses('PagesController@create');
                 Route::post('create')->name('store')->uses('PagesController@store');
                 Route::get('{page}')->name('edit')->uses('PagesController@edit');

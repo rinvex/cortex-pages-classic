@@ -11,6 +11,18 @@ Breadcrumbs::register('adminarea.pages.index', function (BreadcrumbsGenerator $b
     $breadcrumbs->push(trans('cortex/pages::common.pages'), route('adminarea.pages.index'));
 });
 
+Breadcrumbs::register('adminarea.pages.import', function (BreadcrumbsGenerator $breadcrumbs) {
+    $breadcrumbs->parent('adminarea.pages.index');
+    $breadcrumbs->push(trans('cortex/pages::common.import'), route('adminarea.pages.import'));
+});
+
+Breadcrumbs::register('adminarea.pages.import.logs', function (BreadcrumbsGenerator $breadcrumbs) {
+    $breadcrumbs->parent('adminarea.pages.index');
+    $breadcrumbs->push(trans('cortex/pages::common.import'), route('adminarea.pages.import'));
+    $breadcrumbs->push(trans('cortex/pages::common.logs'), route('adminarea.pages.import.logs'));
+});
+
+
 Breadcrumbs::register('adminarea.pages.create', function (BreadcrumbsGenerator $breadcrumbs) {
     $breadcrumbs->parent('adminarea.pages.index');
     $breadcrumbs->push(trans('cortex/pages::common.create_page'), route('adminarea.pages.create'));
@@ -37,6 +49,17 @@ Breadcrumbs::register('adminarea.pages.media.index', function (BreadcrumbsGenera
 Breadcrumbs::register('managerarea.pages.index', function (BreadcrumbsGenerator $breadcrumbs) {
     $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.trans('cortex/foundation::common.managerarea'), route('managerarea.home'));
     $breadcrumbs->push(trans('cortex/pages::common.pages'), route('managerarea.pages.index'));
+});
+
+Breadcrumbs::register('managerarea.pages.import', function (BreadcrumbsGenerator $breadcrumbs) {
+    $breadcrumbs->parent('managerarea.pages.index');
+    $breadcrumbs->push(trans('cortex/pages::common.import'), route('managerarea.pages.import'));
+});
+
+Breadcrumbs::register('managerarea.pages.import.logs', function (BreadcrumbsGenerator $breadcrumbs) {
+    $breadcrumbs->parent('managerarea.pages.index');
+    $breadcrumbs->push(trans('cortex/pages::common.import'), route('managerarea.pages.import'));
+    $breadcrumbs->push(trans('cortex/pages::common.logs'), route('managerarea.pages.import.logs'));
 });
 
 Breadcrumbs::register('managerarea.pages.create', function (BreadcrumbsGenerator $breadcrumbs) {

@@ -20,6 +20,8 @@ Menu::register('managerarea.sidebar', function (MenuGenerator $menu, Page $page)
 });
 
 Menu::register('adminarea.pages.tabs', function (MenuGenerator $menu, Page $page, Media $media) {
+    $menu->route(['adminarea.pages.import'], trans('cortex/bookings::common.file'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
+    $menu->route(['adminarea.pages.import.logs'], trans('cortex/bookings::common.logs'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
     $menu->route(['adminarea.pages.create'], trans('cortex/bookings::common.details'))->ifCan('create', $page)->if(Route::is('adminarea.pages.create'));
     $menu->route(['adminarea.pages.edit', ['page' => $page]], trans('cortex/bookings::common.details'))->ifCan('update', $page)->if($page->exists);
     $menu->route(['adminarea.pages.logs', ['page' => $page]], trans('cortex/bookings::common.logs'))->ifCan('audit', $page)->if($page->exists);
@@ -27,6 +29,8 @@ Menu::register('adminarea.pages.tabs', function (MenuGenerator $menu, Page $page
 });
 
 Menu::register('managerarea.pages.tabs', function (MenuGenerator $menu, Page $page, Media $media) {
+    $menu->route(['managerarea.pages.import'], trans('cortex/bookings::common.file'))->ifCan('import', $page)->if(Route::is('managerarea.pages.import*'));
+    $menu->route(['managerarea.pages.import.logs'], trans('cortex/bookings::common.logs'))->ifCan('import', $page)->if(Route::is('managerarea.pages.import*'));
     $menu->route(['managerarea.pages.create'], trans('cortex/bookings::common.details'))->ifCan('create', $page)->if(Route::is('managerarea.pages.create'));
     $menu->route(['managerarea.pages.edit', ['page' => $page]], trans('cortex/bookings::common.details'))->ifCan('update', $page)->if($page->exists);
     $menu->route(['managerarea.pages.logs', ['page' => $page]], trans('cortex/bookings::common.logs'))->ifCan('audit', $page)->if($page->exists);
