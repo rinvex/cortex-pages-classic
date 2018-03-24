@@ -22,7 +22,6 @@ Breadcrumbs::register('adminarea.pages.import.logs', function (BreadcrumbsGenera
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('adminarea.pages.import.logs'));
 });
 
-
 Breadcrumbs::register('adminarea.pages.create', function (BreadcrumbsGenerator $breadcrumbs) {
     $breadcrumbs->parent('adminarea.pages.index');
     $breadcrumbs->push(trans('cortex/pages::common.create_page'), route('adminarea.pages.create'));
