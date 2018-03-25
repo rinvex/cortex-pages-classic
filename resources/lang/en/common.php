@@ -26,6 +26,7 @@ return [
     'media' => 'Media',
     'file' => 'File',
     'import' => 'Import',
+    'tags' => 'Tags',
 
     'pages' => 'Pages',
     'create_page' => 'Create New Page',

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Models;
 
+use Rinvex\Tags\Traits\Taggable;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Pages\Models\Page as BasePage;
@@ -59,6 +60,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  */
 class Page extends BasePage implements HasMedia
 {
+    use Taggable;
     use Auditable;
     use Tenantable;
     use LogsActivity;
@@ -88,6 +90,33 @@ class Page extends BasePage implements HasMedia
         'updated_at',
         'deleted_at',
     ];
+
+    /**
+     * Create a new Eloquent model instance.
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+
+        $this->setTable(config('rinvex.pages.tables.pages'));
+        $this->setRules([
+            'uri' => 'required|regex:/^([0-9a-z\/_-]+)$/|max:150|unique:'.config('rinvex.pages.tables.pages').',uri,NULL,id,domain,'.($this->domain ?? 'null'),
+            'name' => 'required|alpha_dash|max:150|unique:'.config('rinvex.pages.tables.pages').',name,NULL,id,domain,'.($this->domain ?? 'null'),
+            'route' => 'required|regex:/^([0-9a-z\._-]+)$/|max:150|unique:'.config('rinvex.pages.tables.pages').',route,NULL,id,domain,'.($this->domain ?? 'null'),
+            'domain' => 'nullable|string|max:150',
+            'middleware' => 'nullable|string|max:150',
+            'title' => 'required|string|max:150',
+            'subtitle' => 'nullable|string|max:150',
+            'excerpt' => 'nullable|string|max:10000',
+            'content' => 'nullable|string|max:10000000',
+            'view' => 'required|string|max:150',
+            'is_active' => 'sometimes|boolean',
+            'sort_order' => 'nullable|integer|max:10000000',
+            'tags' => 'nullable|array',
+        ]);
+    }
 
     /**
      * Get the route key for the model.
