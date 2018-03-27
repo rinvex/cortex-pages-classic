@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Cortex\Pages\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Cortex\Pages\Console\Commands\SeedCommand;
@@ -40,6 +41,10 @@ class PagesServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'cortex.pages');
+
+        // Bind eloquent models to IoC container
+        $this->app['config']['rinvex.pages.models.page'] === Page::class
+        || $this->app->alias('rinvex.pages.page', Page::class);
 
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
