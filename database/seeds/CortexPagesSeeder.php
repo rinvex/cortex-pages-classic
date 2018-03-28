@@ -14,6 +14,7 @@ class CortexPagesSeeder extends Seeder
     public function run()
     {
         Bouncer::allow('admin')->to('list', config('rinvex.pages.models.page'));
+        Bouncer::allow('admin')->to('import', config('rinvex.pages.models.page'));
         Bouncer::allow('admin')->to('create', config('rinvex.pages.models.page'));
         Bouncer::allow('admin')->to('update', config('rinvex.pages.models.page'));
         Bouncer::allow('admin')->to('delete', config('rinvex.pages.models.page'));
