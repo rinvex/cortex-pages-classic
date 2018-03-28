@@ -102,6 +102,74 @@
 
                                         <div class="col-md-12">
 
+                                            {{-- Profile Picture --}}
+                                            <div class="form-group has-feedback{{ $errors->has('profile_picture') ? ' has-error' : '' }}">
+                                                {{ Form::label('profile_picture', trans('cortex/bookings::common.profile_picture'), ['class' => 'control-label']) }}
+
+                                                <div class="input-group">
+                                                    {{ Form::text('profile_picture', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/bookings::common.profile_picture'), 'readonly' => 'readonly']) }}
+
+                                                    <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    {{ trans('cortex/bookings::common.browse') }}
+                                                    {{ Form::file('profile_picture', ['class' => 'form-control']) }}
+                                                </span>
+                                            </span>
+                                                </div>
+
+                                                @if ($page->exists && $page->getMedia('profile_picture')->count())
+                                                    <i class="fa fa-paperclip"></i>
+                                                    <a href="{{ $page->getFirstMediaUrl('profile_picture') }}" target="_blank">{{ $page->getFirstMedia('profile_picture')->file_name }}</a> ({{ $page->getFirstMedia('profile_picture')->human_readable_size }})
+                                                    <a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('adminarea.members.media.destroy', ['member' => $page, 'media' => $page->getFirstMedia('profile_picture')]) }}" data-modal-title="{{ trans('cortex/foundation::messages.delete_confirmation_title') }}" data-modal-body="{{ trans('cortex/foundation::messages.delete_confirmation_body', ['type' => 'media', 'name' => $page->getFirstMedia('profile_picture')->file_name]) }}" title="{{ trans('cortex/foundation::common.delete') }}"><i class="fa fa-trash text-danger"></i></a>
+                                                @endif
+
+                                                @if ($errors->has('profile_picture'))
+                                                    <span class="help-block">{{ $errors->first('profile_picture') }}</span>
+                                                @endif
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            {{-- Cover Photo --}}
+                                            <div class="form-group has-feedback{{ $errors->has('cover_photo') ? ' has-error' : '' }}">
+                                                {{ Form::label('cover_photo', trans('cortex/bookings::common.cover_photo'), ['class' => 'control-label']) }}
+
+                                                <div class="input-group">
+                                                    {{ Form::text('cover_photo', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/bookings::common.cover_photo'), 'readonly' => 'readonly']) }}
+
+                                                    <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    {{ trans('cortex/bookings::common.browse') }}
+                                                    {{ Form::file('cover_photo', ['class' => 'form-control']) }}
+                                                </span>
+                                            </span>
+                                                </div>
+
+                                                @if ($page->exists && $page->getMedia('cover_photo')->count())
+                                                    <i class="fa fa-paperclip"></i>
+                                                    <a href="{{ $page->getFirstMediaUrl('cover_photo') }}" target="_blank">{{ $page->getFirstMedia('cover_photo')->file_name }}</a> ({{ $page->getFirstMedia('cover_photo')->human_readable_size }})
+                                                    <a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('adminarea.members.media.destroy', ['member' => $page, 'media' => $page->getFirstMedia('cover_photo')]) }}" data-modal-title="{{ trans('cortex/foundation::messages.delete_confirmation_title') }}" data-modal-body="{{ trans('cortex/foundation::messages.delete_confirmation_body', ['type' => 'media', 'name' => $page->getFirstMedia('cover_photo')->file_name]) }}" title="{{ trans('cortex/foundation::common.delete') }}"><i class="fa fa-trash text-danger"></i></a>
+                                                @endif
+
+                                                @if ($errors->has('cover_photo'))
+                                                    <span class="help-block">{{ $errors->first('cover_photo') }}</span>
+                                                @endif
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
                                             {{-- Excerpt --}}
                                             <div class="form-group{{ $errors->has('excerpt') ? ' has-error' : '' }}">
                                                 {{ Form::label('excerpt', trans('cortex/pages::common.excerpt'), ['class' => 'control-label']) }}

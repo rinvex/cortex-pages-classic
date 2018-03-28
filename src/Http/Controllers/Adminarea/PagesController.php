@@ -187,6 +187,20 @@ class PagesController extends AuthorizedController
             ]);
         }
 
+        ! $request->hasFile('profile_picture')
+        || $page->addMediaFromRequest('profile_picture')
+                  ->sanitizingFileName(function ($fileName) {
+                      return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION);
+                  })
+                  ->toMediaCollection('profile_picture', config('cortex.auth.media.disk'));
+
+        ! $request->hasFile('cover_photo')
+        || $page->addMediaFromRequest('cover_photo')
+                  ->sanitizingFileName(function ($fileName) {
+                      return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION);
+                  })
+                  ->toMediaCollection('cover_photo', config('cortex.auth.media.disk'));
+
         // Save page
         $page->fill($data)->save();
 
