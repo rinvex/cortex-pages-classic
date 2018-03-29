@@ -18,7 +18,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  *
  * @property int                                                                           $id
  * @property string                                                                        $uri
- * @property string                                                                        $name
+ * @property string                                                                        $slug
  * @property string                                                                        $route
  * @property string                                                                        $domain
  * @property string                                                                        $middleware
@@ -45,7 +45,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereIsActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereMiddleware($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereRoute($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSortOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereSubtitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereTitle($value)
@@ -104,7 +104,7 @@ class Page extends BasePage implements HasMedia
         $this->setTable(config('rinvex.pages.tables.pages'));
         $this->setRules([
             'uri' => 'required|regex:/^([0-9a-z\/_-]+)$/|max:150|unique:'.config('rinvex.pages.tables.pages').',uri,NULL,id,domain,'.($this->domain ?? 'null'),
-            'name' => 'required|alpha_dash|max:150|unique:'.config('rinvex.pages.tables.pages').',name,NULL,id,domain,'.($this->domain ?? 'null'),
+            'slug' => 'required|alpha_dash|max:150|unique:'.config('rinvex.pages.tables.pages').',slug,NULL,id,domain,'.($this->domain ?? 'null'),
             'route' => 'required|regex:/^([0-9a-z\._-]+)$/|max:150|unique:'.config('rinvex.pages.tables.pages').',route,NULL,id,domain,'.($this->domain ?? 'null'),
             'domain' => 'nullable|string|max:150',
             'middleware' => 'nullable|string|max:150',

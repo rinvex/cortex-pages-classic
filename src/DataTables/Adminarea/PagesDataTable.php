@@ -54,7 +54,6 @@ class PagesDataTable extends AbstractDataTable
             'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link.'+(full.is_active ? " <i class=\"text-success fa fa-check\"></i>" : " <i class=\"text-danger fa fa-close\"></i>")', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'domain' => ['title' => trans('cortex/pages::common.domain'), 'visible' => false],
-            'name' => ['title' => trans('cortex/pages::common.name'), 'visible' => false],
             'route' => ['title' => trans('cortex/pages::common.route')],
             'view' => ['title' => trans('cortex/pages::common.view'), 'visible' => false],
             'middleware' => ['title' => trans('cortex/pages::common.middleware'), 'visible' => false],
