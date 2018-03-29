@@ -51,7 +51,7 @@ class PagesMediaController extends AuthorizedController
             'resource' => $page,
             'tabs' => 'adminarea.pages.tabs',
             'phrase' => trans('cortex/pages::common.pages'),
-            'id' => "adminarea-pages-{$page->getKey()}-media-table",
+            'id' => "adminarea-pages-{$page->getRouteKey()}-media-table",
             'url' => route('adminarea.pages.media.store', ['page' => $page]),
         ])->render('cortex/foundation::adminarea.pages.datatable-media');
     }
@@ -87,7 +87,7 @@ class PagesMediaController extends AuthorizedController
 
         return intend([
             'url' => route('adminarea.pages.media.index', ['page' => $page]),
-            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => 'media', 'id' => $media->getKey()])],
+            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => 'media', 'id' => $media->getRouteKey()])],
         ]);
     }
 }

@@ -50,7 +50,7 @@ class PagesController extends AuthorizedController
             'resource' => $page,
             'tabs' => 'managerarea.pages.tabs',
             'phrase' => trans('cortex/pages::common.pages'),
-            'id' => "managerarea-pages-{$page->getKey()}-logs-table",
+            'id' => "managerarea-pages-{$page->getRouteKey()}-logs-table",
         ])->render('cortex/foundation::managerarea.pages.datatable-logs');
     }
 

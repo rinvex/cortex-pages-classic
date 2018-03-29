@@ -7,7 +7,7 @@
 @endsection
 
 @push('inline-scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-pages-create-form, #managerarea-pages-{$page->getKey()}-update-form") !!}
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-pages-create-form, #managerarea-pages-{$page->getRouteKey()}-update-form") !!}
 @endpush
 
 {{-- Main Content --}}
@@ -34,7 +34,7 @@
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "managerarea-pages-{$page->getKey()}-update-form"]) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "managerarea-pages-{$page->getRouteKey()}-update-form"]) }}
                         @else
                             {{ Form::model($page, ['url' => route('managerarea.pages.store'), 'id' => 'managerarea-pages-create-form']) }}
                         @endif
