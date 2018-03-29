@@ -134,7 +134,7 @@ class PagesController extends AuthorizedController
      */
     protected function form(Page $page)
     {
-        $tags = app('rinvex.tags.tag')->pluck('title', 'id');
+        $tags = app('rinvex.tags.tag')->pluck('name', 'id');
 
         return view('cortex/pages::managerarea.pages.page', compact('page', 'tags'));
     }
