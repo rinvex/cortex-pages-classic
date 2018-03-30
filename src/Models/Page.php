@@ -6,8 +6,8 @@ namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
 use Rinvex\Tenants\Traits\Tenantable;
-use Rinvex\Support\Traits\HashidsTrait;
 use Cortex\Foundation\Traits\Auditable;
+use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Pages\Models\Page as BasePage;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\Activitylog\Traits\LogsActivity;
