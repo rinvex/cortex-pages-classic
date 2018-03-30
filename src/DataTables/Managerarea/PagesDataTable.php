@@ -6,6 +6,7 @@ namespace Cortex\Pages\DataTables\Managerarea;
 
 use Cortex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\AbstractDataTable;
+use Cortex\Pages\Transformers\Managerarea\PageTransformer;
 
 class PagesDataTable extends AbstractDataTable
 {
@@ -13,6 +14,11 @@ class PagesDataTable extends AbstractDataTable
      * {@inheritdoc}
      */
     protected $model = Page::class;
+
+    /**
+     * {@inheritdoc}
+     */
+    protected $transformer = PageTransformer::class;
 
     /**
      * Get the query object to be processed by dataTables.
@@ -28,18 +34,6 @@ class PagesDataTable extends AbstractDataTable
     }
 
     /**
-     * Display ajax response.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function ajax()
-    {
-        return datatables($this->query())
-            ->orderColumn('title', 'title->"$.'.app()->getLocale().'" $1')
-            ->make(true);
-    }
-
-    /**
      * Get columns.
      *
      * @return array
@@ -47,8 +41,8 @@ class PagesDataTable extends AbstractDataTable
     protected function getColumns(): array
     {
         $link = config('cortex.foundation.route.locale_prefix')
-            ? '"<a href=\""+routes.route(\'managerarea.pages.edit\', {page: hashids.encode(full.id), locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'
-            : '"<a href=\""+routes.route(\'managerarea.pages.edit\', {page: hashids.encode(full.id)})+"\">"+data+"</a>"';
+            ? '"<a href=\""+routes.route(\'managerarea.pages.edit\', {page: full.id, locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'
+            : '"<a href=\""+routes.route(\'managerarea.pages.edit\', {page: full.id})+"\">"+data+"</a>"';
 
         return [
             'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link.'+(full.is_active ? " <i class=\"text-success fa fa-check\"></i>" : " <i class=\"text-danger fa fa-close\"></i>")', 'responsivePriority' => 0],
