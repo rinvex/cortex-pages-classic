@@ -26,7 +26,7 @@
         <section class="content">
 
             <div class="nav-tabs-custom">
-                @if($page->exists && $currentUser->can('delete', $page)) <div class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('managerarea.pages.destroy', ['page' => $page]) }}" data-modal-title="{!! trans('cortex/foundation::messages.delete_confirmation_title') !!}" data-modal-body="{!! trans('cortex/foundation::messages.delete_confirmation_body', ['type' => 'page', 'name' => $page->slug]) !!}" title="{{ trans('cortex/foundation::common.delete') }}" class="btn btn-default" style="margin: 4px"><i class="fa fa-trash text-danger"></i></a></div> @endif
+                @if($page->exists && $currentUser->can('delete', $page)) <div class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('managerarea.pages.destroy', ['page' => $page]) }}" data-modal-title="{!! trans('cortex/foundation::messages.delete_confirmation_title') !!}" data-modal-body="{!! trans('cortex/foundation::messages.delete_confirmation_body', ['resource' => 'page', 'identifier' => $page->slug]) !!}" title="{{ trans('cortex/foundation::common.delete') }}" class="btn btn-default" style="margin: 4px"><i class="fa fa-trash text-danger"></i></a></div> @endif
                 {!! Menu::render('managerarea.pages.tabs', 'nav-tab') !!}
 
                 <div class="tab-content">
