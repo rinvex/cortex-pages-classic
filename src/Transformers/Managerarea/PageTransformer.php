@@ -17,7 +17,7 @@ class PageTransformer extends TransformerAbstract
      */
     public function transform(Page $page): array
     {
-        return $this->escapeRow([
+        return $this->escape([
             'id' => (string) $page->getRouteKey(),
             'title' => (string) $page->title,
             'uri' => (string) $page->uri,
