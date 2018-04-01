@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Requests\Managerarea;
 
+use Rinvex\Support\Traits\Escaper;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PageFormRequest extends FormRequest
 {
+    use Escaper;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -30,6 +33,19 @@ class PageFormRequest extends FormRequest
         $data['domain'] = $this->getHost();
 
         $this->replace($data);
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param \Illuminate\Validation\Validator $validator
+     *
+     * @return void
+     */
+    public function withValidator($validator): void
+    {
+        // Sanitize input data before submission
+        $this->replace($this->escape($this->all()));
     }
 
     /**
