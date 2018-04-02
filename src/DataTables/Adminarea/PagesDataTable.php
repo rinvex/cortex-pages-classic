@@ -52,8 +52,8 @@ class PagesDataTable extends AbstractDataTable
             'view' => ['title' => trans('cortex/pages::common.view'), 'visible' => false],
             'middleware' => ['title' => trans('cortex/pages::common.middleware'), 'visible' => false],
             'sort_order' => ['title' => trans('cortex/pages::common.sort_order'), 'visible' => false],
-            'created_at' => ['title' => trans('cortex/pages::common.created_at'), 'render' => "moment(data).format('MMM Do, YYYY')"],
-            'updated_at' => ['title' => trans('cortex/pages::common.updated_at'), 'render' => "moment(data).format('MMM Do, YYYY')"],
+            'created_at' => ['title' => trans('cortex/pages::common.created_at'), 'render' => "moment(data).format('MMMM Do YYYY, hh:mm:ss A')"],
+            'updated_at' => ['title' => trans('cortex/pages::common.updated_at'), 'render' => "moment(data).format('MMMM Do YYYY, hh:mm:ss A')"],
         ];
     }
 }
