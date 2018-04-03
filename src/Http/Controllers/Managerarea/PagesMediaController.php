@@ -50,7 +50,6 @@ class PagesMediaController extends AuthorizedController
         return $mediaDataTable->with([
             'resource' => $page,
             'tabs' => 'managerarea.pages.tabs',
-            'phrase' => trans('cortex/pages::common.pages'),
             'id' => "managerarea-pages-{$page->getRouteKey()}-media-table",
             'url' => route('managerarea.pages.media.store', ['page' => $page]),
         ])->render('cortex/foundation::managerarea.pages.datatable-media');

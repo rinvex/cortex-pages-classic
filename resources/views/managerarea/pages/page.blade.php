@@ -3,7 +3,7 @@
 
 {{-- Page Title --}}
 @section('title')
-    {{ config('app.name') }} » {{ trans('cortex/foundation::common.managerarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
+    {{ extract_title(Breadcrumbs::render()) }}
 @endsection
 
 @push('inline-scripts')

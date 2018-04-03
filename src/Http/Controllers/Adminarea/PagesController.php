@@ -32,7 +32,6 @@ class PagesController extends AuthorizedController
     {
         return $pagesDataTable->with([
             'id' => 'adminarea-pages-index-table',
-            'phrase' => trans('cortex/pages::common.pages'),
         ])->render('cortex/foundation::adminarea.pages.datatable');
     }
 
@@ -49,7 +48,6 @@ class PagesController extends AuthorizedController
         return $logsDataTable->with([
             'resource' => $page,
             'tabs' => 'adminarea.pages.tabs',
-            'phrase' => trans('cortex/pages::common.pages'),
             'id' => "adminarea-pages-{$page->getRouteKey()}-logs-table",
         ])->render('cortex/foundation::adminarea.pages.datatable-logs');
     }
@@ -65,7 +63,6 @@ class PagesController extends AuthorizedController
             'id' => 'adminarea-pages-import',
             'tabs' => 'adminarea.pages.tabs',
             'url' => route('adminarea.pages.hoard'),
-            'phrase' => trans('cortex/pages::common.pages'),
         ]);
     }
 
@@ -97,8 +94,7 @@ class PagesController extends AuthorizedController
             'resource' => 'page',
             'tabs' => 'adminarea.pages.tabs',
             'id' => 'adminarea-pages-import-logs-table',
-            'phrase' => trans('cortex/pages::common.pages'),
-        ])->render('cortex/foundation::adminarea.pages.datatable-import-logs');
+        ])->render('cortex/foundation::adminarea.pages.datatable-logs');
     }
 
     /**
