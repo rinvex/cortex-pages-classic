@@ -9,7 +9,7 @@ return [
     'content' => 'Content',
     'excerpt' => 'Excerpt',
     'view' => 'View',
-    'active' => 'Active',
+    'is_active' => 'Is Active',
     'yes' => 'Yes',
     'no' => 'No',
     'slug' => 'Slug',
