@@ -91,7 +91,7 @@ class PagesController extends AuthorizedController
     public function importLogs(ImportLogsDataTable $importLogsDatatable)
     {
         return $importLogsDatatable->with([
-            'resource' => 'page',
+            'resource' => trans('cortex/pages::common.page'),
             'tabs' => 'adminarea.pages.tabs',
             'id' => 'adminarea-pages-import-logs-table',
         ])->render('cortex/foundation::adminarea.pages.datatable-logs');
@@ -188,7 +188,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('managerarea.pages.index'),
-            'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => 'page', 'identifier' => $page->name])],
+            'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->name])],
         ]);
     }
 
@@ -205,7 +205,7 @@ class PagesController extends AuthorizedController
 
         return intend([
             'url' => route('managerarea.pages.index'),
-            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => 'page', 'identifier' => $page->name])],
+            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->name])],
         ]);
     }
 }

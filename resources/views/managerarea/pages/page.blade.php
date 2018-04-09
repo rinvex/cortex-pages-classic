@@ -26,7 +26,7 @@
         <section class="content">
 
             <div class="nav-tabs-custom">
-                @if($page->exists && $currentUser->can('delete', $page)) <div class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('managerarea.pages.destroy', ['page' => $page]) }}" data-modal-title="{!! trans('cortex/foundation::messages.delete_confirmation_title') !!}" data-modal-body="{!! trans('cortex/foundation::messages.delete_confirmation_body', ['resource' => 'page', 'identifier' => $page->name]) !!}" title="{{ trans('cortex/foundation::common.delete') }}" class="btn btn-default" style="margin: 4px"><i class="fa fa-trash text-danger"></i></a></div> @endif
+                @if($page->exists && $currentUser->can('delete', $page)) <div class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-modal-action="{{ route('managerarea.pages.destroy', ['page' => $page]) }}" data-modal-title="{!! trans('cortex/foundation::messages.delete_confirmation_title') !!}" data-modal-body="{!! trans('cortex/foundation::messages.delete_confirmation_body', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->name]) !!}" title="{{ trans('cortex/foundation::common.delete') }}" class="btn btn-default" style="margin: 4px"><i class="fa fa-trash text-danger"></i></a></div> @endif
                 {!! Menu::render('managerarea.pages.tabs', 'nav-tab') !!}
 
                 <div class="tab-content">
@@ -252,7 +252,7 @@
 
                                             {{-- Active --}}
                                             <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
-                                                {{ Form::label('is_active', trans('cortex/pages::common.active'), ['class' => 'control-label']) }}
+                                                {{ Form::label('is_active', trans('cortex/pages::common.is_active'), ['class' => 'control-label']) }}
                                                 {{ Form::select('is_active', [1 => trans('cortex/pages::common.yes'), 0 => trans('cortex/pages::common.no')], null, ['class' => 'form-control select2', 'data-minimum-results-for-search' => 'Infinity', 'data-width' => '100%', 'required' => 'required']) }}
 
                                                 @if ($errors->has('is_active'))
