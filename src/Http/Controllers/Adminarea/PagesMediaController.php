@@ -52,7 +52,7 @@ class PagesMediaController extends AuthorizedController
             'tabs' => 'adminarea.pages.tabs',
             'id' => "adminarea-pages-{$page->getRouteKey()}-media-table",
             'url' => route('adminarea.pages.media.store', ['page' => $page]),
-        ])->render('cortex/foundation::adminarea.pages.datatable-media');
+        ])->render('cortex/foundation::adminarea.pages.datatable-dropzone');
     }
 
     /**

@@ -32,7 +32,7 @@ class PagesController extends AuthorizedController
     {
         return $pagesDataTable->with([
             'id' => 'managerarea-pages-index-table',
-        ])->render('cortex/foundation::managerarea.pages.datatable');
+        ])->render('cortex/foundation::managerarea.pages.datatable-index');
     }
 
     /**
@@ -49,7 +49,7 @@ class PagesController extends AuthorizedController
             'resource' => $page,
             'tabs' => 'managerarea.pages.tabs',
             'id' => "managerarea-pages-{$page->getRouteKey()}-logs-table",
-        ])->render('cortex/foundation::managerarea.pages.datatable-logs');
+        ])->render('cortex/foundation::managerarea.pages.datatable-tab');
     }
 
     /**
@@ -94,7 +94,7 @@ class PagesController extends AuthorizedController
             'resource' => trans('cortex/pages::common.page'),
             'tabs' => 'adminarea.pages.tabs',
             'id' => 'adminarea-pages-import-logs-table',
-        ])->render('cortex/foundation::adminarea.pages.datatable-logs');
+        ])->render('cortex/foundation::adminarea.pages.datatable-tab');
     }
 
     /**
