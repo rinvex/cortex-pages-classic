@@ -14,7 +14,7 @@ Menu::register('adminarea.sidebar', function (MenuGenerator $menu, Page $page) {
 });
 
 Menu::register('adminarea.pages.tabs', function (MenuGenerator $menu, Page $page, Media $media) {
-    $menu->route(['adminarea.pages.import'], trans('cortex/bookings::common.file'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
+    $menu->route(['adminarea.pages.import'], trans('cortex/bookings::common.records'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
     $menu->route(['adminarea.pages.import.logs'], trans('cortex/bookings::common.logs'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
     $menu->route(['adminarea.pages.create'], trans('cortex/bookings::common.details'))->ifCan('create', $page)->if(Route::is('adminarea.pages.create'));
     $menu->route(['adminarea.pages.edit', ['page' => $page]], trans('cortex/bookings::common.details'))->ifCan('update', $page)->if($page->exists);

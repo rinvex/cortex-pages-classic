@@ -24,7 +24,7 @@ return [
     'submit' => 'Submit',
     'details' => 'Details',
     'media' => 'Media',
-    'file' => 'File',
+    'records' => 'Records',
     'import' => 'Import',
     'tags' => 'Tags',
 

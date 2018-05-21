@@ -12,7 +12,8 @@ Route::domain(domain())->group(function () {
              Route::name('pages.')->prefix('pages')->group(function () {
                  Route::get('/')->name('index')->uses('PagesController@index');
                  Route::get('import')->name('import')->uses('PagesController@import');
-                 Route::post('import')->name('hoard')->uses('PagesController@hoard');
+                 Route::post('import')->name('stash')->uses('PagesController@stash');
+                 Route::post('hoard')->name('hoard')->uses('PagesController@hoard');
                  Route::get('import/logs')->name('import.logs')->uses('PagesController@importLogs');
                  Route::get('create')->name('create')->uses('PagesController@create');
                  Route::post('create')->name('store')->uses('PagesController@store');
