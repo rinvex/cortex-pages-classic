@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
-use Cortex\Foundation\DataTables\ImportRecordsDataTable;
-use Cortex\Pages\Models\Page;
 use Exception;
+use Cortex\Pages\Models\Page;
 use Illuminate\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Foundation\Importers\DefaultImporter;
 use Cortex\Foundation\DataTables\ImportLogsDataTable;
 use Cortex\Foundation\Http\Requests\ImportFormRequest;
 use Cortex\Pages\DataTables\Managerarea\PagesDataTable;
+use Cortex\Foundation\DataTables\ImportRecordsDataTable;
 use Cortex\Pages\Http\Requests\Managerarea\PageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
 
