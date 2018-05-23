@@ -28,6 +28,7 @@ return [
     'import' => 'Import',
     'tags' => 'Tags',
 
+    'page' => 'Page',
     'pages' => 'Pages',
     'create_page' => 'Create New Page',
 
