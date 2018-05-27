@@ -58,7 +58,7 @@ class PagesServiceProvider extends ServiceProvider
     public function boot(Router $router): void
     {
         // Bind route models and constrains
-        $router->pattern('page', '[a-zA-Z0-9]+');
+        $router->pattern('page', '[a-zA-Z0-9-]+');
         $router->model('page', config('rinvex.pages.models.page'));
 
         // Map relations
