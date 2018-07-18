@@ -248,6 +248,8 @@ class PagesController extends AuthorizedController
      *
      * @param \Cortex\Pages\Models\Page $page
      *
+     * @throws \Exception
+     *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
     public function destroy(Page $page)
