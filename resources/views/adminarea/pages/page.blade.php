@@ -120,11 +120,11 @@
                                                     {{ Form::text('profile_picture', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/bookings::common.profile_picture'), 'readonly' => 'readonly']) }}
 
                                                     <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    {{ trans('cortex/bookings::common.browse') }}
-                                                    {{ Form::file('profile_picture', ['class' => 'form-control', 'id' => 'profile_picture_browse']) }}
-                                                </span>
-                                            </span>
+                                                        <span class="btn btn-default btn-file">
+                                                            {{ trans('cortex/bookings::common.browse') }}
+                                                            {{ Form::file('profile_picture', ['class' => 'form-control', 'id' => 'profile_picture_browse']) }}
+                                                        </span>
+                                                    </span>
                                                 </div>
 
                                                 @if ($page->exists && $page->getMedia('profile_picture')->count())
@@ -159,11 +159,11 @@
                                                     {{ Form::text('cover_photo', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/bookings::common.cover_photo'), 'readonly' => 'readonly']) }}
 
                                                     <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    {{ trans('cortex/bookings::common.browse') }}
-                                                    {{ Form::file('cover_photo', ['class' => 'form-control', 'id' => 'cover_photo_browse']) }}
-                                                </span>
-                                            </span>
+                                                        <span class="btn btn-default btn-file">
+                                                            {{ trans('cortex/bookings::common.browse') }}
+                                                            {{ Form::file('cover_photo', ['class' => 'form-control', 'id' => 'cover_photo_browse']) }}
+                                                        </span>
+                                                    </span>
                                                 </div>
 
                                                 @if ($page->exists && $page->getMedia('cover_photo')->count())
