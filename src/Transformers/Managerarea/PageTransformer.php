@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Transformers\Adminarea;
+namespace Cortex\Pages\Transformers\Managerarea;
 
 use Cortex\Pages\Models\Page;
 use Rinvex\Support\Traits\Escaper;

@@ -1,47 +1,52 @@
 {{-- Master Layout --}}
-@extends('cortex/foundation::adminarea.layouts.default')
+@extends('cortex/foundation::managerarea.layouts.default')
 
 {{-- Page Title --}}
 @section('title')
-    {{ config('app.name') }} » {{ trans('cortex/foundation::common.adminarea') }} » {{ trans('cortex/pages::common.pages') }} » {{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}
-@stop
+    {{ extract_title(Breadcrumbs::render()) }}
+@endsection
 
-@push('scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Adminarea\PageFormRequest::class)->selector('#adminarea-pages-save') !!}
+@push('inline-scripts')
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-pages-create-form, #managerarea-pages-{$page->getRouteKey()}-update-form")->ignore('.skip-validation') !!}
 @endpush
 
 {{-- Main Content --}}
 @section('content')
 
     @if($page->exists)
-        @include('cortex/foundation::common.partials.confirm-deletion', ['type' => 'page'])
+        @include('cortex/foundation::common.partials.modal', ['id' => 'delete-confirmation'])
     @endif
 
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>{{ $page->exists ? $page->title : trans('cortex/pages::common.create_page') }}</h1>
-            <!-- Breadcrumbs -->
-            {{ Breadcrumbs::render() }}
+            <h1>{{ Breadcrumbs::render() }}</h1>
         </section>
 
-        <!-- Main content -->
+        {{-- Main content --}}
         <section class="content">
 
             <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#details-tab" data-toggle="tab">{{ trans('cortex/pages::common.details') }}</a></li>
-                    @if($page->exists) <li><a href="{{ route('adminarea.pages.logs', ['page' => $page]) }}">{{ trans('cortex/pages::common.logs') }}</a></li> @endif
-                    @if($page->exists && $currentUser->can('delete-pages', $page)) <li class="pull-right"><a href="#" data-toggle="modal" data-target="#delete-confirmation" data-item-href="{{ route('adminarea.pages.delete', ['page' => $page]) }}" data-item-name="{{ $page->slug }}"><i class="fa fa-trash text-danger"></i></a></li> @endif
-                </ul>
+                @if($page->exists && $currentUser->can('delete', $page))
+                    <div class="pull-right">
+                        <a href="#" data-toggle="modal" data-target="#delete-confirmation"
+                           data-modal-action="{{ route('managerarea.pages.destroy', ['page' => $page]) }}"
+                           data-modal-title="{!! trans('cortex/foundation::messages.delete_confirmation_title') !!}"
+                           data-modal-button="<a href='#' class='btn btn-danger' data-form='delete' data-token='{{ csrf_token() }}'><i class='fa fa-trash-o'></i> {{ trans('cortex/foundation::common.delete') }}</a>"
+                           data-modal-body="{!! trans('cortex/foundation::messages.delete_confirmation_body', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->name]) !!}"
+                           title="{{ trans('cortex/foundation::common.delete') }}" class="btn btn-default" style="margin: 4px"><i class="fa fa-trash text-danger"></i>
+                        </a>
+                    </div>
+                @endif
+                {!! Menu::render('managerarea.pages.tabs', 'nav-tab') !!}
 
                 <div class="tab-content">
 
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('adminarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => 'adminarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "managerarea-pages-{$page->getRouteKey()}-update-form"]) }}
                         @else
-                            {{ Form::model($page, ['url' => route('adminarea.pages.store'), 'id' => 'adminarea-pages-save']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.pages.store'), 'id' => 'managerarea-pages-create-form']) }}
                         @endif
 
                             <div class="row">
@@ -55,7 +60,7 @@
                                             {{-- Title --}}
                                             <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                                                 {{ Form::label('title', trans('cortex/pages::common.title'), ['class' => 'control-label']) }}
-                                                {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.title'), 'data-slugify' => '#slug', 'required' => 'required', 'autofocus' => 'autofocus']) }}
+                                                {{ Form::text('title', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.title'), 'data-slugify' => '[name="slug"]', 'required' => 'required', 'autofocus' => 'autofocus']) }}
 
                                                 @if ($errors->has('title'))
                                                     <span class="help-block">{{ $errors->first('title') }}</span>
@@ -77,6 +82,25 @@
 
                                                 @if ($errors->has('subtitle'))
                                                     <span class="help-block">{{ $errors->first('subtitle') }}</span>
+                                                @endif
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            {{-- Tags --}}
+                                            <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
+                                                {{ Form::label('tags[]', trans('cortex/auth::common.tags'), ['class' => 'control-label']) }}
+                                                {{ Form::hidden('tags', '', ['class' => 'skip-validation']) }}
+                                                {{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-width' => '100%', 'data-tags' => 'true']) }}
+
+                                                @if ($errors->has('tags'))
+                                                    <span class="help-block">{{ $errors->first('tags') }}</span>
                                                 @endif
                                             </div>
 
@@ -182,24 +206,6 @@
 
                                         <div class="col-md-12">
 
-                                            {{-- Domain --}}
-                                            <div class="form-group{{ $errors->has('domain') ? ' has-error' : '' }}">
-                                                {{ Form::label('domain', trans('cortex/pages::common.domain'), ['class' => 'control-label']) }}
-                                                {{ Form::text('domain', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.domain'), 'required' => 'required']) }}
-
-                                                @if ($errors->has('domain'))
-                                                    <span class="help-block">{{ $errors->first('domain') }}</span>
-                                                @endif
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                    <div class="row">
-
-                                        <div class="col-md-12">
-
                                             {{-- Middleware --}}
                                             <div class="form-group{{ $errors->has('middleware') ? ' has-error' : '' }}">
                                                 {{ Form::label('middleware', trans('cortex/pages::common.middleware'), ['class' => 'control-label']) }}
@@ -221,7 +227,7 @@
                                             {{-- Sort Order --}}
                                             <div class="form-group{{ $errors->has('sort_order') ? ' has-error' : '' }}">
                                                 {{ Form::label('sort_order', trans('cortex/pages::common.sort_order'), ['class' => 'control-label']) }}
-                                                {{ Form::number('sort_order', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.sort_order'), 'required' => 'required']) }}
+                                                {{ Form::number('sort_order', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.sort_order')]) }}
 
                                                 @if ($errors->has('sort_order'))
                                                     <span class="help-block">{{ $errors->first('sort_order') }}</span>
@@ -254,10 +260,10 @@
 
                                         <div class="col-md-12">
 
-                                            {{-- Active --}}
+                                            {{-- Is Active --}}
                                             <div class="form-group{{ $errors->has('is_active') ? ' has-error' : '' }}">
-                                                {{ Form::label('is_active', trans('cortex/pages::common.active'), ['class' => 'control-label']) }}
-                                                {{ Form::select('is_active', [1 => trans('cortex/pages::common.yes'), 0 => trans('cortex/pages::common.no')], null, ['class' => 'form-control select2', 'data-minimum-results-for-search' => 'Infinity', 'data-width' => '100%']) }}
+                                                {{ Form::label('is_active', trans('cortex/pages::common.is_active'), ['class' => 'control-label']) }}
+                                                {{ Form::select('is_active', [1 => trans('cortex/pages::common.yes'), 0 => trans('cortex/pages::common.no')], null, ['class' => 'form-control select2', 'data-minimum-results-for-search' => 'Infinity', 'data-width' => '100%', 'required' => 'required']) }}
 
                                                 @if ($errors->has('is_active'))
                                                     <span class="help-block">{{ $errors->first('is_active') }}</span>
@@ -279,7 +285,7 @@
                                         {{ Form::button(trans('cortex/pages::common.submit'), ['class' => 'btn btn-primary btn-flat', 'type' => 'submit']) }}
                                     </div>
 
-                                    @include('cortex/foundation::adminarea.partials.timestamps', ['model' => $page])
+                                    @include('cortex/foundation::managerarea.partials.timestamps', ['model' => $page])
 
                                 </div>
 

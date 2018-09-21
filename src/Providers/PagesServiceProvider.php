@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Providers;
 
+use Cortex\Pages\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use Rinvex\Pages\Contracts\PageContract;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
 use Cortex\Pages\Console\Commands\PublishCommand;
+use Cortex\Pages\Console\Commands\RollbackCommand;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -20,10 +22,11 @@ class PagesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
+        SeedCommand::class => 'command.cortex.pages.seed',
+        InstallCommand::class => 'command.cortex.pages.install',
         MigrateCommand::class => 'command.cortex.pages.migrate',
         PublishCommand::class => 'command.cortex.pages.publish',
-        InstallCommand::class => 'command.cortex.pages.install',
-        SeedCommand::class => 'command.cortex.pages.seed',
+        RollbackCommand::class => 'command.cortex.pages.rollback',
     ];
 
     /**
@@ -35,8 +38,14 @@ class PagesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'cortex.pages');
+
+        // Bind eloquent models to IoC container
+        $this->app['config']['rinvex.pages.models.page'] === Page::class
+        || $this->app->alias('rinvex.pages.page', Page::class);
+
         // Register console commands
         ! $this->app->runningInConsole() || $this->registerCommands();
     }
@@ -46,19 +55,28 @@ class PagesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         // Bind route models and constrains
-        $router->pattern('page', '[0-9a-z\._-]+');
-        $router->model('page', PageContract::class);
+        $router->pattern('page', '[a-zA-Z0-9-]+');
+        $router->model('page', config('rinvex.pages.models.page'));
+
+        // Map relations
+        Relation::morphMap([
+            'page' => config('rinvex.pages.models.page'),
+        ]);
 
         // Load resources
-        require __DIR__.'/../../routes/breadcrumbs.php';
-        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        require __DIR__.'/../../routes/breadcrumbs/adminarea.php';
+        require __DIR__.'/../../routes/breadcrumbs/managerarea.php';
+        $this->loadRoutesFrom(__DIR__.'/../../routes/web/adminarea.php');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/web/frontarea.php');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/web/managerarea.php');
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
-        $this->app->afterResolving('blade.compiler', function () {
-            require __DIR__.'/../../routes/menus.php';
+        ! $this->app->runningInConsole() || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        $this->app->runningInConsole() || $this->app->afterResolving('blade.compiler', function () {
+            require __DIR__.'/../../routes/menus/adminarea.php';
         });
 
         // Publish Resources
@@ -70,8 +88,10 @@ class PagesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function publishResources()
+    protected function publishResources(): void
     {
+        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('cortex.pages.php')], 'cortex-pages-config');
+        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'cortex-pages-migrations');
         $this->publishes([realpath(__DIR__.'/../../resources/lang') => resource_path('lang/vendor/cortex/pages')], 'cortex-pages-lang');
         $this->publishes([realpath(__DIR__.'/../../resources/views') => resource_path('views/vendor/cortex/pages')], 'cortex-pages-views');
     }
@@ -81,13 +101,11 @@ class PagesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerCommands()
+    protected function registerCommands(): void
     {
         // Register artisan commands
         foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, function ($app) use ($key) {
-                return new $key();
-            });
+            $this->app->singleton($value, $key);
         }
 
         $this->commands(array_values($this->commands));

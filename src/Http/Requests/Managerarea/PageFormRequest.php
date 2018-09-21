@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Requests\Adminarea;
+namespace Cortex\Pages\Http\Requests\Managerarea;
 
 use Rinvex\Support\Traits\Escaper;
 use Illuminate\Foundation\Http\FormRequest;
@@ -19,6 +19,20 @@ class PageFormRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation(): void
+    {
+        $data = $this->all();
+
+        $data['domain'] = $this->getHost();
+
+        $this->replace($data);
     }
 
     /**

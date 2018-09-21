@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Cortex\Pages\Http\Controllers\Adminarea;
+namespace Cortex\Pages\Http\Controllers\Managerarea;
 
 use Exception;
 use Cortex\Pages\Models\Page;
@@ -10,10 +10,10 @@ use Illuminate\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Foundation\Importers\DefaultImporter;
 use Cortex\Foundation\DataTables\ImportLogsDataTable;
-use Cortex\Pages\DataTables\Adminarea\PagesDataTable;
 use Cortex\Foundation\Http\Requests\ImportFormRequest;
+use Cortex\Pages\DataTables\Managerarea\PagesDataTable;
 use Cortex\Foundation\DataTables\ImportRecordsDataTable;
-use Cortex\Pages\Http\Requests\Adminarea\PageFormRequest;
+use Cortex\Pages\Http\Requests\Managerarea\PageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
 
 class PagesController extends AuthorizedController
@@ -26,15 +26,15 @@ class PagesController extends AuthorizedController
     /**
      * List all pages.
      *
-     * @param \Cortex\Pages\DataTables\Adminarea\PagesDataTable $pagesDataTable
+     * @param \Cortex\Pages\DataTables\Managerarea\PagesDataTable $pagesDataTable
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\View\View
      */
     public function index(PagesDataTable $pagesDataTable)
     {
         return $pagesDataTable->with([
-            'id' => 'adminarea-pages-index-table',
-        ])->render('cortex/foundation::adminarea.pages.datatable-index');
+            'id' => 'managerarea-pages-index-table',
+        ])->render('cortex/foundation::managerarea.pages.datatable-index');
     }
 
     /**
@@ -49,9 +49,9 @@ class PagesController extends AuthorizedController
     {
         return $logsDataTable->with([
             'resource' => $page,
-            'tabs' => 'adminarea.pages.tabs',
-            'id' => "adminarea-pages-{$page->getRouteKey()}-logs-table",
-        ])->render('cortex/foundation::adminarea.pages.datatable-tab');
+            'tabs' => 'managerarea.pages.tabs',
+            'id' => "managerarea-pages-{$page->getRouteKey()}-logs-table",
+        ])->render('cortex/foundation::managerarea.pages.datatable-tab');
     }
 
     /**
@@ -66,10 +66,10 @@ class PagesController extends AuthorizedController
     {
         return $importRecordsDataTable->with([
             'resource' => $page,
-            'tabs' => 'adminarea.pages.tabs',
-            'url' => route('adminarea.pages.stash'),
-            'id' => "adminarea-pages-{$page->getRouteKey()}-import-table",
-        ])->render('cortex/foundation::adminarea.pages.datatable-dropzone');
+            'tabs' => 'managerarea.pages.tabs',
+            'url' => route('managerarea.pages.stash'),
+            'id' => "managerarea-pages-{$page->getRouteKey()}-import-table",
+        ])->render('cortex/foundation::managerarea.pages.datatable-dropzone');
     }
 
     /**
@@ -129,9 +129,9 @@ class PagesController extends AuthorizedController
     {
         return $importLogsDatatable->with([
             'resource' => trans('cortex/pages::common.page'),
-            'tabs' => 'adminarea.pages.tabs',
-            'id' => 'adminarea-pages-import-logs-table',
-        ])->render('cortex/foundation::adminarea.pages.datatable-tab');
+            'tabs' => 'managerarea.pages.tabs',
+            'id' => 'managerarea-pages-import-logs-table',
+        ])->render('cortex/foundation::managerarea.pages.datatable-tab');
     }
 
     /**
@@ -169,14 +169,14 @@ class PagesController extends AuthorizedController
     {
         $tags = app('rinvex.tags.tag')->pluck('name', 'id');
 
-        return view('cortex/pages::adminarea.pages.page', compact('page', 'tags'));
+        return view('cortex/pages::managerarea.pages.page', compact('page', 'tags'));
     }
 
     /**
      * Store new page.
      *
-     * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
-     * @param \Cortex\Pages\Models\Page                             $page
+     * @param \Cortex\Pages\Http\Requests\Managerarea\PageFormRequest $request
+     * @param \Cortex\Pages\Models\Page                               $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -188,8 +188,8 @@ class PagesController extends AuthorizedController
     /**
      * Update given page.
      *
-     * @param \Cortex\Pages\Http\Requests\Adminarea\PageFormRequest $request
-     * @param \Cortex\Pages\Models\Page                             $page
+     * @param \Cortex\Pages\Http\Requests\Managerarea\PageFormRequest $request
+     * @param \Cortex\Pages\Models\Page                               $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
@@ -220,25 +220,11 @@ class PagesController extends AuthorizedController
             ]);
         }
 
-        ! $request->hasFile('profile_picture')
-        || $page->addMediaFromRequest('profile_picture')
-                  ->sanitizingFileName(function ($fileName) {
-                      return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION);
-                  })
-                  ->toMediaCollection('profile_picture', config('cortex.auth.media.disk'));
-
-        ! $request->hasFile('cover_photo')
-        || $page->addMediaFromRequest('cover_photo')
-                  ->sanitizingFileName(function ($fileName) {
-                      return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION);
-                  })
-                  ->toMediaCollection('cover_photo', config('cortex.auth.media.disk'));
-
         // Save page
         $page->fill($data)->save();
 
         return intend([
-            'url' => route('adminarea.pages.index'),
+            'url' => route('managerarea.pages.index'),
             'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->name])],
         ]);
     }
@@ -257,7 +243,7 @@ class PagesController extends AuthorizedController
         $page->delete();
 
         return intend([
-            'url' => route('adminarea.pages.index'),
+            'url' => route('managerarea.pages.index'),
             'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->name])],
         ]);
     }

@@ -3,13 +3,11 @@
 **Cortex Pages** is a frontend layer for an integral part of your Laravel content management system (CMS), it affords an easy, yet powerful way to create and manage pages with full control over their URLs, active status, titles, content, and other attributes.
 
 [![Packagist](https://img.shields.io/packagist/v/cortex/pages.svg?label=Packagist&style=flat-square)](https://packagist.org/packages/cortex/pages)
-[![VersionEye Dependencies](https://img.shields.io/versioneye/d/php/cortex:pages.svg?label=Dependencies&style=flat-square)](https://www.versioneye.com/php/cortex:pages/)
-[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/cortex/pages.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/cortex/pages/)
-[![Code Climate](https://img.shields.io/codeclimate/github/cortex/pages.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/cortex/pages)
-[![Travis](https://img.shields.io/travis/cortex/pages.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/cortex/pages)
-[![SensioLabs Insight](https://img.shields.io/sensiolabs/i/451c9f2a-6900-4a41-8681-1a5bce4a56ac.svg?label=SensioLabs&style=flat-square)](https://insight.sensiolabs.com/projects/451c9f2a-6900-4a41-8681-1a5bce4a56ac)
+[![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/rinvex/cortex-pages.svg?label=Scrutinizer&style=flat-square)](https://scrutinizer-ci.com/g/rinvex/cortex-pages/)
+[![Code Climate](https://img.shields.io/codeclimate/github/rinvex/cortex-pages.svg?label=CodeClimate&style=flat-square)](https://codeclimate.com/github/rinvex/cortex-pages)
+[![Travis](https://img.shields.io/travis/rinvex/cortex-pages.svg?label=TravisCI&style=flat-square)](https://travis-ci.org/rinvex/cortex-pages)
 [![StyleCI](https://styleci.io/repos/99707535/shield)](https://styleci.io/repos/99707535)
-[![License](https://img.shields.io/packagist/l/cortex/pages.svg?label=License&style=flat-square)](https://github.com/cortex/pages/blob/develop/LICENSE)
+[![License](https://img.shields.io/packagist/l/cortex/pages.svg?label=License&style=flat-square)](https://github.com/rinvex/cortex-pages/blob/develop/LICENSE)
 
 
 ## Installation and Usage
@@ -60,4 +58,4 @@ Rinvex is a software solutions startup, specialized in integrated enterprise sol
 
 This software is released under [The MIT License (MIT)](LICENSE).
 
-(c) 2016-2017 Rinvex LLC, Some rights reserved.
+(c) 2016-2018 Rinvex LLC, Some rights reserved.

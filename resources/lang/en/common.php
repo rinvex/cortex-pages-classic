@@ -9,7 +9,7 @@ return [
     'content' => 'Content',
     'excerpt' => 'Excerpt',
     'view' => 'View',
-    'active' => 'Active',
+    'is_active' => 'Is Active',
     'yes' => 'Yes',
     'no' => 'No',
     'slug' => 'Slug',
@@ -23,9 +23,12 @@ return [
     'updated_at' => 'Updated At',
     'submit' => 'Submit',
     'details' => 'Details',
-    'welcome' => 'Welcome',
-    'welcome_body' => 'Welcome to your new project based on <strong>Rinvex Cortex</strong>. Enjoy building something awesome! 🎉',
+    'media' => 'Media',
+    'records' => 'Records',
+    'import' => 'Import',
+    'tags' => 'Tags',
 
+    'page' => 'Page',
     'pages' => 'Pages',
     'create_page' => 'Create New Page',
 
