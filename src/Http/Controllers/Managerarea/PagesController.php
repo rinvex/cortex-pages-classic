@@ -135,30 +135,6 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Create new page.
-     *
-     * @param \Cortex\Pages\Models\Page $page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function create(Page $page)
-    {
-        return $this->form($page);
-    }
-
-    /**
-     * Edit given page.
-     *
-     * @param \Cortex\Pages\Models\Page $page
-     *
-     * @return \Illuminate\View\View
-     */
-    public function edit(Page $page)
-    {
-        return $this->form($page);
-    }
-
-    /**
      * Show page create/edit form.
      *
      * @param \Cortex\Pages\Models\Page $page
