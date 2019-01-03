@@ -1,32 +1,32 @@
 language: php
 
 php:
-  - 7.1
-  - 7.2
-  - 7.3
+- 7.1
+- 7.2
+- 7.3
 
 env:
   matrix:
-    - COMPOSER_FLAGS="--prefer-lowest"
-    - COMPOSER_FLAGS=""
+  - COMPOSER_FLAGS="--prefer-lowest"
+  - COMPOSER_FLAGS=""
 
 cache:
   directories:
-    - $HOME/.composer/cache
+  - $HOME/.composer/cache
 
 before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
+- travis_retry composer self-update
+- travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-source
 
 script:
-  - vendor/phpunit/phpunit/phpunit --coverage-text --coverage-clover=coverage.clover
+- vendor/phpunit/phpunit/phpunit --coverage-text --coverage-clover=coverage.clover
 
 after_script:
-  - wget https://scrutinizer-ci.com/ocular.phar
-  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+- wget https://scrutinizer-ci.com/ocular.phar
+- php ocular.phar code-coverage:upload --format=php-clover coverage.clover
 
 notifications:
   email: false
   slack:
     rooms:
-      - secure: lbA9MW/jIIt+Iltxz4P05czxo0YPUPo9AavETbnrpjA3O01PUPeP04QjrfynELDD+ghdfXdQc/EciIi20mFYLlsPLx6Xh84cXItRScmFcLFArl5vxICYFnrnCjQXnT42Im4z2QlcXKNzOA4VzANx6Pm7z8F0+CdGiw8KdLV7aOpe+6Cseija5m3RQuAf9AxUqg6FJgi25JSJWTmy9t+MAYMZmV++l71c+0o7JRNbCwns8cEgKc4rrNzvKD4HZQGrJlTVsUE75AQQW5rt15rulXYkDLaGjmEU+W1pe2cBHk6mPxTdmg8LSpTGJ7J7zZWC4IlMADbW+pJVZHHdOtqfyHwYZc4UiofA62+ezguTxPbAec0rSLuNTGVMczVh/SQQCJE9xYOAfflHQjprNPgMk+hVADQXcvxEVJoghuPj5oX0BwqxGpEYHjRJTNaSAOy55fWePCCJegAeuKeYlS7IFXYmUjjintSkFWEVXMWWjA1xCVzJxlrW6qefiy7XahDCxOSAa2e+OO9774l5OXn0r4LuuJInByPX0MiIlUlS6OXrIlioj8QOG3gpt/byDWc12J5Vx8bUVTYU+/HLr+olUDlC6Ur/hoAE5SDfgK8/yy80x0WxsbcCJ97jtKbVQTOas6Y+3YJhdPHNP6ii3iOu4ZcuuZiltQ2ZuwNv3CQrx1A=
+    - secure: lbA9MW/jIIt+Iltxz4P05czxo0YPUPo9AavETbnrpjA3O01PUPeP04QjrfynELDD+ghdfXdQc/EciIi20mFYLlsPLx6Xh84cXItRScmFcLFArl5vxICYFnrnCjQXnT42Im4z2QlcXKNzOA4VzANx6Pm7z8F0+CdGiw8KdLV7aOpe+6Cseija5m3RQuAf9AxUqg6FJgi25JSJWTmy9t+MAYMZmV++l71c+0o7JRNbCwns8cEgKc4rrNzvKD4HZQGrJlTVsUE75AQQW5rt15rulXYkDLaGjmEU+W1pe2cBHk6mPxTdmg8LSpTGJ7J7zZWC4IlMADbW+pJVZHHdOtqfyHwYZc4UiofA62+ezguTxPbAec0rSLuNTGVMczVh/SQQCJE9xYOAfflHQjprNPgMk+hVADQXcvxEVJoghuPj5oX0BwqxGpEYHjRJTNaSAOy55fWePCCJegAeuKeYlS7IFXYmUjjintSkFWEVXMWWjA1xCVzJxlrW6qefiy7XahDCxOSAa2e+OO9774l5OXn0r4LuuJInByPX0MiIlUlS6OXrIlioj8QOG3gpt/byDWc12J5Vx8bUVTYU+/HLr+olUDlC6Ur/hoAE5SDfgK8/yy80x0WxsbcCJ97jtKbVQTOas6Y+3YJhdPHNP6ii3iOu4ZcuuZiltQ2ZuwNv3CQrx1A=
