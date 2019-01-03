@@ -115,7 +115,7 @@
                                             {{-- Excerpt --}}
                                             <div class="form-group{{ $errors->has('excerpt') ? ' has-error' : '' }}">
                                                 {{ Form::label('excerpt', trans('cortex/pages::common.excerpt'), ['class' => 'control-label']) }}
-                                                {{ Form::textarea('excerpt', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.excerpt'), 'rows' => 5]) }}
+                                                {{ Form::textarea('excerpt', null, ['class' => 'form-control tinymce', 'placeholder' => trans('cortex/pages::common.excerpt'), 'rows' => 5]) }}
 
                                                 @if ($errors->has('excerpt'))
                                                     <span class="help-block">{{ $errors->first('excerpt') }}</span>
@@ -133,7 +133,7 @@
                                             {{-- Content --}}
                                             <div class="form-group{{ $errors->has('content') ? ' has-error' : '' }}">
                                                 {{ Form::label('content', trans('cortex/pages::common.content'), ['class' => 'control-label']) }}
-                                                {{ Form::textarea('content', null, ['class' => 'form-control', 'placeholder' => trans('cortex/pages::common.content'), 'rows' => 5]) }}
+                                                {{ Form::textarea('content', null, ['class' => 'form-control tinymce', 'placeholder' => trans('cortex/pages::common.content'), 'rows' => 5]) }}
 
                                                 @if ($errors->has('content'))
                                                     <span class="help-block">{{ $errors->first('content') }}</span>
