@@ -31,7 +31,7 @@ use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
  * @property int                                                                           $sort_order
  * @property \Carbon\Carbon|null                                                           $created_at
  * @property \Carbon\Carbon|null                                                           $updated_at
- * @property \Carbon\Carbon                                                                $deleted_at
+ * @property \Carbon\Carbon|null                                                           $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cortex\Foundation\Models\Log[] $activity
  * @property \Illuminate\Database\Eloquent\Collection|\Cortex\Tenants\Models\Tenant[]      $tenants
  *
