@@ -13,9 +13,7 @@
 {{-- Main Content --}}
 @section('content')
 
-    @if($page->exists)
-        @include('cortex/foundation::common.partials.modal', ['id' => 'delete-confirmation'])
-    @endif
+    @includeWhen($page->exists, 'cortex/foundation::common.partials.modal', ['id' => 'delete-confirmation'])
 
     <div class="content-wrapper">
         <section class="content-header">
@@ -44,9 +42,9 @@
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('adminarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "adminarea-pages-{$page->getRouteKey()}-update-form"]) }}
+                            {{ Form::model($page, ['url' => route('adminarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "adminarea-pages-{$page->getRouteKey()}-update-form", 'files' => true]) }}
                         @else
-                            {{ Form::model($page, ['url' => route('adminarea.pages.store'), 'id' => 'adminarea-pages-create-form']) }}
+                            {{ Form::model($page, ['url' => route('adminarea.pages.store'), 'id' => 'adminarea-pages-create-form', 'files' => true]) }}
                         @endif
 
                             <div class="row">

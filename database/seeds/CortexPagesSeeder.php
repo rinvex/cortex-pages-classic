@@ -13,11 +13,17 @@ class CortexPagesSeeder extends Seeder
      */
     public function run()
     {
-        Bouncer::allow('admin')->to('list', config('rinvex.pages.models.page'));
-        Bouncer::allow('admin')->to('import', config('rinvex.pages.models.page'));
-        Bouncer::allow('admin')->to('create', config('rinvex.pages.models.page'));
-        Bouncer::allow('admin')->to('update', config('rinvex.pages.models.page'));
-        Bouncer::allow('admin')->to('delete', config('rinvex.pages.models.page'));
-        Bouncer::allow('admin')->to('audit', config('rinvex.pages.models.page'));
+        $abilities = [
+            ['name' => 'list', 'title' => 'List pages', 'entity_type' => 'page'],
+            ['name' => 'import', 'title' => 'Import pages', 'entity_type' => 'page'],
+            ['name' => 'create', 'title' => 'Create pages', 'entity_type' => 'page'],
+            ['name' => 'update', 'title' => 'Update pages', 'entity_type' => 'page'],
+            ['name' => 'delete', 'title' => 'Delete pages', 'entity_type' => 'page'],
+            ['name' => 'audit', 'title' => 'Audit pages', 'entity_type' => 'page'],
+        ];
+
+        collect($abilities)->each(function (array $ability) {
+            app('cortex.auth.ability')->create($ability);
+        });
     }
 }
