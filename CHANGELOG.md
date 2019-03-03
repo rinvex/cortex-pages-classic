@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v2.0.0] - 2019-03-03
+- Require PHP 7.2 & Laravel 5.8
+- Utilize includeWhen blade directive
+- Refactor abilities seeding
+- Add files option to the form to allow file upload
+
 ## [v1.0.3] - 2019-01-03
 - Rename environment variable QUEUE_DRIVER to QUEUE_CONNECTION
 - Fix wrong media destroy route
@@ -28,6 +34,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2017-09-09
 - Tag first release
 
+[v2.0.0]: https://github.com/rinvex/cortex-pages/compare/v1.0.3...v2.0.0
 [v1.0.3]: https://github.com/rinvex/cortex-pages/compare/v1.0.2...v1.0.3
 [v1.0.2]: https://github.com/rinvex/cortex-pages/compare/v1.0.1...v1.0.2
 [v1.0.1]: https://github.com/rinvex/cortex-pages/compare/v1.0.0...v1.0.1
