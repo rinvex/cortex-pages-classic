@@ -7,6 +7,7 @@ namespace Cortex\Pages\Providers;
 use Cortex\Pages\Models\Page;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
+use Rinvex\Support\Traits\ConsoleTools;
 use Cortex\Pages\Console\Commands\SeedCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
 {
+    use ConsoleTools;
+
     /**
      * The commands to be registered.
      *
@@ -74,40 +77,14 @@ class PagesServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../../routes/web/managerarea.php');
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
-        ! $this->app->runningInConsole() || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         $this->app->runningInConsole() || $this->app->afterResolving('blade.compiler', function () {
             require __DIR__.'/../../routes/menus/adminarea.php';
         });
 
         // Publish Resources
-        ! $this->app->runningInConsole() || $this->publishResources();
-    }
-
-    /**
-     * Publish resources.
-     *
-     * @return void
-     */
-    protected function publishResources(): void
-    {
-        $this->publishes([realpath(__DIR__.'/../../config/config.php') => config_path('cortex.pages.php')], 'cortex-pages-config');
-        $this->publishes([realpath(__DIR__.'/../../database/migrations') => database_path('migrations')], 'cortex-pages-migrations');
-        $this->publishes([realpath(__DIR__.'/../../resources/lang') => resource_path('lang/vendor/cortex/pages')], 'cortex-pages-lang');
-        $this->publishes([realpath(__DIR__.'/../../resources/views') => resource_path('views/vendor/cortex/pages')], 'cortex-pages-views');
-    }
-
-    /**
-     * Register console commands.
-     *
-     * @return void
-     */
-    protected function registerCommands(): void
-    {
-        // Register artisan commands
-        foreach ($this->commands as $key => $value) {
-            $this->app->singleton($value, $key);
-        }
-
-        $this->commands(array_values($this->commands));
+        ! $this->app->runningInConsole() || $this->publishesLang('cortex/pages');
+        ! $this->app->runningInConsole() || $this->publishesViews('cortex/pages');
+        ! $this->app->runningInConsole() || $this->publishesConfig('cortex/pages');
+        ! $this->app->runningInConsole() || $this->publishesMigrations('cortex/pages');
     }
 }

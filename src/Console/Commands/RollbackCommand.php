@@ -29,7 +29,15 @@ class RollbackCommand extends BaseRollbackCommand
      */
     public function handle(): void
     {
-        $this->call('migrate:reset', ['--path' => 'app/cortex/pages/database/migrations', '--force' => $this->option('force')]);
+        if (file_exists($path = 'database/migrations/cortex/pages')) {
+            $this->call('migrate:reset', [
+                '--step' => true,
+                '--path' => $path,
+                '--force' => $this->option('force'),
+            ]);
+        } else {
+            $this->warn('No migrations found! Consider publish them first: <fg=green>php artisan cortex:publish:pages</>');
+        }
 
         parent::handle();
     }
