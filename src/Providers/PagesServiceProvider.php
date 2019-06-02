@@ -50,7 +50,7 @@ class PagesServiceProvider extends ServiceProvider
         || $this->app->alias('rinvex.pages.page', Page::class);
 
         // Register console commands
-        ! $this->app->runningInConsole() || $this->registersCommands();
+        ! $this->app->runningInConsole() || $this->registerCommands();
     }
 
     /**
