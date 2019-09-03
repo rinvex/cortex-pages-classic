@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Cortex\Pages\Http\Controllers\Frontarea;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
+use Cortex\Foundation\Http\Controllers\AbstractController;
 
-class PagesController extends Controller
+class PagesController extends AbstractController
 {
     public function __invoke(Request $request)
     {
