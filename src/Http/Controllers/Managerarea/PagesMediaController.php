@@ -69,7 +69,7 @@ class PagesMediaController extends AuthorizedController
              ->sanitizingFileName(function ($fileName) {
                  return md5($fileName).'.'.pathinfo($fileName, PATHINFO_EXTENSION);
              })
-             ->toMediaCollection('default', config('cortex.pages.media.disk'));
+             ->toMediaCollection('default', config('cortex.foundation.media.disk'));
     }
 
     /**
