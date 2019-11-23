@@ -19,6 +19,7 @@ class PageTransformer extends TransformerAbstract
     {
         return $this->escape([
             'id' => (string) $page->getRouteKey(),
+            'DT_RowId' => 'row_'.$page->getRouteKey(),
             'title' => (string) $page->title,
             'uri' => (string) $page->uri,
             'domain' => (string) $page->domain,
