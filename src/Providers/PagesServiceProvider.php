@@ -44,6 +44,9 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        // Merge config
+        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'cortex.pages');
+
         // Bind eloquent models to IoC container
         $this->app['config']['rinvex.pages.models.page'] === Page::class
         || $this->app->alias('rinvex.pages.page', Page::class);
@@ -85,5 +88,6 @@ class PagesServiceProvider extends ServiceProvider
         ! $this->app->runningInConsole() || $this->publishesViews('cortex/pages', true);
         ! $this->app->runningInConsole() || $this->publishesConfig('cortex/pages', true);
         ! $this->app->runningInConsole() || $this->publishesMigrations('cortex/pages', true);
+        ! $this->app['config']['cortex.pages.autoload_migrations'] || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
