@@ -84,10 +84,10 @@ class PagesServiceProvider extends ServiceProvider
         });
 
         // Publish Resources
-        ! $this->app->runningInConsole() || $this->publishesLang('cortex/pages', true);
-        ! $this->app->runningInConsole() || $this->publishesViews('cortex/pages', true);
-        ! $this->app->runningInConsole() || $this->publishesConfig('cortex/pages', true);
-        ! $this->app->runningInConsole() || $this->publishesMigrations('cortex/pages', true);
-        ! $this->app['config']['cortex.pages.autoload_migrations'] || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        $this->publishesLang('cortex/pages', true);
+        $this->publishesViews('cortex/pages', true);
+        $this->publishesConfig('cortex/pages', true);
+        $this->publishesMigrations('cortex/pages', true);
+        ! $this->autoloadMigrations('cortex.pages') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
