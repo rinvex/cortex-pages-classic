@@ -81,7 +81,25 @@ class Page extends BasePage implements HasMedia
      * @var array
      */
     protected static $logFillable = true;
-
+    
+    /**
+     * {@inheritdoc}
+     */
+    protected $fillable = [
+        'uri',
+        'slug',
+        'title',
+        'route',
+        'subtitle',
+        'domain',
+        'middleware',
+        'excerpt',
+        'content',
+        'view',
+        'is_active',
+        'sort_order',
+        'tags'
+    ];
     /**
      * The attributes that are ignored on change.
      *
