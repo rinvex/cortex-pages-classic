@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
+use Illuminate\Support\Str;
 use Cortex\Pages\Models\Page;
 use Spatie\MediaLibrary\Models\Media;
 use Cortex\Foundation\DataTables\MediaDataTable;
@@ -23,7 +24,7 @@ class PagesMediaController extends AuthorizedController
     public function authorizeResource($model, $parameter = null, array $options = [], $request = null): void
     {
         $middleware = [];
-        $parameter = $parameter ?: snake_case(class_basename($model));
+        $parameter = $parameter ?: Str::snake(class_basename($model));
 
         foreach ($this->mapResourceAbilities() as $method => $ability) {
             $modelName = in_array($method, $this->resourceMethodsWithoutModels()) ? $model : $parameter;

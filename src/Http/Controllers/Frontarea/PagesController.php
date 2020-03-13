@@ -9,6 +9,13 @@ use Cortex\Foundation\Http\Controllers\AbstractController;
 
 class PagesController extends AbstractController
 {
+    /**
+     * @TODO: Fix null pointer exception!
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function __invoke(Request $request)
     {
         $uri = trim(str_replace('{locale}', '', $request->route()->uri()), " \t\n\r\0\x0B/") ?: '/';
