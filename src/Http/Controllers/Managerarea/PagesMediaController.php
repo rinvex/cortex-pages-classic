@@ -6,7 +6,7 @@ namespace Cortex\Pages\Http\Controllers\Managerarea;
 
 use Illuminate\Support\Str;
 use Cortex\Pages\Models\Page;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Cortex\Foundation\DataTables\MediaDataTable;
 use Cortex\Foundation\Http\Requests\ImageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
@@ -77,7 +77,7 @@ class PagesMediaController extends AuthorizedController
      * Destroy given page media.
      *
      * @param \Cortex\Pages\Models\Page         $page
-     * @param \Spatie\MediaLibrary\Models\Media $media
+     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media $media
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */

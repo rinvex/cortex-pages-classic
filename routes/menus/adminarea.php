@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Cortex\Pages\Models\Page;
 use Rinvex\Menus\Models\MenuItem;
-use Spatie\MediaLibrary\Models\Media;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Rinvex\Menus\Models\MenuGenerator;
 
 Menu::register('adminarea.sidebar', function (MenuGenerator $menu, Page $page) {
