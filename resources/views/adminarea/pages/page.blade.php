@@ -112,14 +112,14 @@
 
                                             {{-- Profile Picture --}}
                                             <div class="form-group has-feedback{{ $errors->has('profile_picture') ? ' has-error' : '' }}">
-                                                {{ Form::label('profile_picture', trans('cortex/bookings::common.profile_picture'), ['class' => 'control-label']) }}
+                                                {{ Form::label('profile_picture', trans('cortex/pages::common.profile_picture'), ['class' => 'control-label']) }}
 
                                                 <div class="input-group">
-                                                    {{ Form::text('profile_picture', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/bookings::common.profile_picture'), 'readonly' => 'readonly']) }}
+                                                    {{ Form::text('profile_picture', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/pages::common.profile_picture'), 'readonly' => 'readonly']) }}
 
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-default btn-file">
-                                                            {{ trans('cortex/bookings::common.browse') }}
+                                                            {{ trans('cortex/pages::common.browse') }}
                                                             {{-- Skip Javascrip validation for file input fields to avoid size validation conflict with jquery.validator --}}
                                                             {{ Form::file('profile_picture', ['class' => 'form-control skip-validation', 'id' => 'profile_picture_browse']) }}
                                                         </span>
@@ -152,14 +152,14 @@
 
                                             {{-- Cover Photo --}}
                                             <div class="form-group has-feedback{{ $errors->has('cover_photo') ? ' has-error' : '' }}">
-                                                {{ Form::label('cover_photo', trans('cortex/bookings::common.cover_photo'), ['class' => 'control-label']) }}
+                                                {{ Form::label('cover_photo', trans('cortex/pages::common.cover_photo'), ['class' => 'control-label']) }}
 
                                                 <div class="input-group">
-                                                    {{ Form::text('cover_photo', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/bookings::common.cover_photo'), 'readonly' => 'readonly']) }}
+                                                    {{ Form::text('cover_photo', null, ['class' => 'form-control file-name', 'placeholder' => trans('cortex/pages::common.cover_photo'), 'readonly' => 'readonly']) }}
 
                                                     <span class="input-group-btn">
                                                         <span class="btn btn-default btn-file">
-                                                            {{ trans('cortex/bookings::common.browse') }}
+                                                            {{ trans('cortex/pages::common.browse') }}
                                                             {{-- Skip Javascrip validation for file input fields to avoid size validation conflict with jquery.validator --}}
                                                             {{ Form::file('cover_photo', ['class' => 'form-control skip-validation', 'id' => 'cover_photo_browse']) }}
                                                         </span>
