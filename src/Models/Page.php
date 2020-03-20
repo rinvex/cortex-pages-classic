@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
+use Spatie\MediaLibrary\HasMedia;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Pages\Models\Page as BasePage;
-use Spatie\MediaLibrary\HasMedia;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\InteractsWithMedia;
 

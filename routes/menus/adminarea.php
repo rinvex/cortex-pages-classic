@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Cortex\Pages\Models\Page;
 use Rinvex\Menus\Models\MenuItem;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Rinvex\Menus\Models\MenuGenerator;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 Menu::register('adminarea.sidebar', function (MenuGenerator $menu, Page $page) {
     $menu->findByTitleOrAdd(trans('cortex/foundation::common.cms'), 40, 'fa fa-file-text-o', [], function (MenuItem $dropdown) use ($page) {
