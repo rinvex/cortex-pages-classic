@@ -31,7 +31,11 @@ class MigrateCommand extends BaseMigrateCommand
     {
         parent::handle();
 
-        if (file_exists($path = 'database/migrations/cortex/pages')) {
+        $path = config('cortex.pages.autoload_migrations') ?
+            'app/cortex/pages/database/migrations' :
+            'database/migrations/cortex/pages';
+
+        if (file_exists($path)) {
             $this->call('migrate', [
                 '--step' => true,
                 '--path' => $path,
