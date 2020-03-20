@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use Cortex\Pages\Models\Page;
 use Rinvex\Menus\Models\MenuItem;
-use Spatie\MediaLibrary\Models\Media;
 use Rinvex\Menus\Models\MenuGenerator;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 Menu::register('adminarea.sidebar', function (MenuGenerator $menu, Page $page) {
     $menu->findByTitleOrAdd(trans('cortex/foundation::common.cms'), 40, 'fa fa-file-text-o', [], function (MenuItem $dropdown) use ($page) {
@@ -14,10 +14,10 @@ Menu::register('adminarea.sidebar', function (MenuGenerator $menu, Page $page) {
 });
 
 Menu::register('adminarea.pages.tabs', function (MenuGenerator $menu, Page $page, Media $media) {
-    $menu->route(['adminarea.pages.import'], trans('cortex/bookings::common.records'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
-    $menu->route(['adminarea.pages.import.logs'], trans('cortex/bookings::common.logs'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
-    $menu->route(['adminarea.pages.create'], trans('cortex/bookings::common.details'))->ifCan('create', $page)->if(Route::is('adminarea.pages.create'));
-    $menu->route(['adminarea.pages.edit', ['page' => $page]], trans('cortex/bookings::common.details'))->ifCan('update', $page)->if($page->exists);
-    $menu->route(['adminarea.pages.logs', ['page' => $page]], trans('cortex/bookings::common.logs'))->ifCan('audit', $page)->if($page->exists);
-    $menu->route(['adminarea.pages.media.index', ['page' => $page]], trans('cortex/bookings::common.media'))->ifCan('update', $page)->ifCan('list', $media)->if($page->exists);
+    $menu->route(['adminarea.pages.import'], trans('cortex/pages::common.records'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
+    $menu->route(['adminarea.pages.import.logs'], trans('cortex/pages::common.logs'))->ifCan('import', $page)->if(Route::is('adminarea.pages.import*'));
+    $menu->route(['adminarea.pages.create'], trans('cortex/pages::common.details'))->ifCan('create', $page)->if(Route::is('adminarea.pages.create'));
+    $menu->route(['adminarea.pages.edit', ['page' => $page]], trans('cortex/pages::common.details'))->ifCan('update', $page)->if($page->exists);
+    $menu->route(['adminarea.pages.logs', ['page' => $page]], trans('cortex/pages::common.logs'))->ifCan('audit', $page)->if($page->exists);
+    $menu->route(['adminarea.pages.media.index', ['page' => $page]], trans('cortex/pages::common.media'))->ifCan('update', $page)->ifCan('list', $media)->if($page->exists);
 });

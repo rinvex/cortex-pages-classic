@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
+use Spatie\MediaLibrary\HasMedia;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Pages\Models\Page as BasePage;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
 /**
  * Cortex\Pages\Models\Page.
@@ -66,7 +66,7 @@ class Page extends BasePage implements HasMedia
     use Tenantable;
     use HashidsTrait;
     use LogsActivity;
-    use HasMediaTrait;
+    use InteractsWithMedia;
 
     /**
      * Indicates whether to log only dirty attributes or all.

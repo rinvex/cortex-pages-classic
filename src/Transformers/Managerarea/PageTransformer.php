@@ -13,6 +13,12 @@ class PageTransformer extends TransformerAbstract
     use Escaper;
 
     /**
+     * Transform page model.
+     *
+     * @param \Cortex\Pages\Models\Page $page
+     *
+     * @throws \Exception
+     *
      * @return array
      */
     public function transform(Page $page): array
