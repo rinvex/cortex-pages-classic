@@ -77,6 +77,7 @@ class PagesServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__.'/../../routes/web/managerarea.php');
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
         $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
+        ! $this->autoloadMigrations('cortex/pages') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
 
         $this->app->runningInConsole() || $dispatcher->listen('accessarea.ready', function ($accessarea) {
             ! file_exists($menus = __DIR__."/../../routes/menus/{$accessarea}.php") || require $menus;
@@ -88,6 +89,5 @@ class PagesServiceProvider extends ServiceProvider
         $this->publishesViews('cortex/pages', true);
         $this->publishesConfig('cortex/pages', true);
         $this->publishesMigrations('cortex/pages', true);
-        ! $this->autoloadMigrations('cortex.pages') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
