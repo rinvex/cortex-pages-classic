@@ -87,7 +87,7 @@ class PagesMediaController extends AuthorizedController
 
         return intend([
             'url' => route('adminarea.pages.media.index', ['page' => $page]),
-            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => trans('cortex/foundation::common.media'), 'identifier' => $media->getRouteKey()])],
+            'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => trans('cortex/foundation::common.media'), 'identifier' => strip_tags($media->getRouteKey())])],
         ]);
     }
 }
