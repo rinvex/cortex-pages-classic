@@ -29,17 +29,17 @@ Breadcrumbs::register('managerarea.pages.create', function (BreadcrumbsGenerator
 
 Breadcrumbs::register('managerarea.pages.edit', function (BreadcrumbsGenerator $breadcrumbs, Page $page) {
     $breadcrumbs->parent('managerarea.pages.index');
-    $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
+    $breadcrumbs->push(strip_tags($page->title), route('managerarea.pages.edit', ['page' => $page]));
 });
 
 Breadcrumbs::register('managerarea.pages.logs', function (BreadcrumbsGenerator $breadcrumbs, Page $page) {
     $breadcrumbs->parent('managerarea.pages.index');
-    $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
+    $breadcrumbs->push(strip_tags($page->title), route('managerarea.pages.edit', ['page' => $page]));
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('managerarea.pages.logs', ['page' => $page]));
 });
 
 Breadcrumbs::register('managerarea.pages.media.index', function (BreadcrumbsGenerator $breadcrumbs, Page $page) {
     $breadcrumbs->parent('managerarea.pages.index');
-    $breadcrumbs->push($page->title, route('managerarea.pages.edit', ['page' => $page]));
+    $breadcrumbs->push(strip_tags($page->title), route('managerarea.pages.edit', ['page' => $page]));
     $breadcrumbs->push(trans('cortex/pages::common.media'), route('managerarea.pages.media.index', ['page' => $page]));
 });
