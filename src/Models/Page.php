@@ -10,9 +10,9 @@ use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Pages\Models\Page as BasePage;
+use Cortex\Foundation\Events\CrudPerformed;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Cortex\Foundation\Events\CrudPerformed;
 use Cortex\Foundation\Traits\FiresCustomModelEvent;
 
 /**
