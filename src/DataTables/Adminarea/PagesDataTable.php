@@ -21,19 +21,6 @@ class PagesDataTable extends AbstractDataTable
     protected $transformer = PageTransformer::class;
 
     /**
-     * Get the query object to be processed by dataTables.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection
-     */
-    public function query()
-    {
-        $locale = app()->getLocale();
-        $query = app($this->model)->query()->orderBy('sort_order', 'ASC')->orderBy("title->\${$locale}", 'ASC');
-
-        return $this->applyScopes($query);
-    }
-
-    /**
      * Get columns.
      *
      * @return array
