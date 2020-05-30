@@ -21,19 +21,6 @@ class PagesDataTable extends AbstractDataTable
     protected $transformer = PageTransformer::class;
 
     /**
-     * Get the query object to be processed by dataTables.
-     *
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Query\Builder|\Illuminate\Support\Collection
-     */
-    public function query()
-    {
-        $locale = app()->getLocale();
-        $query = app($this->model)->query()->orderBy('sort_order', 'ASC')->orderBy("title->\${$locale}", 'ASC');
-
-        return $this->applyScopes($query);
-    }
-
-    /**
      * Get columns.
      *
      * @return array
@@ -45,6 +32,7 @@ class PagesDataTable extends AbstractDataTable
             : '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.id})+"\">"+data+"</a>"';
 
         return [
+            'id' => ['checkboxes' => '{"selectRow": true}', 'exportable' => false, 'printable' => false],
             'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link.'+(full.is_active ? " <i class=\"text-success fa fa-check\"></i>" : " <i class=\"text-danger fa fa-close\"></i>")', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'domain' => ['title' => trans('cortex/pages::common.domain'), 'visible' => false],

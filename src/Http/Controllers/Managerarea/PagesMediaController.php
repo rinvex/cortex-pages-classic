@@ -51,7 +51,7 @@ class PagesMediaController extends AuthorizedController
         return $mediaDataTable->with([
             'resource' => $page,
             'tabs' => 'managerarea.pages.tabs',
-            'id' => "managerarea-pages-{$page->getRouteKey()}-media-table",
+            'id' => "managerarea-pages-{$page->getRouteKey()}-media",
             'url' => route('managerarea.pages.media.store', ['page' => $page]),
         ])->render('cortex/foundation::managerarea.pages.datatable-dropzone');
     }

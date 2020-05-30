@@ -10,8 +10,13 @@ use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Pages\Models\Page as BasePage;
+use Cortex\Foundation\Events\ModelCreated;
+use Cortex\Foundation\Events\ModelDeleted;
+use Cortex\Foundation\Events\ModelUpdated;
+use Cortex\Foundation\Events\ModelRestored;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Cortex\Foundation\Traits\FiresCustomModelEvent;
 
 /**
  * Cortex\Pages\Models\Page.
@@ -67,6 +72,19 @@ class Page extends BasePage implements HasMedia
     use HashidsTrait;
     use LogsActivity;
     use InteractsWithMedia;
+    use FiresCustomModelEvent;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => ModelCreated::class,
+        'deleted' => ModelDeleted::class,
+        'restored' => ModelRestored::class,
+        'updated' => ModelUpdated::class,
+    ];
 
     /**
      * Indicates whether to log only dirty attributes or all.
@@ -107,15 +125,15 @@ class Page extends BasePage implements HasMedia
             'uri' => 'required|regex:/^([0-9a-z\/_-]+)$/|max:150|unique:'.config('rinvex.pages.tables.pages').',uri,NULL,id,domain,'.($this->domain ?? 'null'),
             'slug' => 'required|alpha_dash|max:150|unique:'.config('rinvex.pages.tables.pages').',slug,NULL,id,domain,'.($this->domain ?? 'null'),
             'route' => 'required|regex:/^([0-9a-z\._-]+)$/|max:150|unique:'.config('rinvex.pages.tables.pages').',route,NULL,id,domain,'.($this->domain ?? 'null'),
-            'domain' => 'nullable|string|max:150',
-            'middleware' => 'nullable|string|max:150',
-            'title' => 'required|string|max:150',
-            'subtitle' => 'nullable|string|max:150',
+            'domain' => 'nullable|string|strip_tags|max:150',
+            'middleware' => 'nullable|string|strip_tags|max:150',
+            'title' => 'required|string|strip_tags|max:150',
+            'subtitle' => 'nullable|string|strip_tags|max:150',
             'excerpt' => 'nullable|string|max:10000',
-            'content' => 'nullable|string|max:10000000',
-            'view' => 'required|string|max:150',
+            'content' => 'nullable|string|max:100000',
+            'view' => 'required|string|strip_tags|max:150',
             'is_active' => 'sometimes|boolean',
-            'sort_order' => 'nullable|integer|max:10000000',
+            'sort_order' => 'nullable|integer|max:10000',
             'tags' => 'nullable|array',
         ]);
     }
