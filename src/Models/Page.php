@@ -99,7 +99,7 @@ class Page extends BasePage implements HasMedia
      * @var array
      */
     protected static $logFillable = true;
-    
+
     /**
      * {@inheritdoc}
      */
@@ -116,8 +116,9 @@ class Page extends BasePage implements HasMedia
         'view',
         'is_active',
         'sort_order',
-        'tags'
+        'tags',
     ];
+
     /**
      * The attributes that are ignored on change.
      *
