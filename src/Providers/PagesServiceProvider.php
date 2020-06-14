@@ -44,9 +44,6 @@ class PagesServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // Merge config
-        $this->mergeConfigFrom(realpath(__DIR__.'/../../config/config.php'), 'cortex.pages');
-
         // Bind eloquent models to IoC container
         $this->app['config']['rinvex.pages.models.page'] === Page::class
         || $this->app->alias('rinvex.pages.page', Page::class);
@@ -70,21 +67,5 @@ class PagesServiceProvider extends ServiceProvider
         Relation::morphMap([
             'page' => config('rinvex.pages.models.page'),
         ]);
-
-        // Load resources
-        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'cortex/pages');
-        $this->loadTranslationsFrom(__DIR__.'/../../resources/lang', 'cortex/pages');
-        ! $this->autoloadMigrations('cortex/pages') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
-
-        $this->app->runningInConsole() || $dispatcher->listen('accessarea.ready', function ($accessarea) {
-            ! file_exists($menus = __DIR__."/../../routes/menus/{$accessarea}.php") || require $menus;
-            ! file_exists($breadcrumbs = __DIR__."/../../routes/breadcrumbs/{$accessarea}.php") || require $breadcrumbs;
-        });
-
-        // Publish Resources
-        $this->publishesLang('cortex/pages', true);
-        $this->publishesViews('cortex/pages', true);
-        $this->publishesConfig('cortex/pages', true);
-        $this->publishesMigrations('cortex/pages', true);
     }
 }
