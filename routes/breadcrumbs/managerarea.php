@@ -7,7 +7,7 @@ use DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs;
 use DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator;
 
 Breadcrumbs::register('managerarea.pages.index', function (BreadcrumbsGenerator $breadcrumbs) {
-    $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.config('rinvex.tenants.active')->name, route('managerarea.home'));
+    $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.app('request.tenant')->name, route('managerarea.home'));
     $breadcrumbs->push(trans('cortex/pages::common.pages'), route('managerarea.pages.index'));
 });
 
