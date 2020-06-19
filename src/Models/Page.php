@@ -6,6 +6,7 @@ namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
 use Spatie\MediaLibrary\HasMedia;
+use Rinvex\Support\Traits\Macroable;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
@@ -69,6 +70,7 @@ class Page extends BasePage implements HasMedia
     use Taggable;
     use Auditable;
     use Tenantable;
+    use Macroable;
     use HashidsTrait;
     use LogsActivity;
     use InteractsWithMedia;
