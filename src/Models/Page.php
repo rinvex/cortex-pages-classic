@@ -10,6 +10,7 @@ use Rinvex\Support\Traits\Macroable;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
+use Rinvex\Support\Traits\HasTimezones;
 use Rinvex\Pages\Models\Page as BasePage;
 use Cortex\Foundation\Events\ModelCreated;
 use Cortex\Foundation\Events\ModelDeleted;
@@ -72,6 +73,7 @@ class Page extends BasePage implements HasMedia
     use Tenantable;
     use Macroable;
     use HashidsTrait;
+    use HasTimezones;
     use LogsActivity;
     use InteractsWithMedia;
     use FiresCustomModelEvent;
