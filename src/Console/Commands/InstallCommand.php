@@ -34,5 +34,7 @@ class InstallCommand extends Command
         $this->call('cortex:publish:pages', ['--force' => $this->option('force'), '--resource' => $this->option('resource')]);
         $this->call('cortex:migrate:pages', ['--force' => $this->option('force')]);
         $this->call('cortex:seed:pages');
+
+        $this->call('cortex:activate', ['--module' => 'cortex/pages']);
     }
 }
