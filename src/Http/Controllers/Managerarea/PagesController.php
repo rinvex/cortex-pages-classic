@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Cortex\Pages\Http\Controllers\Managerarea;
 
 use Exception;
+use Illuminate\Http\Request;
 use Cortex\Pages\Models\Page;
 use Illuminate\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
@@ -135,13 +136,40 @@ class PagesController extends AuthorizedController
     }
 
     /**
-     * Show page create/edit form.
+     * Create new page.
      *
+     * @param \Illuminate\Http\Request  $request
      * @param \Cortex\Pages\Models\Page $page
      *
      * @return \Illuminate\View\View
      */
-    protected function form(Page $page)
+    public function create(Request $request, Page $page)
+    {
+        return $this->form($request, $page);
+    }
+
+    /**
+     * Edit given page.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @param \Cortex\Pages\Models\Page $page
+     *
+     * @return \Illuminate\View\View
+     */
+    public function edit(Request $request, Page $page)
+    {
+        return $this->form($request, $page);
+    }
+
+    /**
+     * Show page create/edit form.
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @param \Cortex\Pages\Models\Page $page
+     *
+     * @return \Illuminate\View\View
+     */
+    protected function form(Request $request, Page $page)
     {
         $tags = app('rinvex.tags.tag')->pluck('name', 'id');
 

@@ -15,10 +15,10 @@ Route::domain('{subdomain}.'.domain())->group(function () {
                  Route::post('import')->name('stash')->uses('PagesController@stash');
                  Route::post('hoard')->name('hoard')->uses('PagesController@hoard');
                  Route::get('import/logs')->name('import.logs')->uses('PagesController@importLogs');
-                 Route::get('create')->name('create')->uses('PagesController@form');
+                 Route::get('create')->name('create')->uses('PagesController@create');
                  Route::post('create')->name('store')->uses('PagesController@store');
                  Route::get('{page}')->name('show')->uses('PagesController@show');
-                 Route::get('{page}/edit')->name('edit')->uses('PagesController@form');
+                 Route::get('{page}/edit')->name('edit')->uses('PagesController@edit');
                  Route::put('{page}/edit')->name('update')->uses('PagesController@update');
                  Route::get('{page}/logs')->name('logs')->uses('PagesController@logs');
                  Route::delete('{page}')->name('destroy')->uses('PagesController@destroy');
