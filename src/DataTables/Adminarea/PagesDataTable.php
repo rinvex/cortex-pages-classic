@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Cortex\Pages\DataTables\Adminarea;
 
 use Cortex\Pages\Models\Page;
+use Cortex\Pages\Transformers\PageTransformer;
 use Cortex\Foundation\DataTables\AbstractDataTable;
-use Cortex\Pages\Transformers\Adminarea\PageTransformer;
 
 class PagesDataTable extends AbstractDataTable
 {
