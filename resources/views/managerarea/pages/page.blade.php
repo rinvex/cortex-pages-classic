@@ -7,7 +7,7 @@
 @endsection
 
 @push('inline-scripts')
-    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-pages-create-form, #managerarea-pages-{$page->getRouteKey()}-update-form")->ignore('.skip-validation') !!}
+    {!! JsValidator::formRequest(Cortex\Pages\Http\Requests\Managerarea\PageFormRequest::class)->selector("#managerarea-cortex-pages-pages-create-form, #managerarea-cortex-pages-pages-{$page->getRouteKey()}-update-form")->ignore('.skip-validation') !!}
 @endpush
 
 {{-- Main Content --}}
@@ -27,7 +27,7 @@
                 @if($page->exists && app('request.user')->can('delete', $page))
                     <div class="pull-right">
                         <a href="#" data-toggle="modal" data-target="#delete-confirmation"
-                           data-modal-action="{{ route('managerarea.pages.destroy', ['page' => $page]) }}"
+                           data-modal-action="{{ route('managerarea.cortex.pages.pages.destroy', ['page' => $page]) }}"
                            data-modal-title="{{ trans('cortex/foundation::messages.delete_confirmation_title') }}"
                            data-modal-button="<a href='#' class='btn btn-danger' data-form='delete' data-token='{{ csrf_token() }}'><i class='fa fa-trash-o'></i> {{ trans('cortex/foundation::common.delete') }}</a>"
                            data-modal-body="{{ trans('cortex/foundation::messages.delete_confirmation_body', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->getRouteKey()]) }}"
@@ -35,16 +35,16 @@
                         </a>
                     </div>
                 @endif
-                {!! Menu::render('managerarea.pages.tabs', 'nav-tab') !!}
+                {!! Menu::render('managerarea.cortex.pages.pages.tabs', 'nav-tab') !!}
 
                 <div class="tab-content">
 
                     <div class="tab-pane active" id="details-tab">
 
                         @if ($page->exists)
-                            {{ Form::model($page, ['url' => route('managerarea.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "managerarea-pages-{$page->getRouteKey()}-update-form"]) }}
+                            {{ Form::model($page, ['url' => route('managerarea.cortex.pages.pages.update', ['page' => $page]), 'method' => 'put', 'id' => "managerarea-cortex-pages-pages-{$page->getRouteKey()}-update-form"]) }}
                         @else
-                            {{ Form::model($page, ['url' => route('managerarea.pages.store'), 'id' => 'managerarea-pages-create-form']) }}
+                            {{ Form::model($page, ['url' => route('managerarea.cortex.pages.pages.store'), 'id' => 'managerarea-cortex-pages-pages-create-form']) }}
                         @endif
 
                             <div class="row">
