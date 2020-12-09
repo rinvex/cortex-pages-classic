@@ -35,7 +35,7 @@ class PagesController extends AuthorizedController
     {
         return $pagesDataTable->with([
             'id' => 'adminarea-cortex-pages-pages-index',
-            'pusher' => ['entity' => 'page', 'channel' => 'rinvex.pages.pages.index'],
+            'pusher' => ['entity' => 'page', 'channel' => 'cortex.pages.pages.index'],
         ])->render('cortex/foundation::adminarea.pages.datatable-index');
     }
 

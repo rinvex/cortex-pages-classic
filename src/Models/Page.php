@@ -6,7 +6,11 @@ namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
 use Spatie\MediaLibrary\HasMedia;
+use Cortex\Pages\Events\PageCreated;
+use Cortex\Pages\Events\PageDeleted;
+use Cortex\Pages\Events\PageUpdated;
 use Rinvex\Support\Traits\Macroable;
+use Cortex\Pages\Events\PageRestored;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
@@ -71,6 +75,18 @@ class Page extends BasePage implements HasMedia
     use HasTimezones;
     use LogsActivity;
     use InteractsWithMedia;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => PageCreated::class,
+        'updated' => PageUpdated::class,
+        'deleted' => PageDeleted::class,
+        'restored' => PageRestored::class,
+    ];
 
     /**
      * Indicates whether to log only dirty attributes or all.
