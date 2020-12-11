@@ -6,19 +6,18 @@ namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
 use Spatie\MediaLibrary\HasMedia;
+use Cortex\Pages\Events\PageCreated;
+use Cortex\Pages\Events\PageDeleted;
+use Cortex\Pages\Events\PageUpdated;
 use Rinvex\Support\Traits\Macroable;
+use Cortex\Pages\Events\PageRestored;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Support\Traits\HasTimezones;
 use Rinvex\Pages\Models\Page as BasePage;
-use Cortex\Foundation\Events\ModelCreated;
-use Cortex\Foundation\Events\ModelDeleted;
-use Cortex\Foundation\Events\ModelUpdated;
-use Cortex\Foundation\Events\ModelRestored;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\InteractsWithMedia;
-use Cortex\Foundation\Traits\FiresCustomModelEvent;
 
 /**
  * Cortex\Pages\Models\Page.
@@ -70,13 +69,12 @@ class Page extends BasePage implements HasMedia
 {
     use Taggable;
     use Auditable;
-    use Tenantable;
     use Macroable;
+    use Tenantable;
     use HashidsTrait;
     use HasTimezones;
     use LogsActivity;
     use InteractsWithMedia;
-    use FiresCustomModelEvent;
 
     /**
      * The event map for the model.
@@ -84,10 +82,10 @@ class Page extends BasePage implements HasMedia
      * @var array
      */
     protected $dispatchesEvents = [
-        'created' => ModelCreated::class,
-        'deleted' => ModelDeleted::class,
-        'restored' => ModelRestored::class,
-        'updated' => ModelUpdated::class,
+        'created' => PageCreated::class,
+        'updated' => PageUpdated::class,
+        'deleted' => PageDeleted::class,
+        'restored' => PageRestored::class,
     ];
 
     /**

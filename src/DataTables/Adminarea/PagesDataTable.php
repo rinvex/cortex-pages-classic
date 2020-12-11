@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Cortex\Pages\DataTables\Adminarea;
 
 use Cortex\Pages\Models\Page;
+use Cortex\Pages\Transformers\PageTransformer;
 use Cortex\Foundation\DataTables\AbstractDataTable;
-use Cortex\Pages\Transformers\Adminarea\PageTransformer;
 
 class PagesDataTable extends AbstractDataTable
 {
@@ -21,6 +21,19 @@ class PagesDataTable extends AbstractDataTable
     protected $transformer = PageTransformer::class;
 
     /**
+     * Display ajax response.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function ajax()
+    {
+        return datatables($this->query())
+            ->setTransformer(app($this->transformer))
+            ->orderColumn('name', 'name->"$.'.app()->getLocale().'" $1')
+            ->make(true);
+    }
+
+    /**
      * Get columns.
      *
      * @return array
@@ -28,8 +41,8 @@ class PagesDataTable extends AbstractDataTable
     protected function getColumns(): array
     {
         $link = config('cortex.foundation.route.locale_prefix')
-            ? '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.id, locale: \''.$this->request->segment(1).'\'})+"\">"+data+"</a>"'
-            : '"<a href=\""+routes.route(\'adminarea.pages.edit\', {page: full.id})+"\">"+data+"</a>"';
+            ? '"<a href=\""+routes.route(\'adminarea.cortex.pages.pages.edit\', {page: full.id, locale: \''.$this->request()->segment(1).'\'})+"\">"+data+"</a>"'
+            : '"<a href=\""+routes.route(\'adminarea.cortex.pages.pages.edit\', {page: full.id})+"\">"+data+"</a>"';
 
         return [
             'id' => ['checkboxes' => '{"selectRow": true}', 'exportable' => false, 'printable' => false],

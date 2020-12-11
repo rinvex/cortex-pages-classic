@@ -9,7 +9,7 @@ Route::domain('{subdomain}.'.domain())->group(function () {
          ->prefix(config('cortex.foundation.route.locale_prefix') ? '{locale}/'.config('cortex.foundation.route.prefix.managerarea') : config('cortex.foundation.route.prefix.managerarea'))->group(function () {
 
             // Pages Routes
-             Route::name('pages.')->prefix('pages')->group(function () {
+             Route::name('cortex.pages.pages.')->prefix('pages')->group(function () {
                  Route::get('/')->name('index')->uses('PagesController@index');
                  Route::get('import')->name('import')->uses('PagesController@import');
                  Route::post('import')->name('stash')->uses('PagesController@stash');

@@ -34,7 +34,8 @@ class PagesController extends AuthorizedController
     public function index(PagesDataTable $pagesDataTable)
     {
         return $pagesDataTable->with([
-            'id' => 'managerarea-pages-index',
+            'id' => 'managerarea-cortex-pages-pages-index',
+            'pusher' => ['entity' => 'page', 'channel' => 'cortex.pages.pages.index'],
         ])->render('cortex/foundation::managerarea.pages.datatable-index');
     }
 
@@ -50,8 +51,8 @@ class PagesController extends AuthorizedController
     {
         return $logsDataTable->with([
             'resource' => $page,
-            'tabs' => 'managerarea.pages.tabs',
-            'id' => "managerarea-pages-{$page->getRouteKey()}-logs",
+            'tabs' => 'managerarea.cortex.pages.pages.tabs',
+            'id' => "managerarea-cortex-pages-pages-{$page->getRouteKey()}-logs",
         ])->render('cortex/foundation::managerarea.pages.datatable-tab');
     }
 
@@ -67,9 +68,9 @@ class PagesController extends AuthorizedController
     {
         return $importRecordsDataTable->with([
             'resource' => $page,
-            'tabs' => 'managerarea.pages.tabs',
-            'url' => route('managerarea.pages.stash'),
-            'id' => "managerarea-pages-{$page->getRouteKey()}-import",
+            'tabs' => 'managerarea.cortex.pages.pages.tabs',
+            'url' => route('managerarea.cortex.pages.pages.stash'),
+            'id' => "managerarea-cortex-pages-pages-{$page->getRouteKey()}-import",
         ])->render('cortex/foundation::managerarea.pages.datatable-dropzone');
     }
 
@@ -130,8 +131,8 @@ class PagesController extends AuthorizedController
     {
         return $importLogsDatatable->with([
             'resource' => trans('cortex/pages::common.page'),
-            'tabs' => 'managerarea.pages.tabs',
-            'id' => 'managerarea-pages-import-logs',
+            'tabs' => 'managerarea.cortex.pages.pages.tabs',
+            'id' => 'managerarea-cortex-pages-pages-import-logs',
         ])->render('cortex/foundation::managerarea.pages.datatable-tab');
     }
 
@@ -228,7 +229,7 @@ class PagesController extends AuthorizedController
         $page->fill($data)->save();
 
         return intend([
-            'url' => route('managerarea.pages.index'),
+            'url' => route('managerarea.cortex.pages.pages.index'),
             'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->getRouteKey()])],
         ]);
     }
@@ -247,7 +248,7 @@ class PagesController extends AuthorizedController
         $page->delete();
 
         return intend([
-            'url' => route('managerarea.pages.index'),
+            'url' => route('managerarea.cortex.pages.pages.index'),
             'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->getRouteKey()])],
         ]);
     }

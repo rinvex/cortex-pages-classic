@@ -34,7 +34,8 @@ class PagesController extends AuthorizedController
     public function index(PagesDataTable $pagesDataTable)
     {
         return $pagesDataTable->with([
-            'id' => 'adminarea-pages-index',
+            'id' => 'adminarea-cortex-pages-pages-index',
+            'pusher' => ['entity' => 'page', 'channel' => 'cortex.pages.pages.index'],
         ])->render('cortex/foundation::adminarea.pages.datatable-index');
     }
 
@@ -50,8 +51,8 @@ class PagesController extends AuthorizedController
     {
         return $logsDataTable->with([
             'resource' => $page,
-            'tabs' => 'adminarea.pages.tabs',
-            'id' => "adminarea-pages-{$page->getRouteKey()}-logs",
+            'tabs' => 'adminarea.cortex.pages.pages.tabs',
+            'id' => "adminarea-cortex-pages-pages-{$page->getRouteKey()}-logs",
         ])->render('cortex/foundation::adminarea.pages.datatable-tab');
     }
 
@@ -67,9 +68,9 @@ class PagesController extends AuthorizedController
     {
         return $importRecordsDataTable->with([
             'resource' => $page,
-            'tabs' => 'adminarea.pages.tabs',
-            'url' => route('adminarea.pages.stash'),
-            'id' => "adminarea-pages-{$page->getRouteKey()}-import",
+            'tabs' => 'adminarea.cortex.pages.pages.tabs',
+            'url' => route('adminarea.cortex.pages.pages.stash'),
+            'id' => "adminarea-cortex-pages-pages-{$page->getRouteKey()}-import",
         ])->render('cortex/foundation::adminarea.pages.datatable-dropzone');
     }
 
@@ -130,8 +131,8 @@ class PagesController extends AuthorizedController
     {
         return $importLogsDatatable->with([
             'resource' => trans('cortex/pages::common.page'),
-            'tabs' => 'adminarea.pages.tabs',
-            'id' => 'adminarea-pages-import-logs',
+            'tabs' => 'adminarea.cortex.pages.pages.tabs',
+            'id' => 'adminarea-cortex-pages-pages-import-logs',
         ])->render('cortex/foundation::adminarea.pages.datatable-tab');
     }
 
@@ -242,7 +243,7 @@ class PagesController extends AuthorizedController
         $page->fill($data)->save();
 
         return intend([
-            'url' => route('adminarea.pages.index'),
+            'url' => route('adminarea.cortex.pages.pages.index'),
             'with' => ['success' => trans('cortex/foundation::messages.resource_saved', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->getRouteKey()])],
         ]);
     }
@@ -261,7 +262,7 @@ class PagesController extends AuthorizedController
         $page->delete();
 
         return intend([
-            'url' => route('adminarea.pages.index'),
+            'url' => route('adminarea.cortex.pages.pages.index'),
             'with' => ['warning' => trans('cortex/foundation::messages.resource_deleted', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->getRouteKey()])],
         ]);
     }
