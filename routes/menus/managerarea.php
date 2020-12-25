@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Cortex\Pages\Models\Page;
 use Rinvex\Menus\Models\MenuItem;
 use Rinvex\Menus\Models\MenuGenerator;
 
