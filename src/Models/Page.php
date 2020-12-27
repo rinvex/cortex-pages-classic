@@ -22,24 +22,24 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 /**
  * Cortex\Pages\Models\Page.
  *
- * @property int                                                                           $id
- * @property string                                                                        $uri
- * @property string                                                                        $slug
- * @property string                                                                        $route
- * @property string                                                                        $domain
- * @property string                                                                        $middleware
- * @property array                                                                         $title
- * @property array                                                                         $subtitle
- * @property array                                                                         $excerpt
- * @property array                                                                         $content
- * @property string                                                                        $view
- * @property bool                                                                          $is_active
- * @property int                                                                           $sort_order
- * @property \Carbon\Carbon|null                                                           $created_at
- * @property \Carbon\Carbon|null                                                           $updated_at
- * @property \Carbon\Carbon|null                                                           $deleted_at
+ * @property int                 $id
+ * @property string              $uri
+ * @property string              $slug
+ * @property string              $route
+ * @property string              $domain
+ * @property string              $middleware
+ * @property array               $title
+ * @property array               $subtitle
+ * @property array               $excerpt
+ * @property array               $content
+ * @property string              $view
+ * @property bool                $is_active
+ * @property int                 $sort_order
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cortex\Foundation\Models\Log[] $activity
- * @property \Illuminate\Database\Eloquent\Collection|\Cortex\Tenants\Models\Tenant[]      $tenants
+ * @property \Illuminate\Database\Eloquent\Collection|\Cortex\Tenants\Models\Tenant[] $tenants
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page ordered($direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereContent($value)
