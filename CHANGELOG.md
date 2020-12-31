@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.3] - 2020-12-29
+- Rename seeders directory
+- Add module activate, deactivate, autoload, unload artisan commands
+
 ## [v5.0.2] - 2020-12-27
 - Apply fixes from StyleCI
 - display page list in managerarea sidebar
@@ -195,6 +199,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2017-09-09
 - Tag first release
 
+[v5.0.3]: https://github.com/rinvex/cortex-pages/compare/v5.0.2...v5.0.3
 [v5.0.2]: https://github.com/rinvex/cortex-pages/compare/v5.0.1...v5.0.2
 [v5.0.1]: https://github.com/rinvex/cortex-pages/compare/v5.0.0...v5.0.1
 [v5.0.0]: https://github.com/rinvex/cortex-pages/compare/v4.3.2...v5.0.0
