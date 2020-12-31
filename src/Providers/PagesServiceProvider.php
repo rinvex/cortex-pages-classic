@@ -15,8 +15,8 @@ use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
 use Cortex\Pages\Console\Commands\PublishCommand;
 use Cortex\Pages\Console\Commands\ActivateCommand;
-use Cortex\Pages\Console\Commands\RollbackCommand;
 use Cortex\Pages\Console\Commands\AutoloadCommand;
+use Cortex\Pages\Console\Commands\RollbackCommand;
 use Cortex\Pages\Console\Commands\DeactivateCommand;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
