@@ -10,14 +10,10 @@ use Illuminate\Support\ServiceProvider;
 use Rinvex\Support\Traits\ConsoleTools;
 use Illuminate\Contracts\Events\Dispatcher;
 use Cortex\Pages\Console\Commands\SeedCommand;
-use Cortex\Pages\Console\Commands\UnloadCommand;
 use Cortex\Pages\Console\Commands\InstallCommand;
 use Cortex\Pages\Console\Commands\MigrateCommand;
 use Cortex\Pages\Console\Commands\PublishCommand;
-use Cortex\Pages\Console\Commands\ActivateCommand;
 use Cortex\Pages\Console\Commands\RollbackCommand;
-use Cortex\Pages\Console\Commands\AutoloadCommand;
-use Cortex\Pages\Console\Commands\DeactivateCommand;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
@@ -30,11 +26,6 @@ class PagesServiceProvider extends ServiceProvider
      * @var array
      */
     protected $commands = [
-        ActivateCommand::class => 'command.cortex.pages.activate',
-        DeactivateCommand::class => 'command.cortex.pages.deactivate',
-        AutoloadCommand::class => 'command.cortex.pages.autoload',
-        UnloadCommand::class => 'command.cortex.pages.unload',
-
         SeedCommand::class => 'command.cortex.pages.seed',
         InstallCommand::class => 'command.cortex.pages.install',
         MigrateCommand::class => 'command.cortex.pages.migrate',
