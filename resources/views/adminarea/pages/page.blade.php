@@ -370,22 +370,6 @@
 
                                     </div>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-
-                                            {{-- Tenants --}}
-                                            <div class="form-group{{ $errors->has('tenants') ? ' has-error' : '' }}">
-                                                {{ Form::label('tenants[]', trans('cortex/auth::common.tenants'), ['class' => 'control-label']) }}
-                                                {{ Form::hidden('tenants', '', ['class' => 'skip-validation']) }}
-                                                {{ Form::select('tenants[]', $tenants, null, ['class' => 'form-control select2', 'placeholder' => trans('cortex/auth::common.select_tenants'), 'multiple' => 'multiple', 'data-close-on-select' => 'false', 'data-width' => '100%']) }}
-
-                                                @if ($errors->has('tenants'))
-                                                    <span class="help-block">{{ $errors->first('tenants') }}</span>
-                                                @endif
-                                            </div>
-
-                                        </div>
-                                    </div>
                                 </div>
 
                             </div>
