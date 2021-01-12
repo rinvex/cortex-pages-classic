@@ -122,9 +122,9 @@ class Page extends BasePage implements HasMedia
     {
         parent::__construct($attributes);
 
-        $this->mergeFillable(['tags']);
+        $this->mergeFillable(['tags','tenants']);
 
-        $this->mergeRules(['tags' => 'nullable|array']);
+        $this->mergeRules(['tags' => 'nullable|array', 'tenants' => 'nullable|array']);
 
         $this->setTable(config('rinvex.pages.tables.pages'));
     }
