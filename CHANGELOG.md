@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v5.0.6] - 2021-01-15
+- Add model replication feature
+- Update page transformer and add missing fields
+- Customize route key to be slug instead of default id
+- Add missing language phrases
+- Add support for pageables
+- Move macroable support to core package `rinvex/laravel-pages`
+- Remove useless `setTable` method call as it's called in parent class
+- attach tenants to page in adminarea
+- add missing page import
+
 ## [v5.0.5] - 2021-01-02
 - Move cortex:autoload & cortex:activate commands to cortex/foundation module responsibility
 
@@ -207,6 +218,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2017-09-09
 - Tag first release
 
+[v5.0.6]: https://github.com/rinvex/cortex-pages/compare/v5.0.5...v5.0.6
 [v5.0.5]: https://github.com/rinvex/cortex-pages/compare/v5.0.4...v5.0.5
 [v5.0.4]: https://github.com/rinvex/cortex-pages/compare/v5.0.3...v5.0.4
 [v5.0.3]: https://github.com/rinvex/cortex-pages/compare/v5.0.2...v5.0.3
