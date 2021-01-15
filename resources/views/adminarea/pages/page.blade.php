@@ -386,6 +386,30 @@
 
                                         </div>
                                     </div>
+
+                                    @foreach($pageables as $key => $entries)
+
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+
+                                                {{-- Pageable --}}
+                                                <div class="form-group{{ $errors->has(Str::plural($key)) ? ' has-error' : '' }}">
+                                                    {{ Form::label(Str::plural($key).'[]', trans('cortex/'.Str::plural($key)."::common.{$key}"), ['class' => 'control-label']) }}
+                                                    {{ Form::hidden(Str::plural($key).'', '', ['class' => 'skip-validation']) }}
+                                                    {{ Form::select(Str::plural($key).'[]', $entries, null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-width' => '100%']) }}
+
+                                                    @if ($errors->has(Str::plural($key)))
+                                                        <span class="help-block">{{ $errors->first(Str::plural($key)) }}</span>
+                                                    @endif
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    @endforeach
+
                                 </div>
 
                             </div>

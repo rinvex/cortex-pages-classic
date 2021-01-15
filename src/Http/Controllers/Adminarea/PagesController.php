@@ -172,10 +172,15 @@ class PagesController extends AuthorizedController
      */
     protected function form(Request $request, Page $page)
     {
+        $pageables = collect();
         $tags = app('rinvex.tags.tag')->pluck('name', 'id');
         $tenants = app('rinvex.tenants.tenant')->all()->pluck('name', 'id');
 
-        return view('cortex/pages::adminarea.pages.page', compact('page', 'tags', 'tenants'));
+        app('rinvex.pages.pageables')->each(function ($pageable, $key) use ($page, $pageables) {
+            $pageables->put($key, app($pageable)->all()->pluck('name', 'id'));
+        });
+
+        return view('cortex/pages::adminarea.pages.page', compact('page', 'tags', 'tenants', 'pageables'));
     }
 
     /**
