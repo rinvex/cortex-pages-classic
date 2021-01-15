@@ -25,12 +25,13 @@ class PageTransformer extends TransformerAbstract
     {
         return $this->escape([
             'id' => (string) $page->getRouteKey(),
-            'title' => (string) $page->title,
             'uri' => (string) $page->uri,
-            'domain' => (string) $page->domain,
+            'slug' => (string) $page->slug,
             'route' => (string) $page->route,
-            'view' => (string) $page->view,
+            'domain' => (string) $page->domain,
             'middleware' => (string) $page->middleware,
+            'title' => (string) $page->title,
+            'view' => (string) $page->view,
             'sort_order' => (string) $page->sort_order,
             'created_at' => (string) $page->created_at,
             'updated_at' => (string) $page->updated_at,

@@ -9,7 +9,6 @@ use Spatie\MediaLibrary\HasMedia;
 use Cortex\Pages\Events\PageCreated;
 use Cortex\Pages\Events\PageDeleted;
 use Cortex\Pages\Events\PageUpdated;
-use Rinvex\Support\Traits\Macroable;
 use Cortex\Pages\Events\PageRestored;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
@@ -69,7 +68,6 @@ class Page extends BasePage implements HasMedia
 {
     use Taggable;
     use Auditable;
-    use Macroable;
     use Tenantable;
     use HashidsTrait;
     use HasTimezones;
@@ -122,11 +120,9 @@ class Page extends BasePage implements HasMedia
     {
         parent::__construct($attributes);
 
-        $this->mergeFillable(['tags']);
+        $this->mergeFillable(['tags', 'tenants']);
 
-        $this->mergeRules(['tags' => 'nullable|array']);
-
-        $this->setTable(config('rinvex.pages.tables.pages'));
+        $this->mergeRules(['tags' => 'nullable|array', 'tenants' => 'nullable|array']);
     }
 
     /**
@@ -138,5 +134,15 @@ class Page extends BasePage implements HasMedia
     {
         $this->addMediaCollection('profile_picture')->singleFile();
         $this->addMediaCollection('cover_photo')->singleFile();
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

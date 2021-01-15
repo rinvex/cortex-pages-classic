@@ -24,17 +24,7 @@
         <section class="content">
 
             <div class="nav-tabs-custom">
-                @if($page->exists && app('request.user')->can('delete', $page))
-                    <div class="pull-right">
-                        <a href="#" data-toggle="modal" data-target="#delete-confirmation"
-                           data-modal-action="{{ route('adminarea.cortex.pages.pages.destroy', ['page' => $page]) }}"
-                           data-modal-title="{{ trans('cortex/foundation::messages.delete_confirmation_title') }}"
-                           data-modal-button="<a href='#' class='btn btn-danger' data-form='delete' data-token='{{ csrf_token() }}'><i class='fa fa-trash-o'></i> {{ trans('cortex/foundation::common.delete') }}</a>"
-                           data-modal-body="{{ trans('cortex/foundation::messages.delete_confirmation_body', ['resource' => trans('cortex/pages::common.page'), 'identifier' => $page->getRouteKey()]) }}"
-                           title="{{ trans('cortex/foundation::common.delete') }}" class="btn btn-default" style="margin: 4px"><i class="fa fa-trash text-danger"></i>
-                        </a>
-                    </div>
-                @endif
+                @includeWhen($page->exists, 'cortex/foundation::common.partials.actions', ['name' => 'page', 'model' => $page, 'resource' => trans('cortex/pages::common.page'), 'routePrefix' => 'adminarea.cortex.pages.pages.'])
                 {!! Menu::render('adminarea.cortex.pages.pages.tabs', 'nav-tab') !!}
 
                 <div class="tab-content">
@@ -369,6 +359,46 @@
                                         </div>
 
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+                                            {{-- Tenants --}}
+                                            <div class="form-group{{ $errors->has('tenants') ? ' has-error' : '' }}">
+                                                {{ Form::label('tenants[]', trans('cortex/auth::common.tenants'), ['class' => 'control-label']) }}
+                                                {{ Form::hidden('tenants', '', ['class' => 'skip-validation']) }}
+                                                {{ Form::select('tenants[]', $tenants, null, ['class' => 'form-control select2', 'placeholder' => trans('cortex/auth::common.select_tenants'), 'multiple' => 'multiple', 'data-close-on-select' => 'false', 'data-width' => '100%']) }}
+
+                                                @if ($errors->has('tenants'))
+                                                    <span class="help-block">{{ $errors->first('tenants') }}</span>
+                                                @endif
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    @foreach($pageables as $key => $entries)
+
+                                        <div class="row">
+
+                                            <div class="col-md-12">
+
+                                                {{-- Pageable --}}
+                                                <div class="form-group{{ $errors->has(Str::plural($key)) ? ' has-error' : '' }}">
+                                                    {{ Form::label(Str::plural($key).'[]', trans('cortex/'.Str::plural($key)."::common.{$key}"), ['class' => 'control-label']) }}
+                                                    {{ Form::hidden(Str::plural($key).'', '', ['class' => 'skip-validation']) }}
+                                                    {{ Form::select(Str::plural($key).'[]', $entries, null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-width' => '100%']) }}
+
+                                                    @if ($errors->has(Str::plural($key)))
+                                                        <span class="help-block">{{ $errors->first(Str::plural($key)) }}</span>
+                                                    @endif
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    @endforeach
 
                                 </div>
 
