@@ -172,6 +172,10 @@ class PagesController extends AuthorizedController
      */
     protected function form(Request $request, Page $page)
     {
+        if(! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->get('replicate'))){
+            $page = $replicated->replicate();
+        }
+
         $pageables = collect();
         $tags = app('rinvex.tags.tag')->pluck('name', 'id');
         $tenants = app('rinvex.tenants.tenant')->all()->pluck('name', 'id');
