@@ -172,7 +172,7 @@ class PagesController extends AuthorizedController
      */
     protected function form(Request $request, Page $page)
     {
-        if(! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->get('replicate'))){
+        if (! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->get('replicate'))) {
             $page = $replicated->replicate();
         }
 
