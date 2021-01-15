@@ -27,6 +27,9 @@ return [
     'records' => 'Records',
     'import' => 'Import',
     'tags' => 'Tags',
+    'browse' => 'Browse',
+    'cover_photo' => 'Cover Photo',
+    'profile_picture' => 'Profile Picture',
 
     'page' => 'Page',
     'pages' => 'Pages',
