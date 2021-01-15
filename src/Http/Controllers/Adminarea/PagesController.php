@@ -180,7 +180,7 @@ class PagesController extends AuthorizedController
         $tags = app('rinvex.tags.tag')->pluck('name', 'id');
         $tenants = app('rinvex.tenants.tenant')->all()->pluck('name', 'id');
 
-        app('rinvex.pages.pageables')->each(function ($pageable, $key) use ($page, $pageables) {
+        app('rinvex.pages.pageables')->each(function ($pageable, $key) use ($pageables) {
             $pageables->put($key, app($pageable)->all()->pluck('name', 'id'));
         });
 
