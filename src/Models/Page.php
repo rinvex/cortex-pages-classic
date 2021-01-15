@@ -9,7 +9,6 @@ use Spatie\MediaLibrary\HasMedia;
 use Cortex\Pages\Events\PageCreated;
 use Cortex\Pages\Events\PageDeleted;
 use Cortex\Pages\Events\PageUpdated;
-use Rinvex\Support\Traits\Macroable;
 use Cortex\Pages\Events\PageRestored;
 use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
@@ -69,7 +68,6 @@ class Page extends BasePage implements HasMedia
 {
     use Taggable;
     use Auditable;
-    use Macroable;
     use Tenantable;
     use HashidsTrait;
     use HasTimezones;
