@@ -22,7 +22,7 @@ class PagesController extends AuthorizedController
     /**
      * {@inheritdoc}
      */
-    protected $resource = Page::class;
+    protected $resource = 'rinvex.pages.models.page';
 
     /**
      * List all pages.

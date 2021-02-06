@@ -16,7 +16,7 @@ class PagesMediaController extends AuthorizedController
     /**
      * {@inheritdoc}
      */
-    protected $resource = Page::class;
+    protected $resource = 'rinvex.pages.models.page';
 
     /**
      * {@inheritdoc}
