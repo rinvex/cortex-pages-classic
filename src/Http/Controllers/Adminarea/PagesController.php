@@ -182,7 +182,7 @@ class PagesController extends AuthorizedController
         $tenants = app('rinvex.tenants.tenant')->all()->pluck('name', 'id');
 
         app('rinvex.pages.pageables')->each(function ($pageable, $key) use ($pageables,$page) {
-            $page->load(Str::plural($key));
+            $page->load(Str::plural($key).':id');
             $pageables->put($key, app($pageable)->all()->pluck('name', 'id'));
         });
 
