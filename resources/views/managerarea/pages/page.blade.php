@@ -273,7 +273,7 @@
                                         {{ Form::button(trans('cortex/pages::common.submit'), ['class' => 'btn btn-primary btn-flat', 'type' => 'submit']) }}
                                     </div>
 
-                                    @include('cortex/foundation::managerarea.partials.timestamps', ['model' => $page])
+                                    @include('cortex/foundation::common.partials.timestamps', ['model' => $page])
 
                                 </div>
 
