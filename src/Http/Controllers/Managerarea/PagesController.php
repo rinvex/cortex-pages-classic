@@ -98,7 +98,7 @@ class PagesController extends AuthorizedController
      */
     public function hoard(ImportFormRequest $request)
     {
-        foreach ((array) $request->get('selected_ids') as $recordId) {
+        foreach ((array) $request->input('selected_ids') as $recordId) {
             $record = app('cortex.foundation.import_record')->find($recordId);
 
             try {
@@ -172,7 +172,7 @@ class PagesController extends AuthorizedController
      */
     protected function form(Request $request, Page $page)
     {
-        if (! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->get('replicate'))) {
+        if (! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->input('replicate'))) {
             $page = $replicated->replicate();
         }
 
