@@ -8,7 +8,7 @@ use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Cortex\Pages\Models\Page;
-use Illuminate\Foundation\Http\FormRequest;
+use Cortex\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Foundation\Importers\DefaultImporter;
 use Cortex\Foundation\DataTables\ImportLogsDataTable;
@@ -218,7 +218,7 @@ class PagesController extends AuthorizedController
     /**
      * Process stored/updated page.
      *
-     * @param \Illuminate\Foundation\Http\FormRequest $request
+     * @param \Cortex\Foundation\Http\FormRequest $request
      * @param \Cortex\Pages\Models\Page               $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
