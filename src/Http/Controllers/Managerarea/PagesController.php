@@ -211,7 +211,7 @@ class PagesController extends AuthorizedController
      * Process stored/updated page.
      *
      * @param \Cortex\Foundation\Http\FormRequest $request
-     * @param \Cortex\Pages\Models\Page               $page
+     * @param \Cortex\Pages\Models\Page           $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
