@@ -7,7 +7,7 @@ namespace Cortex\Pages\Http\Controllers\Managerarea;
 use Exception;
 use Illuminate\Http\Request;
 use Cortex\Pages\Models\Page;
-use Illuminate\Foundation\Http\FormRequest;
+use Cortex\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
 use Cortex\Foundation\Importers\DefaultImporter;
 use Cortex\Foundation\DataTables\ImportLogsDataTable;
@@ -98,7 +98,7 @@ class PagesController extends AuthorizedController
      */
     public function hoard(ImportFormRequest $request)
     {
-        foreach ((array) $request->get('selected_ids') as $recordId) {
+        foreach ((array) $request->input('selected_ids') as $recordId) {
             $record = app('cortex.foundation.import_record')->find($recordId);
 
             try {
@@ -172,7 +172,7 @@ class PagesController extends AuthorizedController
      */
     protected function form(Request $request, Page $page)
     {
-        if (! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->get('replicate'))) {
+        if (! $page->exists && $request->has('replicate') && $replicated = $page->resolveRouteBinding($request->input('replicate'))) {
             $page = $replicated->replicate();
         }
 
@@ -210,7 +210,7 @@ class PagesController extends AuthorizedController
     /**
      * Process stored/updated page.
      *
-     * @param \Illuminate\Foundation\Http\FormRequest $request
+     * @param \Cortex\Foundation\Http\FormRequest $request
      * @param \Cortex\Pages\Models\Page               $page
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
