@@ -9,29 +9,11 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use Rinvex\Support\Traits\ConsoleTools;
 use Illuminate\Contracts\Events\Dispatcher;
-use Cortex\Pages\Console\Commands\SeedCommand;
-use Cortex\Pages\Console\Commands\InstallCommand;
-use Cortex\Pages\Console\Commands\MigrateCommand;
-use Cortex\Pages\Console\Commands\PublishCommand;
-use Cortex\Pages\Console\Commands\RollbackCommand;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
 {
     use ConsoleTools;
-
-    /**
-     * The commands to be registered.
-     *
-     * @var array
-     */
-    protected $commands = [
-        SeedCommand::class => 'command.cortex.pages.seed',
-        InstallCommand::class => 'command.cortex.pages.install',
-        MigrateCommand::class => 'command.cortex.pages.migrate',
-        PublishCommand::class => 'command.cortex.pages.publish',
-        RollbackCommand::class => 'command.cortex.pages.rollback',
-    ];
 
     /**
      * Register any application services.
@@ -47,9 +29,6 @@ class PagesServiceProvider extends ServiceProvider
         // Bind eloquent models to IoC container
         $this->app['config']['rinvex.pages.models.page'] === Page::class
         || $this->app->alias('rinvex.pages.page', Page::class);
-
-        // Register console commands
-        $this->registerCommands($this->commands);
     }
 
     /**
