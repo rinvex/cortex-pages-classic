@@ -118,11 +118,11 @@ class Page extends BasePage implements HasMedia
      */
     public function __construct(array $attributes = [])
     {
-        parent::__construct($attributes);
-
         $this->mergeFillable(['tags', 'tenants']);
 
         $this->mergeRules(['tags' => 'nullable|array', 'tenants' => 'nullable|array']);
+
+        parent::__construct($attributes);
     }
 
     /**
