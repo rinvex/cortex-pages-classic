@@ -20,7 +20,7 @@ Route::domain(domain())->group(function () {
                  Route::get('{page}')->name('show')->uses('PagesController@show');
                  Route::get('{page}/edit')->name('edit')->uses('PagesController@edit');
                  Route::put('{page}/edit')->name('update')->uses('PagesController@update');
-                 Route::get('{page}/logs')->name('logs')->uses('PagesController@logs');
+                 Route::match(['get', 'post'], '{page}/logs')->name('logs')->uses('PagesController@logs');
                  Route::delete('{page}')->name('destroy')->uses('PagesController@destroy');
 
                  Route::name('media.')->prefix('{page}/media')->group(function () {
