@@ -6,39 +6,39 @@ use Cortex\Pages\Models\Page;
 use Diglactic\Breadcrumbs\Generator;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.index', function (Generator $breadcrumbs) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.index', function (Generator $breadcrumbs) {
     $breadcrumbs->push('<i class="fa fa-dashboard"></i> '.app('request.tenant')->name, route('managerarea.home'));
     $breadcrumbs->push(trans('cortex/pages::common.pages'), route('managerarea.cortex.pages.pages.index'));
 });
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.import', function (Generator $breadcrumbs) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.import', function (Generator $breadcrumbs) {
     $breadcrumbs->parent('managerarea.cortex.pages.pages.index');
     $breadcrumbs->push(trans('cortex/pages::common.import'), route('managerarea.cortex.pages.pages.import'));
 });
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.import.logs', function (Generator $breadcrumbs) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.import.logs', function (Generator $breadcrumbs) {
     $breadcrumbs->parent('managerarea.cortex.pages.pages.index');
     $breadcrumbs->push(trans('cortex/pages::common.import'), route('managerarea.cortex.pages.pages.import'));
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('managerarea.cortex.pages.pages.import.logs'));
 });
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.create', function (Generator $breadcrumbs) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.create', function (Generator $breadcrumbs) {
     $breadcrumbs->parent('managerarea.cortex.pages.pages.index');
     $breadcrumbs->push(trans('cortex/pages::common.create_page'), route('managerarea.cortex.pages.pages.create'));
 });
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.edit', function (Generator $breadcrumbs, Page $page) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.edit', function (Generator $breadcrumbs, Page $page) {
     $breadcrumbs->parent('managerarea.cortex.pages.pages.index');
     $breadcrumbs->push(strip_tags($page->title), route('managerarea.cortex.pages.pages.edit', ['page' => $page]));
 });
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.logs', function (Generator $breadcrumbs, Page $page) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.logs', function (Generator $breadcrumbs, Page $page) {
     $breadcrumbs->parent('managerarea.cortex.pages.pages.index');
     $breadcrumbs->push(strip_tags($page->title), route('managerarea.cortex.pages.pages.edit', ['page' => $page]));
     $breadcrumbs->push(trans('cortex/pages::common.logs'), route('managerarea.cortex.pages.pages.logs', ['page' => $page]));
 });
 
-Breadcrumbs::register('managerarea.cortex.pages.pages.media.index', function (Generator $breadcrumbs, Page $page) {
+Breadcrumbs::for('managerarea.cortex.pages.pages.media.index', function (Generator $breadcrumbs, Page $page) {
     $breadcrumbs->parent('managerarea.cortex.pages.pages.index');
     $breadcrumbs->push(strip_tags($page->title), route('managerarea.cortex.pages.pages.edit', ['page' => $page]));
     $breadcrumbs->push(trans('cortex/pages::common.media'), route('managerarea.cortex.pages.pages.media.index', ['page' => $page]));
