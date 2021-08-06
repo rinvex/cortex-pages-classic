@@ -6,6 +6,7 @@ namespace Cortex\Pages\Models;
 
 use Rinvex\Tags\Traits\Taggable;
 use Spatie\MediaLibrary\HasMedia;
+use Spatie\Activitylog\LogOptions;
 use Cortex\Pages\Events\PageCreated;
 use Cortex\Pages\Events\PageDeleted;
 use Cortex\Pages\Events\PageUpdated;
@@ -87,31 +88,6 @@ class Page extends BasePage implements HasMedia
     ];
 
     /**
-     * Indicates whether to log only dirty attributes or all.
-     *
-     * @var bool
-     */
-    protected static $logOnlyDirty = true;
-
-    /**
-     * The attributes that are logged on change.
-     *
-     * @var array
-     */
-    protected static $logFillable = true;
-
-    /**
-     * The attributes that are ignored on change.
-     *
-     * @var array
-     */
-    protected static $ignoreChangedAttributes = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
-    /**
      * Create a new Eloquent model instance.
      *
      * @param array $attributes
@@ -123,6 +99,19 @@ class Page extends BasePage implements HasMedia
         $this->mergeRules(['tags' => 'nullable|array', 'tenants' => 'nullable|array']);
 
         parent::__construct($attributes);
+    }
+
+    /**
+     * Set sensible Activity Log Options.
+     *
+     * @return \Spatie\Activitylog\LogOptions
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+                         ->logFillable()
+                         ->logOnlyDirty()
+                         ->dontSubmitEmptyLogs();
     }
 
     /**
