@@ -53,7 +53,7 @@
         "rinvex/laravel-menus": "^5.0.0",
         "rinvex/laravel-pages": "^5.0.0",
         "rinvex/laravel-support": "^5.0.0",
-        "rinvex/laravel-tenants": "^6.0.0",
+        "rinvex/laravel-tenants": "^7.0.0",
         "spatie/laravel-activitylog": "^4.0.0",
         "spatie/laravel-medialibrary": "^9.4.0",
         "yajra/laravel-datatables-buttons": "^4.10.0",
