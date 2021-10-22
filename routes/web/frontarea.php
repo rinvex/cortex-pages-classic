@@ -11,7 +11,7 @@ try {
 
     if (Schema::hasTable(config('rinvex.pages.tables.pages'))) {
         app('rinvex.pages.page')->where('is_active', true)->get()->groupBy('domain')->each(function ($pages, $domain) {
-            Route::domain($domain ?? '{routeDomain}')->group(function () use ($pages) {
+            Route::domain($domain ?: '{frontarea}')->group(function () use ($pages) {
                 $pages->each(function ($page) {
                     Route::get($page->uri)
                          ->prefix(config('cortex.foundation.route.locale_prefix') ? '{locale}' : '')
