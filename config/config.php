@@ -7,4 +7,6 @@ return [
     // Manage autoload migrations
     'autoload_migrations' => true,
 
+    'cache_routes' => false,
+
 ];

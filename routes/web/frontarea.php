@@ -10,9 +10,14 @@ try {
     DB::connection()->getPdo();
 
     if (Schema::hasTable(config('rinvex.pages.tables.pages'))) {
-        $pagesByDomain = Cache::remember('pagesByDomain', now()->addDays(1), function () {
-            return app('rinvex.pages.page')->where('is_active', true)->get()->groupBy('domain');
-        });
+        $pagesQuery = app('rinvex.pages.page')->where('is_active', true);
+        if(config('cortex.pages.cache_routes')){
+            $pagesByDomain = Cache::remember('pagesByDomain', now()->addDays(1), function () use($pagesQuery){
+                return $pagesQuery->get()->groupBy('domain');
+            });
+        }else{
+            $pagesByDomain = $pagesQuery->get()->groupBy('domain');
+        }
         $pagesByDomain->each(function ($pages, $domain) {
             Route::domain($domain ?: '{frontarea}')->group(function () use ($pages) {
                 $pages->each(function ($page) {
