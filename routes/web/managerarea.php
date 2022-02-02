@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 Route::domain('{managerarea}')->group(function () {
     Route::name('managerarea.')
-         ->namespace('Cortex\Pages\Http\Controllers\Managerarea')
          ->middleware(['web', 'nohttpcache', 'can:access-managerarea'])
          ->prefix(route_prefix('managerarea'))->group(function () {
 
