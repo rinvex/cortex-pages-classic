@@ -7,7 +7,6 @@ namespace Cortex\Pages\Providers;
 use Cortex\Pages\Models\Page;
 use Illuminate\Support\ServiceProvider;
 use Rinvex\Support\Traits\ConsoleTools;
-use Illuminate\Database\Eloquent\Relations\Relation;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -27,18 +26,5 @@ class PagesServiceProvider extends ServiceProvider
         // Bind eloquent models to IoC container
         $this->app['config']['rinvex.pages.models.page'] === Page::class
         || $this->app->alias('rinvex.pages.page', Page::class);
-    }
-
-    /**
-     * Bootstrap any application services.
-     *
-     * @return void
-     */
-    public function boot(): void
-    {
-        // Map relations
-        Relation::morphMap([
-            'page' => config('rinvex.pages.models.page'),
-        ]);
     }
 }
