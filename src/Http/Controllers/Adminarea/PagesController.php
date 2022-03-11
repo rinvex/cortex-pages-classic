@@ -4,13 +4,12 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Adminarea;
 
-use Cortex\Foundation\Importers\InsertImporter;
-use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Cortex\Pages\Models\Page;
 use Cortex\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
+use Cortex\Foundation\Importers\InsertImporter;
 use Cortex\Pages\DataTables\Adminarea\PagesDataTable;
 use Cortex\Foundation\Http\Requests\ImportFormRequest;
 use Cortex\Pages\Http\Requests\Adminarea\PageFormRequest;
@@ -61,7 +60,7 @@ class PagesController extends AuthorizedController
      *
      * @param \Cortex\Foundation\Http\Requests\ImportFormRequest $request
      * @param \Cortex\Foundation\Importers\InsertImporter        $importer
-     * @param \Cortex\Pages\Models\Page $page
+     * @param \Cortex\Pages\Models\Page                          $page
      *
      * @return void
      */
