@@ -10,13 +10,10 @@ Route::domain('{adminarea}')->group(function () {
          ->middleware(['web', 'nohttpcache', 'can:access-adminarea'])
          ->prefix(route_prefix('adminarea'))->group(function () {
 
-        // Pages Routes
+            // Pages Routes
              Route::name('cortex.pages.pages.')->prefix('pages')->group(function () {
                  Route::match(['get', 'post'], '/')->name('index')->uses([PagesController::class, 'index']);
-                 Route::get('import')->name('import')->uses([PagesController::class, 'import']);
-                 Route::post('import')->name('stash')->uses([PagesController::class, 'stash']);
-                 Route::post('hoard')->name('hoard')->uses([PagesController::class, 'hoard']);
-                 Route::get('import/logs')->name('import.logs')->uses([PagesController::class, 'importLogs']);
+                 Route::post('import')->name('import')->uses([PagesController::class, 'import']);
                  Route::get('create')->name('create')->uses([PagesController::class, 'create']);
                  Route::post('create')->name('store')->uses([PagesController::class, 'store']);
                  Route::get('{page}')->name('show')->uses([PagesController::class, 'show']);
