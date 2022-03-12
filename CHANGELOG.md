@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 
 
+## [v6.2.1] - 2022-03-12
+- WIP Refactor & Simplify datatables import functionality
+- Convert routes actions to class based
+- Update composer dependency codedungeon/phpunit-result-printer
+- Enforce form actions routePrefix consistency
+- Add datatables routePrefix support
+
 ## [v6.2.0] - 2022-02-14
 - Update composer dependencies to Laravel v9
 - Move Relation::morphMap to module bootstrap
@@ -284,6 +291,7 @@ This project adheres to [Semantic Versioning](CONTRIBUTING.md).
 ## v0.0.1 - 2017-09-09
 - Tag first release
 
+[v6.2.1]: https://github.com/rinvex/cortex-pages/compare/v6.2.0...v6.2.1
 [v6.2.0]: https://github.com/rinvex/cortex-pages/compare/v6.1.2...v6.2.0
 [v6.1.2]: https://github.com/rinvex/cortex-pages/compare/v6.1.1...v6.1.2
 [v6.1.1]: https://github.com/rinvex/cortex-pages/compare/v6.1.0...v6.1.1
