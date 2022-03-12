@@ -4,17 +4,14 @@ declare(strict_types=1);
 
 namespace Cortex\Pages\Http\Controllers\Adminarea;
 
-use Exception;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Cortex\Pages\Models\Page;
 use Cortex\Foundation\Http\FormRequest;
 use Cortex\Foundation\DataTables\LogsDataTable;
-use Cortex\Foundation\Importers\DefaultImporter;
-use Cortex\Foundation\DataTables\ImportLogsDataTable;
+use Cortex\Foundation\Importers\InsertImporter;
 use Cortex\Pages\DataTables\Adminarea\PagesDataTable;
 use Cortex\Foundation\Http\Requests\ImportFormRequest;
-use Cortex\Foundation\DataTables\ImportRecordsDataTable;
 use Cortex\Pages\Http\Requests\Adminarea\PageFormRequest;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
 
@@ -36,6 +33,7 @@ class PagesController extends AuthorizedController
     {
         return $pagesDataTable->with([
             'id' => 'adminarea-cortex-pages-pages-index',
+            'routePrefix' => 'adminarea.cortex.pages.pages',
             'pusher' => ['entity' => 'page', 'channel' => 'cortex.pages.pages.index'],
         ])->render('cortex/foundation::adminarea.pages.datatable-index');
     }
@@ -60,81 +58,15 @@ class PagesController extends AuthorizedController
     /**
      * Import pages.
      *
-     * @param \Cortex\Pages\Models\Page                            $page
-     * @param \Cortex\Foundation\DataTables\ImportRecordsDataTable $importRecordsDataTable
-     *
-     * @return \Illuminate\View\View
-     */
-    public function import(Page $page, ImportRecordsDataTable $importRecordsDataTable)
-    {
-        return $importRecordsDataTable->with([
-            'resource' => $page,
-            'tabs' => 'adminarea.cortex.pages.pages.tabs',
-            'url' => route('adminarea.cortex.pages.pages.stash'),
-            'id' => "adminarea-cortex-pages-pages-{$page->getRouteKey()}-import",
-        ])->render('cortex/foundation::adminarea.pages.datatable-dropzone');
-    }
-
-    /**
-     * Stash pages.
-     *
      * @param \Cortex\Foundation\Http\Requests\ImportFormRequest $request
-     * @param \Cortex\Foundation\Importers\DefaultImporter       $importer
+     * @param \Cortex\Foundation\Importers\InsertImporter        $importer
+     * @param \Cortex\Pages\Models\Page                          $page
      *
      * @return void
      */
-    public function stash(ImportFormRequest $request, DefaultImporter $importer)
+    public function import(ImportFormRequest $request, InsertImporter $importer, Page $page)
     {
-        // Handle the import
-        $importer->config['resource'] = $this->resource;
-        $importer->handleImport();
-    }
-
-    /**
-     * Hoard pages.
-     *
-     * @param \Cortex\Foundation\Http\Requests\ImportFormRequest $request
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     */
-    public function hoard(ImportFormRequest $request)
-    {
-        foreach ((array) $request->input('selected_ids') as $recordId) {
-            $record = app('cortex.foundation.import_record')->find($recordId);
-
-            try {
-                $fillable = collect($record['data'])->intersectByKeys(array_flip(app('rinvex.pages.page')->getFillable()))->toArray();
-
-                tap(app('rinvex.pages.page')->firstOrNew($fillable), function ($instance) use ($record) {
-                    $instance->save() && $record->delete();
-                });
-            } catch (Exception $exception) {
-                $record->notes = $exception->getMessage().(method_exists($exception, 'getMessageBag') ? "\n".json_encode($exception->getMessageBag())."\n\n" : '');
-                $record->status = 'fail';
-                $record->save();
-            }
-        }
-
-        return intend([
-            'back' => true,
-            'with' => ['success' => trans('cortex/foundation::messages.import_complete')],
-        ]);
-    }
-
-    /**
-     * List page import logs.
-     *
-     * @param \Cortex\Foundation\DataTables\ImportLogsDataTable $importLogsDatatable
-     *
-     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
-     */
-    public function importLogs(ImportLogsDataTable $importLogsDatatable)
-    {
-        return $importLogsDatatable->with([
-            'resource' => trans('cortex/pages::common.page'),
-            'tabs' => 'adminarea.cortex.pages.pages.tabs',
-            'id' => 'adminarea-cortex-pages-pages-import-logs',
-        ])->render('cortex/foundation::adminarea.pages.datatable-tab');
+        $importer->withModel($page)->import($request->file('file'));
     }
 
     /**
