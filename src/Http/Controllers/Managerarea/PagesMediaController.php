@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 use Cortex\Pages\Models\Page;
 use Cortex\Foundation\DataTables\MediaDataTable;
 use Cortex\Foundation\Http\Requests\ImageFormRequest;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Cortex\Foundation\Models\Media;
 use Cortex\Foundation\Http\Controllers\AuthorizedController;
 
 class PagesMediaController extends AuthorizedController
@@ -77,7 +77,7 @@ class PagesMediaController extends AuthorizedController
      * Destroy given page media.
      *
      * @param \Cortex\Pages\Models\Page                          $page
-     * @param \Spatie\MediaLibrary\MediaCollections\Models\Media $media
+     * @param \Cortex\Foundation\Models\Media $media
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
      */
