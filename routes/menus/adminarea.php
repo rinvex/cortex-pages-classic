@@ -8,7 +8,7 @@ use Cortex\Foundation\Models\Media;
 use Rinvex\Menus\Models\MenuGenerator;
 
 Menu::register('adminarea.sidebar', function (MenuGenerator $menu) {
-    $menu->findByTitleOrAdd(trans('cortex/foundation::common.cms'), 40, 'fa fa-file-text-o', 'header', [], function (MenuItem $dropdown) {
+    $menu->findByTitleOrAdd(trans('cortex/foundation::common.cms'), 40, 'fa fa-file-text-o', 'header', [], [], function (MenuItem $dropdown) {
         $dropdown->route(['adminarea.cortex.pages.pages.index'], trans('cortex/pages::common.pages'), 20, 'fa fa-files-o')->ifCan('list', app('rinvex.pages.page'))->activateOnRoute('adminarea.cortex.pages.pages');
     });
 });
