@@ -46,7 +46,7 @@ class PagesDataTable extends AbstractDataTable
             : '"<a href=\""+routes.route(\'managerarea.cortex.pages.pages.edit\', {page: full.id})+"\">"+data+"</a>"';
 
         return [
-            'id' => ['checkboxes' => '{"selectRow": true}', 'exportable' => false, 'printable' => false],
+            'id' => ['checkboxes' => json_decode('{"selectRow": true}'), 'exportable' => false, 'printable' => false],
             'title' => ['title' => trans('cortex/pages::common.title'), 'render' => $link.'+(full.is_active ? " <i class=\"text-success fa fa-check\"></i>" : " <i class=\"text-danger fa fa-close\"></i>")', 'responsivePriority' => 0],
             'uri' => ['title' => trans('cortex/pages::common.uri')],
             'domain' => ['title' => trans('cortex/pages::common.domain'), 'visible' => false],
