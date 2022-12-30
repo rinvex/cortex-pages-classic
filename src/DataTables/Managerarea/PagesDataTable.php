@@ -31,6 +31,7 @@ class PagesDataTable extends AbstractDataTable
         return datatables($this->query())
             ->setTransformer(app($this->transformer))
             ->orderColumn('name', 'name->"$.'.app()->getLocale().'" $1')
+            ->whitelist(array_keys($this->getColumns()))
             ->make(true);
     }
 
