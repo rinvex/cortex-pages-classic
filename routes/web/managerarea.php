@@ -9,8 +9,7 @@ Route::domain('{managerarea}')->group(function () {
     Route::name('managerarea.')
          ->middleware(['web', 'nohttpcache', 'can:access-managerarea'])
          ->prefix(route_prefix('managerarea'))->group(function () {
-
-            // Pages Routes
+             // Pages Routes
              Route::name('cortex.pages.pages.')->prefix('pages')->group(function () {
                  Route::match(['get', 'post'], '/')->name('index')->uses([PagesController::class, 'index']);
                  Route::post('import')->name('import')->uses([PagesController::class, 'import']);
