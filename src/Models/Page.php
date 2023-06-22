@@ -11,7 +11,6 @@ use Cortex\Pages\Events\PageCreated;
 use Cortex\Pages\Events\PageDeleted;
 use Cortex\Pages\Events\PageUpdated;
 use Cortex\Pages\Events\PageRestored;
-use Rinvex\Tenants\Traits\Tenantable;
 use Cortex\Foundation\Traits\Auditable;
 use Rinvex\Support\Traits\HashidsTrait;
 use Rinvex\Support\Traits\HasTimezones;
@@ -39,7 +38,6 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @property \Carbon\Carbon|null $updated_at
  * @property \Carbon\Carbon|null $deleted_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\Cortex\Foundation\Models\Log[] $activity
- * @property \Illuminate\Database\Eloquent\Collection|\Cortex\Tenants\Models\Tenant[] $tenants
  *
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page ordered($direction = 'asc')
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereContent($value)
@@ -58,18 +56,12 @@ use Spatie\MediaLibrary\InteractsWithMedia;
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereUri($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page whereView($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withAllTenants($tenants, $group = null)
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withAnyTenants($tenants, $group = null)
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withTenants($tenants, $group = null)
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withoutAnyTenants()
- * @method static \Illuminate\Database\Eloquent\Builder|\Cortex\Pages\Models\Page withoutTenants($tenants, $group = null)
  * @mixin \Eloquent
  */
 class Page extends BasePage implements HasMedia
 {
     use Taggable;
     use Auditable;
-    use Tenantable;
     use HashidsTrait;
     use HasTimezones;
     use LogsActivity;
@@ -94,9 +86,9 @@ class Page extends BasePage implements HasMedia
      */
     public function __construct(array $attributes = [])
     {
-        $this->mergeFillable(['tags', 'tenants']);
+        $this->mergeFillable(['tags']);
 
-        $this->mergeRules(['tags' => 'nullable|array', 'tenants' => 'nullable|array']);
+        $this->mergeRules(['tags' => 'nullable|array']);
 
         parent::__construct($attributes);
     }
