@@ -24,7 +24,8 @@ class PagesServiceProvider extends ServiceProvider
     public function register(): void
     {
         // Bind eloquent models to IoC container
-        $this->app['config']['rinvex.pages.models.page'] === Page::class
-        || $this->app->alias('rinvex.pages.page', Page::class);
+        $this->registerModels([
+            'rinvex.pages.page' => Page::class,
+        ]);
     }
 }
