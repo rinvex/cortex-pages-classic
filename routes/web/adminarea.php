@@ -9,8 +9,7 @@ Route::domain('{adminarea}')->group(function () {
     Route::name('adminarea.')
          ->middleware(['web', 'nohttpcache', 'can:access-adminarea'])
          ->prefix(route_prefix('adminarea'))->group(function () {
-
-            // Pages Routes
+             // Pages Routes
              Route::name('cortex.pages.pages.')->prefix('pages')->group(function () {
                  Route::match(['get', 'post'], '/')->name('index')->uses([PagesController::class, 'index']);
                  Route::post('import')->name('import')->uses([PagesController::class, 'import']);
