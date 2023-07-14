@@ -9,7 +9,7 @@ try {
     // exceptions on new projects before configuring database options
     DB::connection()->getPdo();
 
-    if (Schema::hasTable(config('rinvex.pages.tables.pages'))) {
+    if (config('cortex.pages.register_routes') && Schema::hasTable(config('rinvex.pages.tables.pages'))) {
         app('rinvex.pages.page')->where('is_active', true)->get()->groupBy('domain')->each(function ($pages, $domain) {
             Route::domain($domain ?: '{frontarea}')->group(function () use ($pages) {
                 $pages->each(function ($page) {
