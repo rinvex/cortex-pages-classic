@@ -17,6 +17,7 @@ class CortexPagesSeeder extends Seeder
     {
         $abilities = [
             ['name' => 'list', 'title' => 'List pages', 'entity_type' => 'page'],
+            ['name' => 'view', 'title' => 'View pages', 'entity_type' => 'page'],
             ['name' => 'import', 'title' => 'Import pages', 'entity_type' => 'page'],
             ['name' => 'export', 'title' => 'Export pages', 'entity_type' => 'page'],
             ['name' => 'create', 'title' => 'Create pages', 'entity_type' => 'page'],
